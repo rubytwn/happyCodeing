@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import '../member.css'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Favorite from '../images/favorite.svg'
+import Svg2 from '../images/2.svg'
 import Svg3 from '../images/3.svg'
 import Svg4 from '../images/4.svg'
+import Svg5 from '../images/5.svg'
 import Box from '../images/box.svg'
 
 function AboutMe() {
@@ -39,23 +41,93 @@ function AboutMe() {
     return () => (isSub = false)
   }, [])
 
+  //關於我左邊的會員判斷
   const level = document.querySelector('#level')
   switch (memberLevel) {
-    case 1 :
+    case 1:
       level.innerHTML = '白銀'
       break
-    case 2 :
+    case 2:
       level.innerHTML = '黃金'
       break
-    case 3 :
+    case 3:
       level.innerHTML = '白金'
       break
-      case 4 :
+    case 4:
       level.innerHTML = '鑽石'
       break
     default:
       break
   }
+
+  //關於我右上的會員判斷
+  const level1 = document.querySelector('#level1')
+  switch (memberLevel) {
+    case 1:
+      level1.innerHTML = '黃金'
+      break
+    case 2:
+      level1.innerHTML = '白金'
+      break
+    case 3:
+      level1.innerHTML = '鑽石'
+      break
+    // case 4:
+    //   level1.innerHTML = '鑽石'
+    //   break
+    default:
+      break
+  }
+
+  //關於我右上的會員圖片判斷
+  const levelimg1 = document.querySelector('#levelimg1')
+  switch (memberLevel) {
+    case 1:
+      levelimg1.src = (Svg3)
+      break
+    case 2:
+      levelimg1.src = (Svg4)
+      break
+    case 3:
+      levelimg1.src = (Svg5)
+      break
+    // case 4:
+    //   levelimg1.src = (Svg5)
+    //   break
+    default:
+      break
+  }
+  //關於我右下的會員判斷
+  const level2 = document.querySelector('#level2')
+  switch (memberLevel) {
+    case 1:
+      level2.innerHTML = '白金'
+      break
+    case 2:
+      level2.innerHTML = '鑽石'
+      break
+    // case 3:
+    //   level2.innerHTML = '鑽石'
+    //   break
+    default:
+      break
+  }
+  //關於我右下的會員圖片判斷
+  const levelimg2 = document.querySelector('#levelimg2')
+  switch (memberLevel) {
+    case 1:
+      levelimg2.src = (Svg4)
+      break
+    case 2:
+      levelimg2.src = (Svg5)
+      break
+    // case 3:
+    //   levelimg2.src = (Svg5)
+    //   break
+    default:
+      break
+  }
+
   return (
     <>
       <div className="member_main">
@@ -113,10 +185,10 @@ function AboutMe() {
               }}
             >
               <h6>當年度任務</h6>
-              <p>完成以下任二條件，可升級白金會員</p>
+              <p>完成以下任二條件，可升級<span id="level1"></span>會員</p>
               <div style={{ display: 'flex' }}>
                 <img
-                  src={Svg3}
+                  id="levelimg1"
                   style={{ width: '85px', height: '85px' }}
                   alt=""
                 />
@@ -145,10 +217,12 @@ function AboutMe() {
               }}
             >
               <h6>下年度任務</h6>
-              <p>完成以下任二條件，可升級鑽石會員</p>
+              <p>
+                完成以下任二條件，可升級<span id="level2"></span>會員
+              </p>
               <div style={{ display: 'flex' }}>
                 <img
-                  src={Svg4}
+                  id="levelimg2"
                   style={{ width: '85px', height: '85px' }}
                   alt=""
                 />

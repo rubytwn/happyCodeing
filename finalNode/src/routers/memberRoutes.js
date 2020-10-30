@@ -33,23 +33,26 @@ router.post("/login",(req,res)=>{
 
 
 //帳號設定頁面載入時的會員資料
-router.post("/getMemberData", (req, res) => {
-  db.query("SELECT * FROM `members` WHERE 1").then(([results]) => {
+router.post("/getMemberData", async (req, res) => {
+  const sql = "SELECT * FROM `members` WHERE id=?"
+  await db.query(sql,[req.body.id])
+  .then(([results]) => {
     console.log(results);
-    res.json(results);
+    return res.json(results);
   });
 });
 
 //帳號設定頁面修改會員資料
 router.post("/editMemberData", async (req, res) => {
   const sql =
-    "UPDATE `members` SET `name`=? , `email`=?, `gender`=? , `birth`=? ,`country`=? WHERE 1";
+    "UPDATE `members` SET `name`=? , `email`=?, `gender`=? , `birth`=? ,`country`=? WHERE id=?";
   const [result] = await db.query(sql, [
     req.body.name,
     req.body.email,
     req.body.gender,
     req.body.birth,
     req.body.country,
+    req.body.id,
   ]);
   console.log(result);
   if (result.changedRows === 1) {
@@ -60,8 +63,8 @@ router.post("/editMemberData", async (req, res) => {
 
 //帳號設定頁面修改會員密碼
 router.post("/editMemberPwd", async (req, res) => {
-  const sql = "UPDATE `members` SET `pwd`=? WHERE 1";
-  const [result] = await db.query(sql, [req.body.pwd]);
+  const sql = "UPDATE `members` SET `pwd`=? WHERE id=?";
+  const [result] = await db.query(sql, [req.body.pwd,req.body.id]);
   if (result.changedRows === 1) {
     return res.json({ message: "密碼修改成功" });
   }

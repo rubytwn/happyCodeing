@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import '../member.css'
-import { Button,Modal } from 'react-bootstrap'
-import { Link, Switch, useParams, withRouter, Redirect } from 'react-router-dom'
+import {
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  Button,
+  Modal,
+  NavDropdown,
+} from 'react-bootstrap'
 
 function AccountSetting(props) {
-  const {isAuth} = props
   
-  //原本資料庫裡的memberInfo
-  //const [memberId, setMemberId] = useState('')
+  //用localStoragex裡的id判斷是哪個帳號登入
+  const localStorageInfo = localStorage.getItem('memberLogInInfo')
+  const localStorageId = JSON.parse(localStorageInfo).id
+
+  //那個帳號的初始資料
   const [memberName, setMemberName] = useState('')
   const [memberEmail, setMemberEmail] = useState('')
   const [memberGender, setMemberGender] = useState('')
@@ -15,37 +24,41 @@ function AccountSetting(props) {
   const [memberCountry, setMemberCountry] = useState('')
   const [memberPwd, setMemberPwd] = useState('')
 
-  //載入畫面時從資料庫讀去資料set進各個項目裡
+  //載入畫面時從資料庫讀去把資料set進各個項目裡
   useEffect(() => {
-    fetch('http://localhost:3000/member/getMemberData', {
+    if (localStorageId !== ''){
+
+      const data ={ id : localStorageId }
+      fetch('http://localhost:3000/member/getMemberData', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(data),
     })
-      .then((res) => {
-        //console.log(res.json());
-        return res.json()
-      })
-      .then((res) => {
-        console.log(res)
-        //console.log(res[0].email);
-        // setMemberCountry(res.info.country);
-        setMemberName(res[0].name)
-        setMemberEmail(res[0].email)
-        if (res[0].birth) {
-          setMemberBirth(res[0].birth.slice(0, 10))
-        }
-        setMemberGender(res[0].gender)
-        setMemberCountry(res[0].country)
-        setMemberPwd(res[0].pwd)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
+        .then((res) => {
+          //console.log(res.json());
+          return res.json()
+        })
+        .then((res) => {
+          console.log(res)
+          //console.log(res[0].email);
+          setMemberName(res[0].name)
+          setMemberEmail(res[0].email)
+          if (res[0].birth) {
+            setMemberBirth(res[0].birth.slice(0, 10))
+          }
+          setMemberGender(res[0].gender)
+          setMemberCountry(res[0].country)
+          setMemberPwd(res[0].pwd)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      }
+    }, [])
 
-  //更新的hook
+  //更新後的資料的hook
   const [memberEditName, setMembeEdirName] = useState('')
   const [memberEditEmail, setmemberEditEmail] = useState('')
   const [memberEditGender, setMemberEditGender] = useState('')
@@ -61,6 +74,7 @@ function AccountSetting(props) {
       gender: memberEditGender ? memberEditGender : memberGender,
       birth: memberEditBirth ? memberEditBirth : memberBirth,
       country: memberEditCountry ? memberEditCountry : memberCountry,
+      id : localStorageId,
     }
 
     fetch('http://localhost:3000/member/editMemberData', {
@@ -79,7 +93,8 @@ function AccountSetting(props) {
       })
       .catch((error) => {})
   }
-  //更改密碼的判斷
+
+  //更改密碼的modal的判斷
   const [modalShow, setModalShow] = useState(false)
   
   function upDatePwdBtn(props) {
@@ -110,7 +125,9 @@ function AccountSetting(props) {
     if(oldPwd === memberPwd && newPwd === newPwdCheck) {
       setMemberEditPwd(newPwd)
       errorInfo.innerHTML = '正確'
-      const data={ pwd: memberEditPwd ? memberEditPwd : memberPwd }
+      const data={ 
+        pwd: memberEditPwd ? memberEditPwd : memberPwd,
+        id : localStorageId, }
       fetch('http://localhost:3000/member/editMemberPwd', {
       method: 'POST',
       headers: {
@@ -132,6 +149,7 @@ function AccountSetting(props) {
   }
   }
 
+  //更改密碼的modal畫面
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
@@ -168,9 +186,6 @@ function AccountSetting(props) {
       </Modal>
     )
   }
-
-  if (isAuth === false) return <Redirect to="/" />
-  
 
   return (
     <>
@@ -223,13 +238,13 @@ function AccountSetting(props) {
                     setMemberEditGender(newMemberGenger)
                   }}
                 >
-                  <option value="1" selected={memberGender === 1}>
+                  <option value="1" selected={memberGender === '1'}>
                     男
                   </option>
-                  <option value="2" selected={memberGender === 2}>
+                  <option value="2" selected={memberGender === '2'}>
                     女
                   </option>
-                  <option value="3" selected={memberGender === 3}>
+                  <option value="3" selected={memberGender === '3'}>
                     其他
                   </option>
                 </select>
@@ -251,7 +266,6 @@ function AccountSetting(props) {
               </div>
               <div className="form-group">
                 <label htmlFor="location">所在地</label>
-                {/* {memberCountry ? countryDisplay : countrySelect} */}
                 <select
                   className="form-control"
                   id="location"
@@ -322,4 +336,4 @@ function AccountSetting(props) {
   )
 }
 
-export default withRouter(AccountSetting)
+export default AccountSetting

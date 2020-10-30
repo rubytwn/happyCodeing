@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../member.css'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Favorite from '../images/favorite.svg'
@@ -7,30 +7,55 @@ import Svg4 from '../images/4.svg'
 import Box from '../images/box.svg'
 
 function AboutMe() {
-  const [ memberName , setMemberName ]=useState('')
+  const [memberName, setMemberName] = useState('')
+  const [memberLevel, setMemberLevel] = useState('')
+  const localStorageInfo = localStorage.getItem('memberLogInInfo')
+  const localStorageId = JSON.parse(localStorageInfo).id
+
   useEffect(() => {
-    let isSub = true;
-    fetch("http://localhost:3000/member/setting", {
-      method: "POST",
+    const data = { id: localStorageId }
+    let isSub = true
+    fetch('http://localhost:3000/member/getMemberData', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
-      }
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     })
-      .then(res => {
+      .then((res) => {
         // console.log(res.json());
-        return res.json();
+        return res.json()
       })
-      .then(res => {
-        if(isSub){
-          console.log(res);
-          setMemberName(res[0].name);
+      .then((res) => {
+        if (isSub) {
+          //console.log(res);
+          setMemberName(res[0].name)
+          setMemberLevel(res[0].level)
         }
       })
-      .catch(error => {
-        console.log(error);
-      });
-    return () => (isSub = false);
-  }, []);
+      .catch((error) => {
+        console.log(error)
+      })
+    return () => (isSub = false)
+  }, [])
+
+  const level = document.querySelector('#level')
+  switch (memberLevel) {
+    case 1 :
+      level.innerHTML = '白銀'
+      break
+    case 2 :
+      level.innerHTML = '黃金'
+      break
+    case 3 :
+      level.innerHTML = '白金'
+      break
+      case 4 :
+      level.innerHTML = '鑽石'
+      break
+    default:
+      break
+  }
   return (
     <>
       <div className="member_main">
@@ -52,32 +77,20 @@ function AboutMe() {
               <div className="col-6">
                 <p>{memberName}</p>
                 <p>
-                  <span>黃金會員 </span>
+                  <span id="level"></span>
                   <span> 台灣</span>
                 </p>
 
                 <div className="mb-3">
                   <span>目前評價</span>
                   <span>
-                    <img
-                      src={Favorite}
-                      style={{ height: '23px' }}
-                      alt=""
-                    />
+                    <img src={Favorite} style={{ height: '23px' }} alt="" />
                   </span>
                   <span>
-                    <img
-                      src={Favorite}
-                      style={{ height: '23px' }}
-                      alt=""
-                    />
+                    <img src={Favorite} style={{ height: '23px' }} alt="" />
                   </span>
                   <span>
-                    <img
-                      src={Favorite}
-                      style={{ height: '23px' }}
-                      alt=""
-                    />
+                    <img src={Favorite} style={{ height: '23px' }} alt="" />
                   </span>
                 </div>
                 <Link
@@ -109,27 +122,15 @@ function AboutMe() {
                 />
                 <div style={{ marginLeft: '15px' }}>
                   <div>
-                    <img
-                      src={Box}
-                      style={{ height: '16px' }}
-                      alt=""
-                    />
+                    <img src={Box} style={{ height: '16px' }} alt="" />
                     <span>消費滿3000</span>
                   </div>
                   <div>
-                    <img
-                      src={Box}
-                      style={{ height: '16px' }}
-                      alt=""
-                    />
+                    <img src={Box} style={{ height: '16px' }} alt="" />
                     <span>消費(含)三次以上</span>
                   </div>
                   <div>
-                    <img
-                      src={Box}
-                      style={{ height: '16px' }}
-                      alt=""
-                    />
+                    <img src={Box} style={{ height: '16px' }} alt="" />
                     <span>完成艸小遊戲</span>
                   </div>
                 </div>
@@ -153,27 +154,15 @@ function AboutMe() {
                 />
                 <div style={{ marginLeft: '15px' }}>
                   <div>
-                    <img
-                      src={Box}
-                      style={{ height: '16px' }}
-                      alt=""
-                    />
+                    <img src={Box} style={{ height: '16px' }} alt="" />
                     <span>消費滿5000</span>
                   </div>
                   <div>
-                    <img
-                      src={Box}
-                      style={{ height: '16px' }}
-                      alt=""
-                    />
+                    <img src={Box} style={{ height: '16px' }} alt="" />
                     <span>消費(含)五次以上</span>
                   </div>
                   <div>
-                    <img
-                      src={Box}
-                      style={{ height: '16px' }}
-                      alt=""
-                    />
+                    <img src={Box} style={{ height: '16px' }} alt="" />
                     <span>完成艸小遊戲</span>
                   </div>
                 </div>

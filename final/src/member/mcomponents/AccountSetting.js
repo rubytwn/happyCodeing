@@ -142,7 +142,7 @@ function AccountSetting(props) {
       .then((row) => {
         console.log(row)
         setTimeout(()=>{
-          setModalShow(true)
+          setModalShow(false)
         },2000)
       })
       .catch((error) => {})

@@ -16,7 +16,8 @@ class User {
 }
 
 router.post("/", (req, res) => {
-  db.query("SELECT * FROM `members` WHERE 1").then(([results]) => {
+  db.query("SELECT * FROM `members` WHERE 1")
+  .then(([results]) => {
     console.log(results);
     res.json(results);
   });
@@ -27,7 +28,7 @@ router.post("/login",(req,res)=>{
   db.query(sql,[req.body.email,req.body.pwd])
   .then(([results]) => {
     //console.log(results[0].id);
-    res.json({id:results[0].id,name:results[0].name});
+    res.json({id:results[0].id,name:results[0].name,level:results[0].level});
   });
 })
 
@@ -69,5 +70,12 @@ router.post("/editMemberPwd", async (req, res) => {
     return res.json({ message: "密碼修改成功" });
   }
 });
+
+//優惠券頁面
+router.post("/coupon",async(req,res) =>{
+  const sql = "SELECT * FROM `coupon` WHERE 1"
+  const [result] = await db.query(sql);
+  return res.json(result);
+})
 
 module.exports = router;

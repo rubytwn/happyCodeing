@@ -21,6 +21,7 @@ import Order from './Order'
 import Refund from './Refund'
 import Level from './Level'
 import Follow from './Follow'
+import Coupon from './Coupon'
 import AccountSetting from './AccountSetting'
 
 function MemberNav() {
@@ -55,6 +56,9 @@ function MemberNav() {
         </Route>
         <Route path="/memberroot/follow">
           <Follow />
+        </Route>
+        <Route path="/memberroot/coupon">
+          <Coupon />
         </Route>
         <Route path="/memberroot/setting">
           <AccountSetting />

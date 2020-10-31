@@ -22,5 +22,6 @@ app是整組的根主頁--變成memberroot才是會員的根分頁
 --------------------登入狀態-------------------- 
 先用const [isLogin ,setisLogin] = useState(false) //暫時設定登入登出的狀態
 ()!!!!如何在登入的modal按下登入 並且確認fetch有發成功後才把seyisAuth變true!!!! 參考老師的productList!!!
+()登出的時候要把localStorage帳號部分清掉（追蹤清單如果放在localStorage怎麼跟著不同帳號顯示）
 --------------------購買訂單--------------------
 (v)展開＆收合btn

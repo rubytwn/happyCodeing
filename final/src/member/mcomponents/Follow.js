@@ -4,34 +4,28 @@ import FollowTbody from './FollowTbody'
 
 function Follow() {
 
-  const [memberFollowindItems,setMemberFollowindItems] = useState(
-    [
-      {
-        "id": "a001",
-        "name": "海倫鮮度絲清爽洗髮精",
-        "price": 1000
-      },
-      {
-        "id": "b001",
-        "name": "多芬保濕洗髮精",
-        "price": 2000
-      },
-      {
-        "id": "b001",
-        "name": "花王植萃洗髮精",
-        "price": 1500
-      }
-    ]
-  )
-  // const localStorageItems = localStorage.getItem('memberFollowindItems')
+  const [memberFollowindItems,setMemberFollowindItems] = useState([])
+  // 
   // const localStorageMemberFollowindItems = JSON.parse(localStorageItems)
   // setMemberFollowindItems(localStorageMemberFollowindItems)
 
+   //從localStorage拿追蹤商品
+  function getItemFromLocalStorage(){
+    const localStorageItems = localStorage.getItem('memberFollowindItems')
+    setMemberFollowindItems(JSON.parse(localStorageItems))
+  }
+
+  //要傳到<FollowTbody /> 從追蹤清單移除的方法
   const handleDelete = (id) => {
     const newMemberFollowindItems = memberFollowindItems.filter((item, index) => item.id !== id)
 
       setMemberFollowindItems(newMemberFollowindItems)
   }
+
+  useEffect(()=>{
+    getItemFromLocalStorage()
+  },[memberFollowindItems])
+
 
   return (
     <>

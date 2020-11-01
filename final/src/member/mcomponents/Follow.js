@@ -18,8 +18,8 @@ function Follow() {
   //要傳到<FollowTbody /> 從追蹤清單移除的方法
   const handleDelete = (id) => {
     const newMemberFollowindItems = memberFollowindItems.filter((item, index) => item.id !== id)
-
-      setMemberFollowindItems(newMemberFollowindItems)
+    const afterDel =   localStorage.setItem('memberFollowindItems' , JSON.stringify(newMemberFollowindItems))
+      setMemberFollowindItems(afterDel)
   }
 
   useEffect(()=>{

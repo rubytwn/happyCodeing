@@ -78,4 +78,12 @@ router.post("/coupon",async(req,res) =>{
   return res.json(result);
 })
 
+//訂單資訊
+router.post("/orderinfo",async(req,res)=>{
+  const sql = "SELECT * FROM `Order_Info` WHERE `Member_id`=? "
+  const [result] = await db.query(sql,[req.body.Member_id]);
+  console.log(result)
+  return res.json(result);
+})
+
 module.exports = router;

@@ -6,12 +6,12 @@ import Register from './Register'
 
 
 function Home(props) {
-  const {setisLogin} = props
   const [loginModalShow, setLoginModalShow] = useState(false);
   const [registerModalShow, setRegisterModalShow] = useState(false);
 
   return (
     <>
+    <div className="mt-5">
       <h1>Hello</h1>
       <Link to="/memberroot">Link component to memberroot</Link>
       <Login
@@ -22,8 +22,7 @@ function Home(props) {
         registerModalShow={registerModalShow}
         setRegisterModalShow={setRegisterModalShow}
       />
-      <button onClick={()=>{setisLogin(true)}}>登入</button>
-      <button onClick={()=>{setisLogin(false)}}>登出</button>
+      </div>
     </>
   )
 }

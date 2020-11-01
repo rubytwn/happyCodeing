@@ -6,6 +6,7 @@ import MemberMain from './member/mcomponents/MemberMain'
 import Home from './pages/Home'
 import MemberRoot from './pages/MemberRoot'
 import Login from './pages/Login'
+import Navbar from '../src/pages/Navebar'
 
 
 function App (){
@@ -14,12 +15,17 @@ function App (){
   //設定登入登出的狀態
   const [isAuth ,setisAuth] = useState(false)
 
+  if( isLogin === false){
+    localStorage.removeItem('memberLogInInfo')
+  }
+
 
     return(
         <Router>
             <>
             <Switch>
             <MemberMain>
+            <Navbar setisLogin={setisLogin} />
               <Route exact path="/">
                 <Home isAuth={isAuth} setisAuth={setisAuth} isLogin={isLogin} setisLogin={setisLogin} />
               </Route>

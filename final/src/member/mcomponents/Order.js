@@ -1,15 +1,93 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../member.css'
 
-
 function Order() {
+  //用localStoragex裡的id判斷是哪個帳號登入
+  const localStorageInfo = localStorage.getItem('memberLogInInfo')
+  const localStorageId = JSON.parse(localStorageInfo).id
+
+  //資料庫裡的資訊
+  const [OrderState, setOrderState] = useState() //包裹狀態
+  const [OrderCode, setOrderCode] = useState() //訂單編號
+  const [MemberName, setMemberName] = useState() //下訂的會員name
+  const [OrderName, setOrderName] = useState() //收件人name
+  const [OrderMobile, setOrderMobile] = useState() //收件人mobile
+  const [OrderDeliverType, setOrderDeliverType] = useState() //運送的超商
+  const [Order_deliver_store, setOrderDeliverStore] = useState() //運送的門市
+  const [OrderPackageId, setOrderPackageId] = useState() //包裹查詢號碼
+  const [OrderAddress, setOrderAddress] = useState() //宅配地址
+  const [OrderPay, setOrderPay] = useState() //付款狀態
+
+  //載入畫面時從資料庫讀去把資料set進各個項目裡
+  useEffect(() => {
+    if (localStorageId !== '') {
+      const data = { Member_id: localStorageId }
+      fetch('http://localhost:3000/member/orderinfo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => {
+          //console.log(res.json())
+          return res.json()
+        })
+        .then((row) => {
+          console.log(row)
+          setOrderState(row[0].Order_State)
+          setOrderCode(row[0].Order_code)
+          setMemberName(row[0].Member_name)
+          setOrderName(row[0].Order_name)
+          setOrderMobile(row[0].Order_mobile)
+          setOrderDeliverType(row[0].Order_deliver_type)
+          setOrderDeliverStore(row[0].Order_deliver_store)
+          setOrderPackageId(row[0].Order_package_id)
+          setOrderAddress(row[0].Order_address)
+          setOrderPay(row[0].Order_pay)
+        })
+        .catch((error) => {})
+    }
+  }, [])
+
+  //判斷取貨方式
+  switch (OrderDeliverType) {
+    case 'a':
+      const a = '全家'
+      setOrderDeliverType(a)
+      break
+    case 'b':
+      const b = '7-11'
+      setOrderDeliverType(b)
+      break
+    case 'c':
+      const c = 'ok'
+      setOrderDeliverType(c)
+      break
+    case 'd':
+      const d = '萊爾富'
+      setOrderDeliverType(d)
+      break
+    case 'e':
+      const e = '郵寄'
+      setOrderDeliverType(e)
+      break
+    default:
+      break
+  }
+
+  //訂單商品的收合狀態
   const [orderDetail, setOrderDetail] = useState(false)
+  //訂單商品的詳細
   const orderDetailTable = (
     <>
       <div className="row align-items-center">
         <h5 className="col-8">共3件</h5>
         <h3 className="col-2">$3000</h3>
-        <button className="col-2 order-btn" onClick={() => setOrderDetail(true)}>
+        <button
+          className="col-2 order-btn"
+          onClick={() => setOrderDetail(true)}
+        >
           收合
         </button>
       </div>
@@ -62,7 +140,10 @@ function Order() {
       <div className="row align-items-center">
         <h5 className="col-8">共3件</h5>
         <h3 className="col-2">$3000</h3>
-        <button className="col-2 order-btn" onClick={() => setOrderDetail(false)}>
+        <button
+          className="col-2 order-btn"
+          onClick={() => setOrderDetail(false)}
+        >
           展開
         </button>
       </div>
@@ -89,19 +170,34 @@ function Order() {
         </div>
         <div>
           <div className="row order-part">
-            <span className="order-title">訂單編號</span>
-            <span className="odrder-code">20043UUHWGGI</span>
+            <p className="order-title">
+              訂單編號
+              <span className="odrder-code">{OrderCode}</span>
+            </p>
           </div>
           <div className="order-info">
-            <p className="order-s-title">收件地址</p>
-            <p className="order-content">王小明</p>
-            <p className="order-content">0911***394</p>
-            <p className="order-content">台北市大安區00路00號0樓</p>
+            <p className="order-s-title">訂單資訊</p>
+            <p className="order-content">
+              訂購人： <span>{MemberName}</span>
+            </p>
+            <p className="order-content">
+              收件人： <span>{OrderName}</span>
+            </p>
+            <p className="order-content">
+              收件人電話： <span>{OrderMobile}</span>
+            </p>
             <hr />
             <p className="order-s-title">運送資訊</p>
-            <p className="order-content">OK Mart 大安門市</p>
-            <p className="order-content">包裹查詢號碼: SALW00291</p>
-            <p className="order-content">超商取貨付款</p>
+            <p className="order-content">
+              {OrderDeliverType} {Order_deliver_store}
+            </p>
+            <p className="order-content">
+              包裹查詢號碼： <span>{OrderPackageId}</span>
+            </p>
+            <p className="order-content">{OrderPay}</p>
+            <p className="order-content">
+              收貨地址： <span>台北市大安區00路00號0樓</span>
+            </p>
             <hr />
 
             {orderDetail ? nonOrderDetail : orderDetailTable}

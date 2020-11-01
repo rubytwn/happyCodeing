@@ -37,6 +37,7 @@ function Coupon() {
             return(
                 <CouponDetail
                 key={item.coupon_id}
+                id={item.coupon_id}
                 coupon_name={item.coupon_name}
                 coupon_rule={item.coupon_rule}
                 coupon_date={item.coupon_date}

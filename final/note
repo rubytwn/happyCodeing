@@ -16,6 +16,27 @@ app是整組的根主頁--變成memberroot才是會員的根分頁
 ()[圖片]照片顯示
 ()[圖片]照片修改
 --------------------購買訂單--------------------
+\\\\\訂單資料Order_Info資料表內容設定\\\\\
+Order_id
+Order_State:(包裹狀態 1:尚未付款 2:處理中 3:待收貨 4:已完成 5:已取消) 
+Order_code:訂單編號
+--收件人--
+Member_id:(下訂的會員id)
+Member_name:(下訂的會員name)
+Order_name:(收件人name)
+Order_mobile:(收件人mobile)
+--運送資訊--
+Order_deliver_type:(運送的超商 全家:a 7-11:b ok:c 萊爾富:d 郵寄:e)
+Order_deliver_store:(運送的門市)
+Order_package_id:(包裹查詢號碼)
+Order_address:(如果是超取就沒這欄)
+Order_pay:(付款狀態) 
+信用卡未付10 信用卡已付:20 轉帳未付:30 轉帳已付:40 超取:50
+超取信用卡未付：a10 b10 c10 d10     郵寄信用卡未付：e10   超商取貨付款:a50 b50 c50 d50
+超取信用卡已付：a20 b20 c20 d20     郵寄信用卡已付：e20
+超取轉帳未付：  a30 b30 c30 d30     郵寄轉帳未付：e30
+超取轉帳已付：  a40 b40 c40 d40     郵寄轉帳已付：e40
+\\\\\訂單商品Order_Items資料表內容設定\\\\\
 (v)展開＆收合btn
 ()還沒建＆連動資料表
 --------------------退款申請--------------------
@@ -36,5 +57,8 @@ vvvvv暫時完成vvvvv
 --------------------登入狀態-------------------- 
 //暫時設定登入登出的狀態  先用const [isLogin ,setisLogin] = useState(false) 
 ()!!!!如何在登入的modal按下登入 並且確認fetch有發成功後才把seyisAuth變true!!!! 參考老師的productList!!!
-()登出的時候要把localStorage帳號部分清掉（追蹤清單如果放在localStorage怎麼跟著不同帳號顯示）
-()登出btn
+(v)登出的時候要把localStorage帳號部分清掉
+()追蹤清單如果放在localStorage怎麼跟著不同帳號顯示
+(v)登出btn
+()美化登入登出註冊btn
+()註冊頁面

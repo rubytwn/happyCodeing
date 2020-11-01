@@ -38,7 +38,7 @@ Order_pay:(付款狀態)
 超取轉帳已付：  a40 b40 c40 d40     郵寄轉帳已付：e40
 \\\\\訂單商品Order_Items資料表內容設定\\\\\
 (v)展開＆收合btn
-()還沒建＆連動資料表
+()//判斷付款狀態的slice(1,3)一直undefined(Cannot read property 'slice' of undefined)
 --------------------退款申請--------------------
 (v)展開＆收合btn
 ()還沒建＆連動資料表

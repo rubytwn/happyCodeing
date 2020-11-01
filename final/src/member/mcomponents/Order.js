@@ -76,6 +76,34 @@ function Order() {
       break
   }
 
+  //判斷付款狀態
+  // const OrderPayState = OrderPay.slice(1, 3)
+  // switch (OrderPayState) {
+  //   case 'a10':
+  //     const newOrderPay1 = ' 信用卡未付'
+  //     setOrderPay(newOrderPay1)
+  //     break
+  //   case '20':
+  //     const newOrderPay2 = ' 信用卡已付'
+  //     setOrderPay(newOrderPay2)
+  //     break
+  //   case '30':
+  //     const newOrderPay3 = ' 轉帳未付'
+  //     setOrderPay(newOrderPay3)
+  //     break
+  //   case '40':
+  //     const newOrderPay4 = ' 轉帳已付'
+  //     setOrderPay(newOrderPay4)
+  //     break
+  //   case '50':
+  //     const newOrderPay5 = ' 超商取貨付款'
+  //     setOrderPay(newOrderPay5)
+  //     break
+
+  //   default:
+  //     break
+  // }
+
   //訂單商品的收合狀態
   const [orderDetail, setOrderDetail] = useState(false)
   //訂單商品的詳細
@@ -194,7 +222,9 @@ function Order() {
             <p className="order-content">
               包裹查詢號碼： <span>{OrderPackageId}</span>
             </p>
-            <p className="order-content">{OrderPay}</p>
+            <p className="order-content">
+            付款方式： <span>{OrderPay}</span>
+            </p>
             <p className="order-content">
               收貨地址： <span>台北市大安區00路00號0樓</span>
             </p>

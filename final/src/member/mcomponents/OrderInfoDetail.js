@@ -43,16 +43,16 @@ function OdrerInfoDetail(props) {
   let OrderPayState = Order_pay.slice(1, 3)
   switch (OrderPayState) {
     case '10':
-      OrderPayState = ' 信用卡未付'
+      OrderPayState = ' 信用卡尚未付款'
       break
     case '20':
-      OrderPayState = ' 信用卡已付'
+      OrderPayState = ' 信用卡已付款'
       break
     case '30':
-      OrderPayState = ' 轉帳未付'
+      OrderPayState = ' 轉帳尚未付款'
       break
     case '40':
-      OrderPayState = ' 轉帳已付'
+      OrderPayState = ' 轉帳已付款'
       break
     case '50':
       OrderPayState = ' 超商取貨付款'
@@ -135,6 +135,16 @@ function OdrerInfoDetail(props) {
     </>
   )
 
+  //運送方式是郵寄的話才顯示
+  const address = (
+      <>
+          <p className="order-content">
+            收貨地址： <span>台北市大安區00路00號0樓</span>
+          </p>
+
+      </>
+  )
+  
   return (
     <>
       <div>
@@ -166,9 +176,8 @@ function OdrerInfoDetail(props) {
           <p className="order-content">
             付款方式： <span>{OrderPayState}</span>
           </p>
-          <p className="order-content">
-            收貨地址： <span>台北市大安區00路00號0樓</span>
-          </p>
+          
+          { OrderDeliverType === '郵寄' ? address : ''}
           <hr />
 
           {orderDetail ? nonOrderDetail : orderDetailTable}

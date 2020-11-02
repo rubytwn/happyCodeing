@@ -39,6 +39,8 @@ Order_pay:(付款狀態)
 \\\\\訂單商品Order_Items資料表內容設定\\\\\
 (v)展開＆收合btn
 ()//判斷付款狀態的slice(1,3)一直undefined(Cannot read property 'slice' of undefined)
+(v)判斷取貨超商的switch(OdrerInfoDetail那隻)
+(v)判斷付款方式的switch(OdrerInfoDetail那隻)
 --------------------退款申請--------------------
 (v)展開＆收合btn
 ()還沒建＆連動資料表

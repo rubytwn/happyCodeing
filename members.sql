@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2020 年 10 月 31 日 06:18
+-- 產生時間： 2020 年 11 月 02 日 12:53
 -- 伺服器版本： 10.4.14-MariaDB
 -- PHP 版本： 7.3.22
 
@@ -43,7 +43,7 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`id`, `name`, `email`, `pwd`, `gender`, `birth`, `country`, `level`) VALUES
-(1, 'Bunny', 'bunny@yahoo.com.tw', '111', '3', '2020-10-03', 'JP', 1),
+(1, 'Bunny', 'bunny@yahoo.com.tw', '111', '2', '2020-10-02', 'JP', 1),
 (49, 'Peggy', 'peggy@yahoo.com.tw', '123', '2', '2020-10-08', 'JP', 2);
 
 --

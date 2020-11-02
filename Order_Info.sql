@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2020 年 11 月 02 日 07:30
+-- 產生時間： 2020 年 11 月 02 日 12:53
 -- 伺服器版本： 10.4.14-MariaDB
 -- PHP 版本： 7.3.22
 
@@ -49,8 +49,12 @@ CREATE TABLE `Order_Info` (
 INSERT INTO `Order_Info` (`Order_id`, `Order_State`, `Order_code`, `Member_id`, `Member_name`, `Order_name`, `Order_mobile`, `Order_deliver_type`, `Order_deliver_store`, `Order_package_id`, `Order_address`, `Order_pay`) VALUES
 (1, 1, '20043UUHWGGI', 1, 'Bunny', 'Mandy', '0933193827', 'a', '大安門市', 'SALW00291', '', 'a10'),
 (2, 2, '20043CLDOGI', 1, 'Bunny', 'Wendy', '0983716483', 'c', '大安門市', 'SALW00402', '', 'c20'),
-(3, 2, '20043CDKCFV', 1, 'Bunny', 'Sandy', '0973638174', 'b', '大安門市', 'SALW00204', '', 'b30'),
-(4, 1, '20043UUHUROW', 1, 'Bunny', 'Max', '0948371934', 'd', '大安門市', 'SALW4819', '', 'd40');
+(3, 2, '20043CDKCFV', 1, 'Bunny', 'Sandy', '0973638174', 'b', '大安門市', 'SALW00204', '', 'b40'),
+(4, 1, '20043UUHUROW', 1, 'Bunny', 'Max', '0948371934', 'd', '大安門市', 'SALW4819', '', 'd30'),
+(5, 1, '20043UUHWGGI', 49, 'Peggy', 'Ann', '0938271849', 'a', '大安門市', 'DAFW00291', '', 'a10'),
+(6, 2, '23013UUHWDIW', 49, 'Peggy', 'Yuan', '0983719372', 'c', '大安門市', 'SALW00402', '', 'c20'),
+(7, 2, '20043CDKCFV', 49, 'Peggy', 'Lee', '0938192837', 'b', '大安門市', 'SALW00204', '', 'b40'),
+(8, 1, '20020ODHWGGI', 49, 'Peggy', 'Tina', '0938271044', 'd', '大安門市', 'SALW4819', '', 'd30');
 
 --
 -- 已傾印資料表的索引
@@ -70,7 +74,7 @@ ALTER TABLE `Order_Info`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `Order_Info`
 --
 ALTER TABLE `Order_Info`
-  MODIFY `Order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

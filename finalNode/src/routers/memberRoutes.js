@@ -86,4 +86,12 @@ router.post("/orderinfo",async(req,res)=>{
   return res.json(result);
 })
 
+//訂單詳細資訊
+router.post("/orderdetail",async(req,res)=>{
+  const sql = "SELECT * FROM `Order_Detail` WHERE `OrderDetail_code`=? "
+  const [result] = await db.query(sql,[req.body.Order_code]);
+  console.log(result)
+  return res.json(result);
+})
+
 module.exports = router;

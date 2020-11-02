@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import '../member.css'
+import OrderItemTable from './OrderItemTable'
 
 function OdrerInfoDetail(props) {
   //訂單商品的收合狀態
-  const [orderDetail, setOrderDetail] = useState(false)
+  const [orderDetail, setOrderDetail] = useState(true)
+
+  //訂單商品表
+  const [itemTable, setItemTable] = useState([])
 
   //資料庫裡的資訊
   const {
@@ -87,48 +91,49 @@ function OdrerInfoDetail(props) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>洗髮精</td>
-              <td>1</td>
-              <td>$1000</td>
-              <td>
-                <button href="">查看商品詳細頁</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>洗髮精</td>
-              <td>1</td>
-              <td>$1000</td>
-              <td>
-                <button href="">查看商品詳細頁</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>洗髮精</td>
-              <td>1</td>
-              <td>$1000</td>
-              <td>
-                <button href="">查看商品詳細頁</button>
-              </td>
-            </tr>
+            {itemTable.map((item, index) => {
+              return (
+                <OrderItemTable
+                  key={item.OrderDetail_id}
+                  Order_Detail_name={item.Order_Detail_name}
+                  Order_Detail_amount={item.Order_Detail_amount}
+                  Order_Detail_price={item.Order_Detail_price}
+                />
+              )
+            })}
           </tbody>
         </table>
       </div>
     </>
   )
 
+  //展開的btn
+  function openBtn() {
+    setOrderDetail(false)
+    const data = { Order_code: Order_code }
+    fetch('http://localhost:3000/member/orderdetail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        //console.log(res.json())
+        return res.json()
+      })
+      .then((row) => {
+        console.log(row)
+        setItemTable(row)
+      })
+      .catch((error) => {})
+  }
   const nonOrderDetail = (
     <>
       <div className="row align-items-center">
         <h5 className="col-8">共3件</h5>
         <h3 className="col-2">$3000</h3>
-        <button
-          className="col-2 order-btn"
-          onClick={() => setOrderDetail(false)}
-        >
+        <button className="col-2 order-btn" onClick={openBtn}>
           展開
         </button>
       </div>
@@ -137,14 +142,13 @@ function OdrerInfoDetail(props) {
 
   //運送方式是郵寄的話才顯示
   const address = (
-      <>
-          <p className="order-content">
-            收貨地址： <span>台北市大安區00路00號0樓</span>
-          </p>
-
-      </>
+    <>
+      <p className="order-content">
+        收貨地址： <span>台北市大安區00路00號0樓</span>
+      </p>
+    </>
   )
-  
+
   return (
     <>
       <div>
@@ -176,8 +180,8 @@ function OdrerInfoDetail(props) {
           <p className="order-content">
             付款方式： <span>{OrderPayState}</span>
           </p>
-          
-          { OrderDeliverType === '郵寄' ? address : ''}
+
+          {OrderDeliverType === '郵寄' ? address : ''}
           <hr />
 
           {orderDetail ? nonOrderDetail : orderDetailTable}

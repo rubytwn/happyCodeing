@@ -4,41 +4,60 @@ import '../member.css'
 function OdrerInfoDetail(props) {
   //訂單商品的收合狀態
   const [orderDetail, setOrderDetail] = useState(false)
+
   //資料庫裡的資訊
   const {
-    OrderCode,
-    MemberName,
-    OrderName,
-    OrderMobile,
-    OrderDeliverType,
-    setOrderDeliverType,
+    Order_code,
+    Member_name,
+    Order_name,
+    Order_mobile,
+    Order_deliver_type,
     Order_deliver_store,
-    OrderPackageId,
-    OrderPay,
+    Order_package_id,
+    Order_pay,
   } = props
 
   //判斷取貨方式
+  let OrderDeliverType = Order_deliver_type
   switch (OrderDeliverType) {
     case 'a':
-      const a = '全家'
-      setOrderDeliverType(a)
+      OrderDeliverType = '全家'
       break
     case 'b':
-      const b = '7-11'
-      setOrderDeliverType(b)
+      OrderDeliverType = '7-11'
       break
     case 'c':
-      const c = 'ok'
-      setOrderDeliverType(c)
+      OrderDeliverType = 'ok'
       break
     case 'd':
-      const d = '萊爾富'
-      setOrderDeliverType(d)
+      OrderDeliverType = '萊爾富'
       break
     case 'e':
-      const e = '郵寄'
-      setOrderDeliverType(e)
+      OrderDeliverType = '郵寄'
       break
+    default:
+      break
+  }
+
+  //判斷付款狀態
+  let OrderPayState = Order_pay.slice(1, 3)
+  switch (OrderPayState) {
+    case '10':
+      OrderPayState = ' 信用卡未付'
+      break
+    case '20':
+      OrderPayState = ' 信用卡已付'
+      break
+    case '30':
+      OrderPayState = ' 轉帳未付'
+      break
+    case '40':
+      OrderPayState = ' 轉帳已付'
+      break
+    case '50':
+      OrderPayState = ' 超商取貨付款'
+      break
+
     default:
       break
   }
@@ -122,19 +141,19 @@ function OdrerInfoDetail(props) {
         <div className="row order-part">
           <p className="order-title">
             訂單編號
-            <span className="odrder-code">{OrderCode}</span>
+            <span className="odrder-code">{Order_code}</span>
           </p>
         </div>
         <div className="order-info">
           <p className="order-s-title">訂單資訊</p>
           <p className="order-content">
-            訂購人： <span>{OrderRows.Member_name}</span>
+            訂購人： <span>{Member_name}</span>
           </p>
           <p className="order-content">
-            收件人： <span>{OrderName}</span>
+            收件人： <span>{Order_name}</span>
           </p>
           <p className="order-content">
-            收件人電話： <span>{OrderMobile}</span>
+            收件人電話： <span>{Order_mobile}</span>
           </p>
           <hr />
           <p className="order-s-title">運送資訊</p>
@@ -142,10 +161,10 @@ function OdrerInfoDetail(props) {
             {OrderDeliverType} {Order_deliver_store}
           </p>
           <p className="order-content">
-            包裹查詢號碼： <span>{OrderPackageId}</span>
+            包裹查詢號碼： <span>{Order_package_id}</span>
           </p>
           <p className="order-content">
-            付款方式： <span>{OrderPay}</span>
+            付款方式： <span>{OrderPayState}</span>
           </p>
           <p className="order-content">
             收貨地址： <span>台北市大安區00路00號0樓</span>

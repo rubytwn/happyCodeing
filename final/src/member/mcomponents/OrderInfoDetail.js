@@ -2,30 +2,19 @@ import React, { useState, useEffect } from 'react'
 import '../member.css'
 
 function OdrerInfoDetail(props) {
-      //訂單商品的收合狀態
+  //訂單商品的收合狀態
   const [orderDetail, setOrderDetail] = useState(false)
   //資料庫裡的資訊
   const {
-    OrderState,
-    setOrderState,
     OrderCode,
-    setOrderCode,
     MemberName,
-    setMemberName,
     OrderName,
-    setOrderName,
     OrderMobile,
-    setOrderMobile,
     OrderDeliverType,
     setOrderDeliverType,
     Order_deliver_store,
-    setOrderDeliverStore,
     OrderPackageId,
-    setOrderPackageId,
-    OrderAddress,
-    setOrderAddress,
     OrderPay,
-    setOrderPay,
   } = props
 
   //判斷取貨方式
@@ -124,7 +113,8 @@ function OdrerInfoDetail(props) {
           展開
         </button>
       </div>
-    </>)
+    </>
+  )
 
   return (
     <>
@@ -138,7 +128,7 @@ function OdrerInfoDetail(props) {
         <div className="order-info">
           <p className="order-s-title">訂單資訊</p>
           <p className="order-content">
-            訂購人： <span>{MemberName}</span>
+            訂購人： <span>{OrderRows.Member_name}</span>
           </p>
           <p className="order-content">
             收件人： <span>{OrderName}</span>

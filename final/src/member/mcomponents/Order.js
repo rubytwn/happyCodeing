@@ -30,49 +30,11 @@ function Order() {
         })
         .then((row) => {
           console.log(row)
-          const b = row[0]
-          setOrderRows(b)
-          console.log(OrderRows)
-          const a = [];
-          for (let i = 0; i < row.length; i++) {
-            a.push(row[i])
-          }
-          console.log(a)
-          setOrderRows(a)
-          console.log(OrderRows)
-        })
+          setOrderRows(row)
+         })
         .catch((error) => {})
     }
   }, [])
-
-  //判斷付款狀態
-  // const OrderPayState = OrderPay.slice(1, 3)
-  // switch (OrderPayState) {
-  //   case 'a10':
-  //     const newOrderPay1 = ' 信用卡未付'
-  //     setOrderPay(newOrderPay1)
-  //     break
-  //   case '20':
-  //     const newOrderPay2 = ' 信用卡已付'
-  //     setOrderPay(newOrderPay2)
-  //     break
-  //   case '30':
-  //     const newOrderPay3 = ' 轉帳未付'
-  //     setOrderPay(newOrderPay3)
-  //     break
-  //   case '40':
-  //     const newOrderPay4 = ' 轉帳已付'
-  //     setOrderPay(newOrderPay4)
-  //     break
-  //   case '50':
-  //     const newOrderPay5 = ' 超商取貨付款'
-  //     setOrderPay(newOrderPay5)
-  //     break
-
-  //   default:
-  //     break
-  // }
-
 
   return (
     <>
@@ -87,10 +49,10 @@ function Order() {
           <h5 className="right-nav-item nav-link" onClick={()=>setViewFilter(3)}>已完成</h5>
           <h5 className="right-nav-item nav-link" onClick={()=>setViewFilter(4)}>已取消</h5>
         </div>
-        {/* <OrderInfo
+        <OrderInfo
         viewFilter={viewFilter}
         OrderRows={OrderRows}
-         /> */}
+         />
       </div>
     </>
   )

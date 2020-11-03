@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
+import { withRouter } from 'react-router-dom'
 
 function MemberLoginModal(props) {
-
-  const {isAuth , setisAuth} = props
-
+  //modal的顯示
+  const { isAuth, setisAuth, loginModalShow, setLoginModalShow } = props
 
   //會員登入的hook
   const [memberLoginEmail, setMemberLoginEmail] = useState('')
   const [memberLoginPwd, setMemberLoginPwd] = useState('')
 
-  function pwdCheck(){
+  //切換密碼input的type
+  function pwdCheck() {
     const loginPwd = document.querySelector('#loginPwd')
-    if( loginPwd.type === 'password' ){
+    if (loginPwd.type === 'password') {
       loginPwd.type = 'text'
-    }
-    else{
+    } else {
       loginPwd.type = 'password'
     }
   }
- 
-  function loginInfoSubmit(){
-    const data ={
-      email : memberLoginEmail,
-      pwd : memberLoginPwd
+  //切換密碼input的type
+
+  //按下modal裡的「登入」觸發的function
+  function loginInfoSubmit() {
+    const data = {
+      email: memberLoginEmail,
+      pwd: memberLoginPwd,
     }
     fetch('http://localhost:3000/member/login', {
       method: 'POST',
@@ -39,27 +41,27 @@ function MemberLoginModal(props) {
       .then((row) => {
         console.log(row)
         const memberLoginId = JSON.stringify(row)
-        localStorage.setItem('memberLogInInfo',memberLoginId)
-        // if(localStorage.getItem('memberLogInInfo') !== ''){
-        //   setisAuth(true)
-        // }
-        
+        localStorage.setItem('memberLogInInfo', memberLoginId)
+        console.log('row')
+        if (localStorage.getItem('memberLogInInfo') !== '') {
+          setisAuth(true)
+          setLoginModalShow(false)
+          props.history.push('/memberroot')
+        }
       })
       .catch((error) => {})
   }
+  //按下modal裡的「登入」觸發的function
 
-  return (
+  const MemberLoginModal = (
     <Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      show={loginModalShow}
+      onHide={() => setLoginModalShow(false)}
     >
-      {/* <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-        請登入
-        </Modal.Title>
-      </Modal.Header> */}
       <Modal.Body>
         <form>
           <div className="form-group">
@@ -70,7 +72,7 @@ function MemberLoginModal(props) {
               id="loginEmail"
               aria-describedby="emailHelp"
               placeholder="請輸入電子郵件"
-              onChange={(e)=>{
+              onChange={(e) => {
                 const newMeberLoginEmail = e.target.value
                 setMemberLoginEmail(newMeberLoginEmail)
               }}
@@ -83,7 +85,7 @@ function MemberLoginModal(props) {
               className="form-control"
               id="loginPwd"
               placeholder="請輸入密碼"
-              onChange={(e)=>{
+              onChange={(e) => {
                 const newMeberLoginPwd = e.target.value
                 setMemberLoginPwd(newMeberLoginPwd)
               }}
@@ -96,37 +98,31 @@ function MemberLoginModal(props) {
               id="loginpwdCheck"
               onClick={pwdCheck}
             />
-            <label className="form-check-label" htmlFor="loginpwdCheck" >
+            <label className="form-check-label" htmlFor="loginpwdCheck">
               顯示密碼
             </label>
-            <small id="loginsmallinfo" className="form-text text-muted">
-              
-            </small>
+            <small id="loginsmallinfo" className="form-text text-muted"></small>
           </div>
         </form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={()=>{}}>tets</Button>
-        <Button onClick={loginInfoSubmit}>{isAuth ? '登出': '登入'}</Button>
+        <Button onClick={loginInfoSubmit}>{isAuth ? '登出' : '登入'}</Button>
       </Modal.Footer>
     </Modal>
   )
-}
-function Login(props) {
-  const {setisAuth} =props
-  const { loginModalShow, setLoginModalShow } = props
+
+  const loginBtn = (
+    <Button variant="primary" onClick={() => setLoginModalShow(true)}>
+      登入
+    </Button>
+  )
+
   return (
     <>
-      <Button variant="primary" onClick={() => setLoginModalShow(true)}>
-        登入
-      </Button>
-
-      <MemberLoginModal
-        show={loginModalShow}
-        onHide={() => setLoginModalShow(false)}
-      />
+      {loginBtn}
+      {MemberLoginModal}
     </>
   )
 }
 
-export default Login
+export default withRouter(MemberLoginModal)

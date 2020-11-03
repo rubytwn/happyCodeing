@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
+import Login from './Login'
 
 function Navebar(props) {
   const [click, setClick] = useState(false)
-  const {setisLogin} = props
+  const { setisAuth, isAuth } = props
+  const [loginModalShow, setLoginModalShow] = useState(false)
 
   const handleClick = () => setClick(!click)
 
@@ -57,10 +59,14 @@ function Navebar(props) {
               <img src="../../images/購物車1.svg" alt="圖片遺失" />
             </Link>
           </li>
-          <button onClick={()=>{setisLogin(true)}}>登入</button>
-          <button onClick={()=>{setisLogin(false)}}>登出</button>
+          <Login
+            loginModalShow={loginModalShow}
+            setLoginModalShow={setLoginModalShow}
+            setisAuth={setisAuth}
+            isAuth={isAuth}
+          />
         </ul>
-        
+
         <div className="menu-icon" onClick={handleClick}>
           <i class={click ? 'fas fa-bars' : 'fas fa-times'} />
         </div>

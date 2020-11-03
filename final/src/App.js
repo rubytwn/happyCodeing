@@ -5,17 +5,15 @@ import MemberMain from './member/mcomponents/MemberMain'
 //import MemberNav from './member/mcomponents/MemberMain'
 import Home from './pages/Home'
 import MemberRoot from './pages/MemberRoot'
-import Login from './pages/Login'
 import Navbar from '../src/pages/Navebar'
 
 
 function App (){
-  //暫時設定登入登出的狀態
-  const [isLogin ,setisLogin] = useState(false)
+  
   //設定登入登出的狀態
   const [isAuth ,setisAuth] = useState(false)
 
-  if( isLogin === false){
+  if( isAuth === false){
     localStorage.removeItem('memberLogInInfo')
   }
 
@@ -25,15 +23,15 @@ function App (){
             <>
             <Switch>
             <MemberMain>
-            <Navbar setisLogin={setisLogin} />
+            <Navbar setisAuth={setisAuth} />
               <Route exact path="/">
-                <Home isAuth={isAuth} setisAuth={setisAuth} isLogin={isLogin} setisLogin={setisLogin} />
+                <Home />
               </Route>
-              <Route path="/login">
+              {/* <Route path="/login">
                 <Login isAuth={isAuth} setisAuth={setisAuth} />
-              </Route>
+              </Route> */}
               <Route path="/memberroot">
-                <MemberRoot isAuth={isAuth} setisAuth={setisAuth} isLogin={isLogin} setisLogin={setisLogin} />
+                <MemberRoot isAuth={isAuth} setisAuth={setisAuth} />
               </Route>
             </MemberMain>
             </Switch>

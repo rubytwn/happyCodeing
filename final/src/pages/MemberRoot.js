@@ -7,9 +7,9 @@ import MemberNav from '../member/mcomponents/MemberNav'
 
 
 function MemberRoot (props){
-  const {isLogin} = props
+  const {isAuth} = props
   console.log(props)
-  if (isLogin === false) return <Redirect to="/" />
+  if (isAuth === false) return <Redirect to="/" />
 
     return(
       <MemberMain>

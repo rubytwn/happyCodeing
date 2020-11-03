@@ -95,6 +95,7 @@ function OdrerInfoDetail(props) {
               return (
                 <OrderItemTable
                   key={item.OrderDetail_id}
+                  Order_Picture={item.Order_Picture}
                   Order_Detail_name={item.Order_Detail_name}
                   Order_Detail_amount={item.Order_Detail_amount}
                   Order_Detail_price={item.Order_Detail_price}

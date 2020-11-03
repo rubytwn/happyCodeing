@@ -36,6 +36,9 @@ Order_pay:(付款狀態)
 超取信用卡已付：a20 b20 c20 d20     郵寄信用卡已付：e20
 超取轉帳未付：  a30 b30 c30 d30     郵寄轉帳未付：e30
 超取轉帳已付：  a40 b40 c40 d40     郵寄轉帳已付：e40
+Order_CreatedTime:(訂單成立時間)
+Order_Amount:(件數) 
+Order_TotalPrice:(總金額)
 \\\\\訂單商品Order_Detail資料表內容設定\\\\\
 OrderDetail_id
 Order_code:(對照到訂單的Order_code)
@@ -45,11 +48,11 @@ Order_Detail_amount:(數量)
 Order_Detail_price:(價格)
 Order_Detail_url:(商品連結)
 (v)展開＆收合btn
-()//判斷付款狀態的slice(1,3)一直undefined(Cannot read property 'slice' of undefined)
+(v)//判斷付款狀態的slice(1,3)一直undefined(Cannot read property 'slice' of undefined)
 (v)判斷取貨超商的switch(OdrerInfoDetail那隻)
 (v)判斷付款方式的switch(OdrerInfoDetail那隻)
 (v)訂單商品資料庫
-()共3件 & $3000 連動資料庫
+(v)共3件 & $3000 連動資料庫
 (v)第二筆訂單連動資料庫
 ()尚未付款 到 處理中 的動畫
 (v)[圖片]
@@ -77,3 +80,4 @@ vvvvv暫時完成vvvvv
 (v)登出btn
 ()美化登入登出註冊btn
 ()註冊頁面
+--------------------資料庫-------------------- 

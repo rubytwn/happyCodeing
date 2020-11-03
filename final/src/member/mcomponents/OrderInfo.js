@@ -22,6 +22,8 @@ function OdrerInfo(props) {
                 Order_deliver_store={item.Order_deliver_store}
                 Order_package_id={item.Order_package_id}
                 Order_pay={item.Order_pay}
+                Order_Amount={item.Order_Amount}
+                Order_TotalPrice={item.Order_TotalPrice}
             />
         )
       })}

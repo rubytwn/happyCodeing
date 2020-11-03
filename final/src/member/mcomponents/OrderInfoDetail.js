@@ -19,6 +19,8 @@ function OdrerInfoDetail(props) {
     Order_deliver_store,
     Order_package_id,
     Order_pay,
+    Order_Amount,
+    Order_TotalPrice,
   } = props
 
   //判斷取貨方式
@@ -70,8 +72,8 @@ function OdrerInfoDetail(props) {
   const orderDetailTable = (
     <>
       <div className="row align-items-center">
-        <h5 className="col-8">共3件</h5>
-        <h3 className="col-2">$3000</h3>
+        <h5 className="col-8">共{Order_Amount}件</h5>
+        <h3 className="col-2">${Order_TotalPrice}</h3>
         <button
           className="col-2 order-btn"
           onClick={() => setOrderDetail(true)}
@@ -132,8 +134,8 @@ function OdrerInfoDetail(props) {
   const nonOrderDetail = (
     <>
       <div className="row align-items-center">
-        <h5 className="col-8">共3件</h5>
-        <h3 className="col-2">$3000</h3>
+        <h5 className="col-8">共{Order_Amount}件</h5>
+        <h3 className="col-2">${Order_TotalPrice}</h3>
         <button className="col-2 order-btn" onClick={openBtn}>
           展開
         </button>

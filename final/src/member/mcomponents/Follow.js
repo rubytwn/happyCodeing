@@ -50,7 +50,7 @@ function Follow() {
               return(
               <FollowTbody
                 key={item.id}
-                id={item.id}
+                picture={item.picture}
                 name={item.name}
                 price={item.price}
                 deleteMethod={() => handleDelete(item.id)}

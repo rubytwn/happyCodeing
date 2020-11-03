@@ -1,22 +1,32 @@
 [
   {
-    "id": "a001",
-    "name": "海倫鮮度絲清爽洗髮精",
-    "price": 1000
+    "id": "1",
+    "name": "順其自然卸妝乳",
+    "price": 350,
+    "picture": "/images/facial1.jpg"
   },
   {
-    "id": "b001",
-    "name": "多芬保濕洗髮精",
-    "price": 2000
+    "id": "2",
+    "name": "保濕面膜",
+    "price": 300,
+    "picture": "/images/facial2.jpg"
   },
   {
-    "id": "b003",
-    "name": "花王植萃洗髮精",
-    "price": 1500
+    "id": "3",
+    "name": "無負擔精華油",
+    "price": 600,
+    "picture": "/images/facial3.jpg"
   },
   {
-    "id": "d002",
-    "name": "花王植萃洗髮精",
-    "price": 2500
+    "id": "4",
+    "name": "輕乳液",
+    "price": 500,
+    "picture": "/images/facial4.jpg"
+  },
+  {
+    "id": "5",
+    "name": "煥然一新晚霜",
+    "price": 500,
+    "picture": "/images/facial5.jpg"
   }
 ]

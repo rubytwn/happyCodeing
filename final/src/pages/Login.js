@@ -20,7 +20,6 @@ function MemberLoginModal(props) {
       loginPwd.type = 'password'
     }
   }
-  //切換密碼input的type
 
   //按下modal裡的「登入」觸發的function
   function loginInfoSubmit() {
@@ -52,8 +51,49 @@ function MemberLoginModal(props) {
       })
       .catch((error) => {})
   }
+
+  //會員註冊的hook
+  const [registerName, setRegisterName] = useState()
+  const [registerEmail, setRegisterEmail] = useState()
+  const [registerPwd, setRegisterPwd] = useState()
+  const [registerGender, setRegisterGender] = useState(0)
+  const [registerBirth, setRegisterBirth] = useState()
+  const [registerLocation, setRegisterLocation] = useState(0)
+  
   //按下modal裡的「註冊」觸發的function
-  function RegisterSubmit() {}
+  function RegisterSubmit() {
+    const registerError = document.querySelector('#registerError')
+
+    const data = {
+      name: registerName,
+      email: registerEmail,
+      pwd: registerPwd,
+      gender: registerGender,
+      birth: registerBirth,
+      country: registerLocation,
+      address: 'address',
+      level: '1',
+    }
+    if (registerGender === 0) {
+      registerError.innerHTML = '請選擇性別'
+    }
+    else if (registerLocation === 0) {
+      registerError.innerHTML = '請選擇地區'
+    } else {
+      
+      fetch('http://localhost:3000/member/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      .then((res) => {
+        console.log(res.json())
+        registerError.innerHTML = '註冊成功'
+      })
+    }
+  }
 
   //登入或註冊的狀態
   const [loginOrRegister, setLoginOrRegister] = useState(true)
@@ -75,7 +115,7 @@ function MemberLoginModal(props) {
               aria-describedby="emailHelp"
               placeholder="請輸入電子郵件"
               onChange={(e) => {
-                const newMeberLoginEmail = e.target.value
+                const newMeberLoginEmail = e.target
                 setMemberLoginEmail(newMeberLoginEmail)
               }}
             />
@@ -88,7 +128,7 @@ function MemberLoginModal(props) {
               id="loginPwd"
               placeholder="請輸入密碼"
               onChange={(e) => {
-                const newMeberLoginPwd = e.target.value
+                const newMeberLoginPwd = e.target
                 setMemberLoginPwd(newMeberLoginPwd)
               }}
             />
@@ -136,7 +176,10 @@ function MemberLoginModal(props) {
               className="form-control"
               id="registerName"
               placeholder="請輸入暱稱"
-              onChange={() => {}}
+              onChange={(e) => {
+                const newRegisterName = e.target.value
+                setRegisterName(newRegisterName)
+              }}
             />
           </div>
           <div className="form-group">
@@ -147,7 +190,10 @@ function MemberLoginModal(props) {
               id="registerEmail"
               aria-describedby="emailHelp"
               placeholder="請輸入電子郵件"
-              onChange={() => {}}
+              onChange={(e) => {
+                const newRegisterEmail = e.target.value
+                setRegisterEmail(newRegisterEmail)
+              }}
             />
           </div>
           <div className="form-group">
@@ -157,7 +203,10 @@ function MemberLoginModal(props) {
               className="form-control"
               id="registerPwd"
               placeholder="請輸入密碼"
-              onChange={()=>{}}
+              onChange={(e) => {
+                const newRegisterPwd = e.target.value
+                setRegisterPwd(newRegisterPwd)
+              }}
             />
           </div>
           <div className="form-group form-check">
@@ -165,62 +214,66 @@ function MemberLoginModal(props) {
               type="checkbox"
               className="form-check-input"
               id="registerpwdCheck"
-              onClick={()=>{}}
             />
             <label className="form-check-label" htmlFor="registerpwdCheck">
               顯示密碼
             </label>
-            <small id="registersmallinfo" className="form-text text-muted"></small>
+            <small
+              id="registersmallinfo"
+              className="form-text text-muted"
+            ></small>
           </div>
           <div className="form-group">
-                <label htmlFor="registerGender">性別</label>
-                <select
-                  className="form-control"
-                  id="registerGender"
-                  onChange={()=>{}}
-                >
-                  <option value="1">
-                    男
-                  </option>
-                  <option value="2">
-                    女
-                  </option>
-                  <option value="3" >
-                    其他
-                  </option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label htmlFor="registerBirth">生日</label>
-                <br />
-                <input
-                  className="form-control"
-                  id="registerBirth"
-                  type="date"
-                  onChange={()=>{}}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="registerLocation">所在地</label>
-                <select
-                  className="form-control"
-                  id="registerLocation"
-                  onChange={()=>{}}
-                >
-                  <option value="TW">
-                    TW 台灣
-                  </option>
-                  <option value="HK">
-                    HK 香港
-                  </option>
-                  <option value="US">
-                    US 美國
-                  </option>
-                  <option value="JP">
-                    JP 日本
-                  </option>
-                </select>
-              </div>
+            <label htmlFor="registerGender">性別</label>
+            <select
+              className="form-control"
+              id="registerGender"
+              onChange={(e) => {
+                const newRegisterGender = e.target.value
+                if (newRegisterGender !== 0) {
+                  setRegisterGender(newRegisterGender)
+                }
+              }}
+            >
+              <option value="0">請選擇</option>
+              <option value="1">男</option>
+              <option value="2">女</option>
+              <option value="3">其他</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="registerBirth">生日</label>
+            <br />
+            <input
+              className="form-control"
+              id="registerBirth"
+              type="date"
+              onChange={(e) => {
+                const newRegisterBirth = e.target.value
+                setRegisterBirth(newRegisterBirth)
+              }}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="registerLocation">所在地</label>
+            <select
+              className="form-control"
+              id="registerLocation"
+              onChange={(e) => {
+                const newRegisterLocation = e.target.value
+                if (newRegisterLocation !== 0) {
+                  setRegisterLocation(newRegisterLocation)
+                }
+              }}
+            >
+              <option value="0">請選擇</option>
+              <option value="TW">TW 台灣</option>
+              <option value="HK">HK 香港</option>
+              <option value="US">US 美國</option>
+              <option value="JP">JP 日本</option>
+            </select>
+          </div>
+          <p id="registerError"></p>
         </form>
       </Modal.Body>
       <Modal.Footer>

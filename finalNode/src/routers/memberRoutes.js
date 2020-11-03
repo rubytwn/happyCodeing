@@ -32,6 +32,22 @@ router.post("/login",(req,res)=>{
   });
 })
 
+//會員註冊
+router.post("/register",async(req,res)=>{
+  const sql = "INSERT INTO `members`(`name`, `email`, `pwd`, `gender`, `birth`, `country`, `address`, `level`) VALUES (?,?,?,?,?,?,?,?)";
+  const [result] = await db.query(sql,[
+    req.body.name,
+    req.body.email,
+    req.body.pwd,
+    req.body.gender,
+    req.body.birth,
+    req.body.country,
+    req.body.address,
+    req.body.level
+  ]);
+  console.log(result);
+  return res.json({ message: "註冊成功" })
+})
 
 //帳號設定頁面載入時的會員資料
 router.post("/getMemberData", async (req, res) => {

@@ -43,13 +43,16 @@ vvvvv暫時完成vvvvv
 ()[顏色]btn的actice(?)狀態是藍色的 要改掉
 --------------------登入狀態-------------------- 
 //暫時設定登入登出的狀態  先用const [isLogin ,setisLogin] = useState(false) 
-(v)!!!!如何在登入的modal按下登入 並且確認fetch有發成功後才把seyisAuth變true!!!! 參考老師的productList!!!
+(v)!!!!如何在登入的modal按下登入 並且確認fetch有發成功後才把setisAuth變true!!!! 參考老師的productList!!!
 (v)登出的時候要把localStorage帳號部分清掉
 ()追蹤清單如果放在localStorage怎麼跟著不同帳號顯示???
 (v)登出btn
 ()美化登入登出註冊btn
 ()註冊頁面
 ()進入會員中心顯示「關於我」
+()點登入btn切註冊狀態改變後直接關起來 再點一次登入按鈕會變註冊
+()registerError的css 字顏色
+()註冊成功後setisAuth變true然後跳到memberroot
 --------------------資料庫-------------------- 
 \\\\\訂單資料Order_Info資料表內容設定\\\\\
 Order_id

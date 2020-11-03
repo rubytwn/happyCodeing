@@ -215,3 +215,8 @@ img {
   width: 180px;
   height: auto;
 }
+/* ---------------------------login--------------------------- */
+.register_info:hover {
+  color: #559534;
+  cursor: pointer;
+}

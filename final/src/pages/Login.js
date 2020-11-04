@@ -59,7 +59,7 @@ function MemberLoginModal(props) {
   const [registerGender, setRegisterGender] = useState(0)
   const [registerBirth, setRegisterBirth] = useState()
   const [registerLocation, setRegisterLocation] = useState(0)
-  
+
   //按下modal裡的「註冊」觸發的function
   function RegisterSubmit() {
     const registerError = document.querySelector('#registerError')
@@ -76,21 +76,30 @@ function MemberLoginModal(props) {
     }
     if (registerGender === 0) {
       registerError.innerHTML = '請選擇性別'
-    }
-    else if (registerLocation === 0) {
+    } else if (registerLocation === 0) {
       registerError.innerHTML = '請選擇地區'
     } else {
-      
       fetch('http://localhost:3000/member/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-      })
-      .then((res) => {
-        console.log(res.json())
+      }).then((res) => {
+        //console.log(res.json())
         registerError.innerHTML = '註冊成功'
+        return res.json()
+      })
+      .then((row) => {
+        console.log(row)
+        const insertId = row.id
+        const a = JSON.stringify({ id : insertId})
+        localStorage.setItem('memberLogInInfo', a)
+        if (localStorage.getItem('memberLogInInfo') !== '') {
+          setisAuth(true)
+          setLoginModalShow(false)
+          props.history.push('/memberroot')
+        }
       })
     }
   }

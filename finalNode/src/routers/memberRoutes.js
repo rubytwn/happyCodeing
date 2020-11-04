@@ -46,7 +46,8 @@ router.post("/register",async(req,res)=>{
     req.body.level
   ]);
   console.log(result);
-  return res.json({ message: "註冊成功" })
+  const insertId = result.insertId
+  return res.json({ id: insertId })
 })
 
 //帳號設定頁面載入時的會員資料

@@ -1,6 +1,11 @@
 * {
   font-family: 'Noto Sans TC', sans-serif;
+  box-shadow: #559534 !important;
 }
+input:focus {
+  box-shadow: rgba(0, 89, 83, 0.25) !important ;
+}
+
 /* ---------------------------member_navbar通用--------------------------- */
 .member_navbar {
   width: 30%;
@@ -128,6 +133,19 @@
   color: #ffffff;
   text-decoration: none;
 }
+.order-btn:active {
+  border: 1px #99cb77 solid !important;
+  color: #99cb77 !important;
+}
+.order-btn:visited {
+  border: 1px #99cb77 solid !important;
+  color: #99cb77 !important;
+}
+.order-btn:focus {
+  border: 1px #99cb77 solid !important;
+  color: #99cb77 !important;
+  outline: none;
+}
 /* ---------------------------order detail--------------------------- */
 td button {
   color: #99cb77;
@@ -171,6 +189,19 @@ img {
   background-color: #559534;
   color: #ffffff;
   text-decoration: none;
+}
+.update-img-btn:active {
+  color: #99cb77 !important;
+  border: 1px #99cb77 solid !important;
+}
+.update-img-btn:visited {
+  color: #99cb77 !important;
+  border: 1px #99cb77 solid !important;
+}
+.update-img-btn:focus {
+  color: #99cb77 !important;
+  border: 1px #99cb77 solid !important;
+  outline: none;
 }
 .errorinfo {
   color: #ff0000 !important;
@@ -238,4 +269,24 @@ img {
   background-color: #99cb77;
   color: #559534;
   text-decoration: none;
+}
+.login-btn:active {
+  border: 1px #99cb77 solid !important;
+  background-color: #99cb77 !important;
+  box-shadow: #559534 !important;
+}
+.login-btn:visited {
+  border: 1px #99cb77 solid !important;
+  background-color: #99cb77 !important;
+  box-shadow: #559534 !important;
+}
+.login-btn:focus {
+  border: 1px #99cb77 solid !important;
+  background-color: #99cb77 !important;
+  box-shadow: #559534 !important;
+  outline: none;
+}
+
+.btn:focus {
+  box-shadow: #559534 !important;
 }

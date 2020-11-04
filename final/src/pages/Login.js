@@ -180,7 +180,7 @@ function MemberLoginModal(props) {
         >
           還沒有帳號嗎？點我註冊
         </p>
-        <Button className="login-btn" onClick={loginInfoSubmit}>{isAuth ? '登出' : '登入'}</Button>
+        <button className="login-btn" onClick={loginInfoSubmit}>{isAuth ? '登出' : '登入'}</button>
       </Modal.Footer>
     </>
   )
@@ -314,7 +314,7 @@ function MemberLoginModal(props) {
         >
           已經有帳號嗎？點我登入
         </p>
-        <Button onClick={RegisterSubmit} className="login-btn">註冊</Button>
+        <button onClick={RegisterSubmit} className="login-btn">註冊</button>
       </Modal.Footer>
     </>
   )
@@ -332,10 +332,10 @@ function MemberLoginModal(props) {
   )
 
   const loginBtn = (
-    <Button variant="primary" className="login-btn" onClick={() => setLoginModalShow(true)}>
+    <button className="login-btn" onClick={() => setLoginModalShow(true)}>
       {isAuth ? '登出' : '登入'}
       {/* 登入 */}
-    </Button>
+    </button>
   )
 
   return (

@@ -20,7 +20,7 @@ function OrderItemTable(props) {
         <td>{Order_Detail_amount}</td>
         <td>{Order_Detail_price}</td>
         <td>
-          <button href="">查看商品詳細頁</button>
+          <button className="order-btn" href="">查看商品詳細頁</button>
         </td>
       </tr>
     </>

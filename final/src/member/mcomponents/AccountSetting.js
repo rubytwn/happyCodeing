@@ -200,12 +200,12 @@ function AccountSetting(props) {
                 </select>
               </div>
               <h5>變更密碼</h5>
-              <Button
+              <button
                 className="update-img-btn"
                 onClick={() => setModalShow(true)}
               >
                 變更密碼
-              </Button>
+              </button>
 
               <EditPwdModal
                 setModalShow={setModalShow}

@@ -23,7 +23,7 @@ function App (){
             <>
             <Switch>
             <MemberMain>
-            <Navbar setisAuth={setisAuth} />
+            <Navbar  isAuth={isAuth} setisAuth={setisAuth} />
               <Route exact path="/">
                 <Home />
               </Route>

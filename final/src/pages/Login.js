@@ -53,11 +53,11 @@ function MemberLoginModal(props) {
   }
 
   //會員註冊的hook
-  const [registerName, setRegisterName] = useState()
-  const [registerEmail, setRegisterEmail] = useState()
-  const [registerPwd, setRegisterPwd] = useState()
+  const [registerName, setRegisterName] = useState('')
+  const [registerEmail, setRegisterEmail] = useState('')
+  const [registerPwd, setRegisterPwd] = useState('')
   const [registerGender, setRegisterGender] = useState(0)
-  const [registerBirth, setRegisterBirth] = useState()
+  const [registerBirth, setRegisterBirth] = useState('')
   const [registerLocation, setRegisterLocation] = useState(0)
 
   //按下modal裡的「註冊」觸發的function
@@ -85,22 +85,23 @@ function MemberLoginModal(props) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-      }).then((res) => {
-        //console.log(res.json())
-        registerError.innerHTML = '註冊成功'
-        return res.json()
       })
-      .then((row) => {
-        console.log(row)
-        const insertId = row.id
-        const a = JSON.stringify({ id : insertId})
-        localStorage.setItem('memberLogInInfo', a)
-        if (localStorage.getItem('memberLogInInfo') !== '') {
-          setisAuth(true)
-          setLoginModalShow(false)
-          props.history.push('/memberroot/aboutme')
-        }
-      })
+        .then((res) => {
+          //console.log(res.json())
+          registerError.innerHTML = '註冊成功'
+          return res.json()
+        })
+        .then((row) => {
+          console.log(row)
+          const insertId = row.id
+          const a = JSON.stringify({ id: insertId })
+          localStorage.setItem('memberLogInInfo', a)
+          if (localStorage.getItem('memberLogInInfo') !== '') {
+            setisAuth(true)
+            setLoginModalShow(false)
+            props.history.push('/memberroot/aboutme')
+          }
+        })
     }
   }
 
@@ -123,6 +124,7 @@ function MemberLoginModal(props) {
               id="loginEmail"
               aria-describedby="emailHelp"
               placeholder="請輸入電子郵件"
+              value={memberLoginEmail}
               onChange={(e) => {
                 const newMeberLoginEmail = e.target.value
                 setMemberLoginEmail(newMeberLoginEmail)
@@ -136,6 +138,7 @@ function MemberLoginModal(props) {
               className="form-control"
               id="loginPwd"
               placeholder="請輸入密碼"
+              value={memberLoginPwd}
               onChange={(e) => {
                 const newMeberLoginPwd = e.target.value
                 setMemberLoginPwd(newMeberLoginPwd)
@@ -185,6 +188,7 @@ function MemberLoginModal(props) {
               className="form-control"
               id="registerName"
               placeholder="請輸入暱稱"
+              value={registerName}
               onChange={(e) => {
                 const newRegisterName = e.target.value
                 setRegisterName(newRegisterName)
@@ -212,6 +216,7 @@ function MemberLoginModal(props) {
               className="form-control"
               id="registerPwd"
               placeholder="請輸入密碼"
+              value={registerEmail}
               onChange={(e) => {
                 const newRegisterPwd = e.target.value
                 setRegisterPwd(newRegisterPwd)
@@ -237,6 +242,7 @@ function MemberLoginModal(props) {
             <select
               className="form-control"
               id="registerGender"
+              value={registerGender}
               onChange={(e) => {
                 const newRegisterGender = e.target.value
                 if (newRegisterGender !== 0) {
@@ -257,6 +263,7 @@ function MemberLoginModal(props) {
               className="form-control"
               id="registerBirth"
               type="date"
+              value={registerBirth}
               onChange={(e) => {
                 const newRegisterBirth = e.target.value
                 setRegisterBirth(newRegisterBirth)
@@ -268,6 +275,7 @@ function MemberLoginModal(props) {
             <select
               className="form-control"
               id="registerLocation"
+              value={registerLocation}
               onChange={(e) => {
                 const newRegisterLocation = e.target.value
                 if (newRegisterLocation !== 0) {
@@ -313,13 +321,17 @@ function MemberLoginModal(props) {
 
   const loginBtn = (
     <Button variant="primary" onClick={() => setLoginModalShow(true)}>
-      登入
+      {isAuth ? '登出' : '登入'}
+      {/* 登入 */}
     </Button>
   )
 
   return (
     <>
-      {loginBtn}
+      <Button variant="primary" onClick={() => setLoginModalShow(true)}>
+      {isAuth ? '登出' : '登入'}
+      {/* 登入 */}
+    </Button>
       {MemberLoginModal}
     </>
   )

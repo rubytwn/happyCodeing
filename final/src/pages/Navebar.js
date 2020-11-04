@@ -45,7 +45,7 @@ function Navebar(props) {
           </li>
 
           <li className="nav-icon member">
-            <Link to="/memberroot" onClick={closeMobileMenu}>
+            <Link to="/memberroot/aboutme" onClick={closeMobileMenu}>
               <img src="../../images/member.svg" alt="圖片遺失" />
             </Link>
           </li>

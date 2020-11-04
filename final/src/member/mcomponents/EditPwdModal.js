@@ -3,7 +3,6 @@ import { Button, Modal } from 'react-bootstrap'
 import '../../member/member.css'
 
 function MyVerticallyCenteredModal(props) {
-
   const localStorageInfo = localStorage.getItem('memberLogInInfo')
   const localStorageId = JSON.parse(localStorageInfo).id
 
@@ -20,7 +19,6 @@ function MyVerticallyCenteredModal(props) {
   } = props
 
   function upDatePwdBtn() {
-
     let errorInfo = document.querySelector('#errorinfo')
 
     if (memberPwd !== memberEditPwd) {
@@ -40,13 +38,19 @@ function MyVerticallyCenteredModal(props) {
     if (memberEditNew2Pwd === '') {
       errorInfo.innerHTML = '請確認新密碼'
     }
-    if (memberEditPwd === memberEditNew1Pwd || memberEditPwd === memberEditNew2Pwd) {
+    if (
+      memberEditPwd === memberEditNew1Pwd ||
+      memberEditPwd === memberEditNew2Pwd
+    ) {
       errorInfo.innerHTML = '請輸入新密碼'
     }
     if (memberEditNew1Pwd === '') {
       errorInfo.innerHTML = '請確認新密碼'
     }
-    if (memberPwd === memberEditPwd && memberEditNew1Pwd === memberEditNew2Pwd) {
+    if (
+      memberPwd === memberEditPwd &&
+      memberEditNew1Pwd === memberEditNew2Pwd
+    ) {
       setMemberPwd(memberEditNew1Pwd)
       errorInfo.innerHTML = '成功更新密碼！'
       const data = {
@@ -66,6 +70,11 @@ function MyVerticallyCenteredModal(props) {
           setTimeout(() => {
             setModalShow(false)
           }, 2000)
+          setTimeout(() => {
+            setMemberEditPwd('')
+            setmemberEditNew1Pwd('')
+            setmemberEditNew2Pwd('')
+          }, 2100)
         })
         // .then((row) => {
         //   console.log(row)

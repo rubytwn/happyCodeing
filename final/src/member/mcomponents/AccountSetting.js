@@ -9,7 +9,7 @@ import {
   Modal,
   NavDropdown,
 } from 'react-bootstrap'
-import MyVerticallyCenteredModal from './MyVerticallyCenteredModal'
+import EditPwdModal from './EditPwdModal'
 
 function AccountSetting(props) {
   //用localStoragex裡的id判斷是哪個帳號登入
@@ -97,129 +97,6 @@ function AccountSetting(props) {
 
   //更改密碼的modal的判斷
   const [modalShow, setModalShow] = useState(false)
-
-  // function upDatePwdBtn() {
-
-  //   let errorInfo = document.querySelector('#errorinfo')
-
-  //   if (memberPwd !== memberEditPwd) {
-  //     errorInfo.innerHTML = '舊密碼輸入錯誤'
-  //   }
-  //   if (memberEditNew1Pwd !== memberEditNew2Pwd) {
-  //     errorInfo.innerHTML = '請再確認一次新密碼'
-  //   }
-  //   if (memberEditPwd === '') {
-  //     if (memberEditNew1Pwd !== memberEditNew2Pwd) {
-  //       errorInfo.innerHTML = '請輸入舊密碼'
-  //     }
-  //   }
-  //   if (memberEditNew1Pwd === '') {
-  //     errorInfo.innerHTML = '請輸入新密碼'
-  //   }
-  //   if (memberEditNew2Pwd === '') {
-  //     errorInfo.innerHTML = '請確認新密碼'
-  //   }
-  //   if (memberEditPwd === memberEditNew1Pwd || memberEditPwd === memberEditNew2Pwd) {
-  //     errorInfo.innerHTML = '請輸入新密碼'
-  //   }
-  //   if (memberEditNew1Pwd === '') {
-  //     errorInfo.innerHTML = '請確認新密碼'
-  //   }
-  //   if (memberPwd === memberEditPwd && memberEditNew1Pwd === memberEditNew2Pwd) {
-  //     setMemberPwd(memberEditNew1Pwd)
-  //     errorInfo.innerHTML = '成功更新密碼！'
-  //     const data = {
-  //       pwd: memberEditNew1Pwd ? memberEditNew1Pwd : memberPwd,
-  //       id: localStorageId,
-  //     }
-  //     fetch('http://localhost:3000/member/editMemberPwd', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(data),
-  //     })
-  //       .then((res) => {
-  //         console.log(res.json())
-  //         // return res.json()
-  //         setTimeout(() => {
-  //           setModalShow(false)
-  //         }, 2000)
-  //       })
-  //       // .then((row) => {
-  //       //   console.log(row)
-
-  //       // })
-  //       .catch((error) => {})
-  //   }
-  // }
-
-  //更改密碼的modal畫面
-  // function MyVerticallyCenteredModal(props) {
-  //   const {memberEditPwd, setMemberEditPwd,memberEditNew1Pwd, setmemberEditNew1Pwd,memberEditNew2Pwd, setmemberEditNew2Pwd}= props
-
-  //   return (
-  //     <Modal
-  //       {...props}
-  //       size="sm"
-  //       aria-labelledby="contained-modal-title-vcenter"
-  //       centered
-  //     >
-  //       <Modal.Header closeButton>
-  //         <Modal.Title id="contained-modal-title-vcenter">變更密碼</Modal.Title>
-  //       </Modal.Header>
-  //       <Modal.Body>
-  //         <form>
-  //           <div class="form-group">
-  //             <label htmlFor="oldpwd">舊密碼</label>
-  //             <input
-  //               type="text"
-  //               className="form-control"
-  //               id="oldpwd"
-  //               value={memberEditPwd}
-  //               onChange={(e) => {
-  //                 const newMemberEditPwd = e.target.value
-  //                 setMemberEditPwd(newMemberEditPwd)
-  //               }}
-  //             />
-  //           </div>
-  //           <div class="form-group">
-  //             <label htmlFor="newpwd">新密碼</label>
-  //             <input
-  //               type="text"
-  //               className="form-control "
-  //               id="newpwd"
-  //               value={memberEditNew1Pwd}
-  //               onChange={(e) => {
-  //                 const newMemberEditNew1Pwd = e.target.value
-  //                 setmemberEditNew1Pwd(newMemberEditNew1Pwd)
-  //               }}
-  //             />
-  //           </div>
-  //           <div class="form-group">
-  //             <label htmlFor="newpwdcheck">請再輸入一次新密碼</label>
-  //             <input
-  //               type="text"
-  //               className="form-control"
-  //               id="newpwdcheck"
-  //               value={memberEditNew2Pwd}
-  //               onChange={(e) => {
-  //                 const newMemberEditNew2Pwd = e.target.value
-  //                 setmemberEditNew2Pwd(newMemberEditNew2Pwd)
-  //               }}
-  //             />
-  //           </div>
-  //           <small id="errorinfo" className="text-muted errorinfo"></small>
-  //         </form>
-  //       </Modal.Body>
-  //       <Modal.Footer>
-  //         <Button onClick={upDatePwdBtn} className="update-img-btn">
-  //           更改
-  //         </Button>
-  //       </Modal.Footer>
-  //     </Modal>
-  //   )
-  // }
 
   return (
     <>
@@ -330,7 +207,7 @@ function AccountSetting(props) {
                 變更密碼
               </Button>
 
-              <MyVerticallyCenteredModal
+              <EditPwdModal
                 setModalShow={setModalShow}
                 memberPwd={memberPwd}
                 setMemberPwd={setMemberPwd}

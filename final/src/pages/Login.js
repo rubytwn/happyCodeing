@@ -23,6 +23,13 @@ function MemberLoginModal(props) {
 
   //按下modal裡的「登入」觸發的function
   function loginInfoSubmit() {
+    let loginInfo = document.querySelector('#loginInfo')
+    if( memberLoginEmail === ''){
+      loginInfo.innerHTML='請輸入電子郵件'
+    }
+    if( memberLoginPwd === ''){
+      loginInfo.innerHTML='請輸入密碼'
+    }
     const data = {
       email: memberLoginEmail,
       pwd: memberLoginPwd,
@@ -47,9 +54,13 @@ function MemberLoginModal(props) {
           setisAuth(true)
           setLoginModalShow(false)
           props.history.push('/memberroot/aboutme')
+          setMemberLoginEmail('')
+          setMemberLoginPwd('')
         }
       })
-      .catch((error) => {})
+      .catch((error) => {
+        console.log("aaaaa")
+      })
   }
 
   //會員註冊的hook
@@ -157,6 +168,7 @@ function MemberLoginModal(props) {
             </label>
             <small id="loginsmallinfo" className="form-text text-muted"></small>
           </div>
+          <p id="loginInfo"></p>
         </form>
       </Modal.Body>
       <Modal.Footer>
@@ -168,7 +180,7 @@ function MemberLoginModal(props) {
         >
           還沒有帳號嗎？點我註冊
         </p>
-        <Button onClick={loginInfoSubmit}>{isAuth ? '登出' : '登入'}</Button>
+        <Button className="login-btn" onClick={loginInfoSubmit}>{isAuth ? '登出' : '登入'}</Button>
       </Modal.Footer>
     </>
   )
@@ -302,7 +314,7 @@ function MemberLoginModal(props) {
         >
           已經有帳號嗎？點我登入
         </p>
-        <Button onClick={RegisterSubmit}>註冊</Button>
+        <Button onClick={RegisterSubmit} className="login-btn">註冊</Button>
       </Modal.Footer>
     </>
   )
@@ -320,7 +332,7 @@ function MemberLoginModal(props) {
   )
 
   const loginBtn = (
-    <Button variant="primary" onClick={() => setLoginModalShow(true)}>
+    <Button variant="primary" className="login-btn" onClick={() => setLoginModalShow(true)}>
       {isAuth ? '登出' : '登入'}
       {/* 登入 */}
     </Button>
@@ -328,10 +340,7 @@ function MemberLoginModal(props) {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setLoginModalShow(true)}>
-      {isAuth ? '登出' : '登入'}
-      {/* 登入 */}
-    </Button>
+      {loginBtn}
       {MemberLoginModal}
     </>
   )

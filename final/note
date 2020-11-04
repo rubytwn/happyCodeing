@@ -55,6 +55,7 @@ vvvvv暫時完成vvvvv
 (v)註冊成功後setisAuth變true然後跳到memberroot
 (v)跳到memberroot後資料要呈現
 (v)註冊成功後的login bug
+()判斷帳號或密碼輸入錯誤
 --------------------資料庫-------------------- 
 \\\\\訂單資料Order_Info資料表內容設定\\\\\
 Order_id

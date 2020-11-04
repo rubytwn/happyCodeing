@@ -23,13 +23,10 @@ router.post("/", (req, res) => {
   });
 });
 //會員登入
-router.post("/login",(req,res)=>{
+router.post("/login",async(req,res)=>{
   const sql = "SELECT * FROM `members` WHERE email = ? AND pwd = ?"
-  db.query(sql,[req.body.email,req.body.pwd])
-  .then(([results]) => {
-    //console.log(results[0].id);
-    res.json({id:results[0].id,name:results[0].name,level:results[0].level});
-  });
+  const [results] = await db.query(sql,[req.body.email,req.body.pwd])
+  return res.json({id:results[0].id,name:results[0].name,level:results[0].level});
 })
 
 //會員註冊

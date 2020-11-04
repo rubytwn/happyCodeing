@@ -46,7 +46,7 @@ function MemberLoginModal(props) {
         if (localStorage.getItem('memberLogInInfo') !== '') {
           setisAuth(true)
           setLoginModalShow(false)
-          props.history.push('/memberroot')
+          props.history.push('/memberroot/aboutme')
         }
       })
       .catch((error) => {})
@@ -98,7 +98,7 @@ function MemberLoginModal(props) {
         if (localStorage.getItem('memberLogInInfo') !== '') {
           setisAuth(true)
           setLoginModalShow(false)
-          props.history.push('/memberroot')
+          props.history.push('/memberroot/aboutme')
         }
       })
     }
@@ -124,7 +124,7 @@ function MemberLoginModal(props) {
               aria-describedby="emailHelp"
               placeholder="請輸入電子郵件"
               onChange={(e) => {
-                const newMeberLoginEmail = e.target
+                const newMeberLoginEmail = e.target.value
                 setMemberLoginEmail(newMeberLoginEmail)
               }}
             />
@@ -137,7 +137,7 @@ function MemberLoginModal(props) {
               id="loginPwd"
               placeholder="請輸入密碼"
               onChange={(e) => {
-                const newMeberLoginPwd = e.target
+                const newMeberLoginPwd = e.target.value
                 setMemberLoginPwd(newMeberLoginPwd)
               }}
             />

@@ -52,7 +52,8 @@ vvvvv暫時完成vvvvv
 ()進入會員中心顯示「關於我」
 ()點登入btn切註冊狀態改變後直接關起來 再點一次登入按鈕會變註冊
 ()registerError的css 字顏色
-()註冊成功後setisAuth變true然後跳到memberroot
+(v)註冊成功後setisAuth變true然後跳到memberroot
+(v)跳到memberroot後資料要呈現
 --------------------資料庫-------------------- 
 \\\\\訂單資料Order_Info資料表內容設定\\\\\
 Order_id

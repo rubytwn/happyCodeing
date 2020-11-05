@@ -111,7 +111,7 @@ function AccountSetting(props) {
                 <label htmlFor="name">顯示暱稱</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-con"
                   id="name"
                   value={memberName}
                   onChange={(e) => {
@@ -128,7 +128,7 @@ function AccountSetting(props) {
                 <label htmlFor="email">電子郵件 </label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-con"
                   id="email"
                   aria-describedby="emailHelp"
                   value={memberEmail}
@@ -142,7 +142,7 @@ function AccountSetting(props) {
               <div className="form-group">
                 <label htmlFor="gender">性別</label>
                 <select
-                  className="form-control"
+                  className="form-con"
                   id="gender"
                   onChange={(e) => {
                     const newMemberGenger = e.target.value
@@ -164,7 +164,7 @@ function AccountSetting(props) {
                 <label htmlFor="birth">生日</label>
                 <br />
                 <input
-                  className="form-control"
+                  className="form-con"
                   id="birth"
                   type="date"
                   value={memberBirth}
@@ -178,7 +178,7 @@ function AccountSetting(props) {
               <div className="form-group">
                 <label htmlFor="location">所在地</label>
                 <select
-                  className="form-control"
+                  className="form-con"
                   id="location"
                   onChange={(e) => {
                     const newmemberCountry = e.target.value
@@ -200,14 +200,15 @@ function AccountSetting(props) {
                 </select>
               </div>
               <h5>變更密碼</h5>
-              <button
+              {/* <Button
                 className="update-img-btn"
                 onClick={() => setModalShow(true)}
               >
                 變更密碼
-              </button>
+              </Button> */}
 
               <EditPwdModal
+                modalShow={modalShow}
                 setModalShow={setModalShow}
                 memberPwd={memberPwd}
                 setMemberPwd={setMemberPwd}
@@ -217,8 +218,6 @@ function AccountSetting(props) {
                 setmemberEditNew1Pwd={setmemberEditNew1Pwd}
                 memberEditNew2Pwd={memberEditNew2Pwd}
                 setmemberEditNew2Pwd={setmemberEditNew2Pwd}
-                show={modalShow}
-                onHide={() => setModalShow(false)}
               />
               <hr />
               <button

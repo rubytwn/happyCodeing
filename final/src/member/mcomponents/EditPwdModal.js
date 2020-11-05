@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import '../../member/member.css'
 
-function MyVerticallyCenteredModal(props) {
+function EditPwdModal(props) {
   const localStorageInfo = localStorage.getItem('memberLogInInfo')
   const localStorageId = JSON.parse(localStorageInfo).id
 
   const {
+    modalShow,
     setModalShow,
     memberPwd,
     setMemberPwd,
@@ -70,11 +71,6 @@ function MyVerticallyCenteredModal(props) {
           setTimeout(() => {
             setModalShow(false)
           }, 2000)
-          setTimeout(() => {
-            setMemberEditPwd('')
-            setmemberEditNew1Pwd('')
-            setmemberEditNew2Pwd('')
-          }, 2100)
         })
         // .then((row) => {
         //   console.log(row)
@@ -83,13 +79,15 @@ function MyVerticallyCenteredModal(props) {
         .catch((error) => {})
     }
   }
-
-  return (
+  
+  const editPwdModal = (
     <Modal
       {...props}
       size="sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      show={modalShow}
+      onHide={() => setModalShow(false)}
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">變更密碼</Modal.Title>
@@ -100,7 +98,7 @@ function MyVerticallyCenteredModal(props) {
             <label htmlFor="oldpwd">舊密碼</label>
             <input
               type="text"
-              className="form-control"
+              className="form-con"
               id="oldpwd"
               value={memberEditPwd}
               onChange={(e) => {
@@ -113,7 +111,7 @@ function MyVerticallyCenteredModal(props) {
             <label htmlFor="newpwd">新密碼</label>
             <input
               type="text"
-              className="form-control "
+              className="form-con "
               id="newpwd"
               value={memberEditNew1Pwd}
               onChange={(e) => {
@@ -126,7 +124,7 @@ function MyVerticallyCenteredModal(props) {
             <label htmlFor="newpwdcheck">請再輸入一次新密碼</label>
             <input
               type="text"
-              className="form-control"
+              className="form-con"
               id="newpwdcheck"
               value={memberEditNew2Pwd}
               onChange={(e) => {
@@ -139,12 +137,24 @@ function MyVerticallyCenteredModal(props) {
         </form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={upDatePwdBtn} className="update-img-btn">
+        <button onClick={upDatePwdBtn} className="update-img-btn">
           更改
-        </Button>
+        </button>
       </Modal.Footer>
     </Modal>
   )
+  const editPwnBtn = (
+    <Button className="update-img-btn" onClick={() => setModalShow(true)}>
+      變更密碼
+    </Button>
+  )
+
+  return (
+    <>
+      {editPwnBtn}
+      {editPwdModal}
+    </>
+  )
 }
 
-export default MyVerticallyCenteredModal
+export default EditPwdModal

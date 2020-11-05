@@ -131,7 +131,7 @@ function MemberLoginModal(props) {
             <label htmlFor="loginEmail">電子郵件</label>
             <input
               type="email"
-              className="form-control"
+              className="form-con"
               id="loginEmail"
               aria-describedby="emailHelp"
               placeholder="請輸入電子郵件"
@@ -146,7 +146,7 @@ function MemberLoginModal(props) {
             <label htmlFor="loginPwd">密碼</label>
             <input
               type="password"
-              className="form-control"
+              className="form-con"
               id="loginPwd"
               placeholder="請輸入密碼"
               value={memberLoginPwd}
@@ -197,7 +197,7 @@ function MemberLoginModal(props) {
             <label htmlFor="registerName">顯示暱稱</label>
             <input
               type="text"
-              className="form-control"
+              className="form-con"
               id="registerName"
               placeholder="請輸入暱稱"
               value={registerName}
@@ -211,7 +211,7 @@ function MemberLoginModal(props) {
             <label htmlFor="registerEmail">電子郵件</label>
             <input
               type="email"
-              className="form-control"
+              className="form-con"
               id="registerEmail"
               aria-describedby="emailHelp"
               placeholder="請輸入電子郵件"
@@ -225,7 +225,7 @@ function MemberLoginModal(props) {
             <label htmlFor="registerPwd">密碼</label>
             <input
               type="password"
-              className="form-control"
+              className="form-con"
               id="registerPwd"
               placeholder="請輸入密碼"
               value={registerEmail}
@@ -252,7 +252,7 @@ function MemberLoginModal(props) {
           <div className="form-group">
             <label htmlFor="registerGender">性別</label>
             <select
-              className="form-control"
+              className="form-con"
               id="registerGender"
               value={registerGender}
               onChange={(e) => {
@@ -272,7 +272,7 @@ function MemberLoginModal(props) {
             <label htmlFor="registerBirth">生日</label>
             <br />
             <input
-              className="form-control"
+              className="form-con"
               id="registerBirth"
               type="date"
               value={registerBirth}
@@ -285,7 +285,7 @@ function MemberLoginModal(props) {
           <div className="form-group">
             <label htmlFor="registerLocation">所在地</label>
             <select
-              className="form-control"
+              className="form-con"
               id="registerLocation"
               value={registerLocation}
               onChange={(e) => {

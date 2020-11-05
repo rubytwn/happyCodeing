@@ -40,16 +40,18 @@ vvvvv暫時完成vvvvv
 (v)更改密碼第一次會是pending＋畫面重跳一次  第二次才會成功fetch
 (v)成功更新密碼後用settimeout把modal自己關起來
 ()[圖片]Node 4.4使用multer處理檔案上傳（可以用在大頭貼）app.post('/try-upload')
-()[顏色]btn的actice(?)狀態是藍色的 要改掉
+(v)[顏色]btn的actice(?)狀態是藍色的 要改掉
+()[bug]變更密碼 如果把Button改成button會直接被登出((why!!))
+(v)瀏覽器input的自動填色問題
 --------------------登入狀態-------------------- 
 //暫時設定登入登出的狀態  先用const [isLogin ,setisLogin] = useState(false) 
 (v)!!!!如何在登入的modal按下登入 並且確認fetch有發成功後才把setisAuth變true!!!! 參考老師的productList!!!
 (v)登出的時候要把localStorage帳號部分清掉
 ()追蹤清單如果放在localStorage怎麼跟著不同帳號顯示???
 (v)登出btn
-()美化登入登出註冊btn
+(v)美化登入登出註冊btn
 (v)註冊頁面
-()進入會員中心顯示「關於我」
+(v)進入會員中心顯示「關於我」
 ()點登入btn切註冊狀態改變後直接關起來 再點一次登入按鈕會變註冊
 ()registerError的css 字顏色
 (v)註冊成功後setisAuth變true然後跳到memberroot

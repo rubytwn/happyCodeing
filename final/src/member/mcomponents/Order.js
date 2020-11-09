@@ -7,8 +7,8 @@ function Order() {
   const localStorageInfo = localStorage.getItem('memberLogInInfo')
   const localStorageId = JSON.parse(localStorageInfo).id
 
-  //判斷訂單狀態 「尚未付款0 處理中1 待收貨2 已完成3 已取消4」那邊
-  const [viewFilter, setViewFilter] = useState(0)
+  //判斷訂單狀態 「尚未付款1 處理中2 待收貨3 已完成4 已取消5」那邊
+  const [viewFilter, setViewFilter] = useState(1)
 
   //判斷訂單狀態h5有沒有active
   const orderActive = "right-nav-item nav-link under-line"
@@ -47,11 +47,11 @@ function Order() {
           <h4>購買訂單</h4>
         </div>
         <div className="row right-nav">
-          <h5 className={viewFilter === 0 ? orderActive : orderNoneActive} onClick={()=>setViewFilter(0)}>尚未付款</h5>
-          <h5 className={viewFilter === 1 ? orderActive : orderNoneActive} onClick={()=>setViewFilter(1)}>處理中</h5>
-          <h5 className={viewFilter === 2 ? orderActive : orderNoneActive} onClick={()=>setViewFilter(2)}>待收貨</h5>
-          <h5 className={viewFilter === 3 ? orderActive : orderNoneActive} onClick={()=>setViewFilter(3)}>已完成</h5>
-          <h5 className={viewFilter === 4 ? orderActive : orderNoneActive} onClick={()=>setViewFilter(4)}>已取消</h5>
+          <h5 className={viewFilter === 1 ? orderActive : orderNoneActive} onClick={()=>setViewFilter(1)}>尚未付款</h5>
+          <h5 className={viewFilter === 2 ? orderActive : orderNoneActive} onClick={()=>setViewFilter(2)}>處理中</h5>
+          <h5 className={viewFilter === 3 ? orderActive : orderNoneActive} onClick={()=>setViewFilter(3)}>待收貨</h5>
+          <h5 className={viewFilter === 4 ? orderActive : orderNoneActive} onClick={()=>setViewFilter(4)}>已完成</h5>
+          <h5 className={viewFilter === 5 ? orderActive : orderNoneActive} onClick={()=>setViewFilter(5)}>已取消</h5>
         </div>
         <OrderInfo
         viewFilter={viewFilter}

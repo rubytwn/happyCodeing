@@ -9,8 +9,8 @@ function OdrerInfo(props) {
   return (
     <>
       {OrderRows.map((item, index) => {
-        if( viewFilter === 0 && item.Order_State !== 1) return<></>
-        if( viewFilter === 1 && item.Order_State !== 2) return<></>
+        if( viewFilter === 1 && item.Order_State !== 1) return<></>
+        if( viewFilter === 2 && item.Order_State !== 2) return<></>
         return (
             <OrderInfoDetail 
                 key={item.Order_id}

@@ -135,13 +135,9 @@ function AboutMe() {
   //圖片上傳的click
   function editAvatarOnChange(e) {
     let file = e.target.files[0]
-    let imgName = file.name
-    console.log(file)
-    console.log(file.originalname)
-    console.log(imgName)
     const data = new FormData()
-    data.append('file', file)
-    fetch('http://localhost:3000/member/editMemberData', {
+    data.append('avatar', file)
+    fetch('http://localhost:3000/member/editMemberAvatar', {
       method: 'POST',
       body: data,
     })
@@ -169,7 +165,7 @@ function AboutMe() {
     //     //return res.json();
     //   })
     // })
-    // .catch((error) => console.log(error))
+    .catch((error) => console.log(error))
   }
   // function editAvatarBtn(e) {
   //   // 檔案位置
@@ -205,27 +201,21 @@ function AboutMe() {
                     width: '160px',
                   }}
                 >
-                  {/* <img
-                  className="avatar"
-                    src="http://localhost:3001/images/noneavatar.jpg"
-                    alt=""
-                  /> */}
-
                   <img
                     className="avatar"
                     src={
                       avatar
-                        // ? 'http://localhost:3000/images/pooh.png'
-                        ? `http://localhost:3000/images/${avatar}`
+                        ? `http://localhost:3000/images/member/${avatar}`
                         : 'http://localhost:3001/images/noneavatar.jpg'
                     }
                     alt="找不到圖片"
                   />
                 </div>
-                <form name="avatarform">
+                <form name="avatarform" encType="multipart/forn-data">
                   <div class="form-group mt-3">
                     <label for="editAvatar">修改大頭貼</label>
                     <input
+                      name="avatar"
                       type="file"
                       class="form-control-file"
                       id="editAvatar"

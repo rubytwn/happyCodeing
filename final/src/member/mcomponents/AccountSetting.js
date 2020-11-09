@@ -245,7 +245,7 @@ function AccountSetting(props) {
                 className="avatar"
                 src={
                   avatar
-                    ? `http://localhost:3000/images/${avatar}`
+                    ? `http://localhost:3000/images/member/${avatar}`
                     : 'http://localhost:3001/images/noneavatar.jpg'
                 }
                 alt="找不到圖片"

@@ -1,19 +1,10 @@
 const express = require("express");
 const db = require("../member_db_connect");
 const router = express.Router();
+const multer = require('multer');
+const upload = multer({ dest: "tmp_uploads" }); //設定檔案暫存目錄
+const fs = require("fs"); //讀檔案寫檔案
 
-class User {
-  constructor(name) {
-    //this.id = 0
-    this.name = name;
-    // this.email = email
-    // this.birth = birth
-  }
-  MemberEdit() {
-    let sql = `UPDATE members SET name="${this.name}" WHERE 1`;
-    return sql;
-  }
-}
 
 router.post("/", (req, res) => {
   db.query("SELECT * FROM `members` WHERE 1")
@@ -31,7 +22,7 @@ router.post("/login",async(req,res)=>{
 
 //會員註冊
 router.post("/register",async(req,res)=>{
-  const sql = "INSERT INTO `members`(`name`, `email`, `pwd`, `gender`, `birth`, `country`, `address`, `level`) VALUES (?,?,?,?,?,?,?,?)";
+  const sql = "INSERT INTO `members`(`name`, `email`, `pwd`, `gender`, `birth`, `country`, `address`, `level`, `avatar`) VALUES (?,?,?,?,?,?,?,?,?)";
   const [result] = await db.query(sql,[
     req.body.name,
     req.body.email,
@@ -40,7 +31,8 @@ router.post("/register",async(req,res)=>{
     req.body.birth,
     req.body.country,
     req.body.address,
-    req.body.level
+    req.body.level,
+    req.body.avatar
   ]);
   console.log(result);
   const insertId = result.insertId
@@ -84,6 +76,48 @@ router.post("/editMemberPwd", async (req, res) => {
     return res.json({ message: "密碼修改成功" });
   }
 });
+
+//會員上傳或更新大頭照
+router.post("/editMemberAvatar",upload.single('image'),(req,res) => {
+  //console.log(req.file);
+  // const sql = "UPDATE `members` SET `avatar`=? WHERE id=?";
+  // const [ result ] = await db.query(sql,[req.body.avatar,req.body.id], req.file.buffer);
+  // return res.json({ message: "上傳成功" });
+  console.log('aaa');
+  console.log(req.file);
+  fs.rename(req.file.path, "./public/images/member" + req.file.name)
+        // res.json(req.file);
+        // fs.createReadStream(req.file.path) //讀檔案
+        //   .pipe(
+        //     //串進去
+        //     fs.createWriteStream(
+        //       "./public/images/member" + req.file.name
+        //     ) //寫檔案
+        //   );
+          return res.json({ message: "上傳成功" });
+});
+// })
+
+router.post("/memberImg", upload.single("file"), (req, res) => {
+  //單張圖片上傳
+  console.log(req.body);
+  const sql = "UPDATE `members` SET `avatar`=? WHERE id=?";
+  //const [ result ] = await db.query(sql,[req.body.file,req.body.id]);
+  if (req.body.id) {
+    db.query(sql,[req.body.imgname,req.body.id], (error, rows) => {
+      res.json({
+        status: 200,
+        message: "照片上傳成功"
+      });
+    });
+  } else {
+    res.json({
+      status: 404,
+      message: "照片上傳失敗"
+    });
+  }
+});
+
 
 //優惠券頁面
 router.post("/coupon",async(req,res) =>{

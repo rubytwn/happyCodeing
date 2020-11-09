@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../member.css'
+import ReactDOM from 'react-dom'
+import ImageUploading from 'react-images-uploading'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Favorite from '../images/favorite.svg'
 import Svg2 from '../images/2.svg'
@@ -13,6 +15,7 @@ function AboutMe() {
   const [memberLevel, setMemberLevel] = useState('')
   const localStorageInfo = localStorage.getItem('memberLogInInfo')
   const localStorageId = JSON.parse(localStorageInfo).id
+  const [avatar, setAvatar] = useState('')
 
   useEffect(() => {
     const data = { id: localStorageId }
@@ -33,6 +36,7 @@ function AboutMe() {
           //console.log(res);
           setMemberName(res[0].name)
           setMemberLevel(res[0].level)
+          setAvatar(res[0].avatar)
         }
       })
       .catch((error) => {
@@ -83,13 +87,13 @@ function AboutMe() {
   const levelimg1 = document.querySelector('#levelimg1')
   switch (memberLevel) {
     case 1:
-      levelimg1.src = (Svg3)
+      levelimg1.src = Svg3
       break
     case 2:
-      levelimg1.src = (Svg4)
+      levelimg1.src = Svg4
       break
     case 3:
-      levelimg1.src = (Svg5)
+      levelimg1.src = Svg5
       break
     // case 4:
     //   levelimg1.src = (Svg5)
@@ -116,10 +120,10 @@ function AboutMe() {
   const levelimg2 = document.querySelector('#levelimg2')
   switch (memberLevel) {
     case 1:
-      levelimg2.src = (Svg4)
+      levelimg2.src = Svg4
       break
     case 2:
-      levelimg2.src = (Svg5)
+      levelimg2.src = Svg5
       break
     // case 3:
     //   levelimg2.src = (Svg5)
@@ -127,6 +131,63 @@ function AboutMe() {
     default:
       break
   }
+
+  //圖片上傳的click
+  function editAvatarOnChange(e) {
+    let file = e.target.files[0]
+    let imgName = file.name
+    console.log(file)
+    console.log(file.originalname)
+    console.log(imgName)
+    const data = new FormData()
+    data.append('file', file)
+    fetch('http://localhost:3000/member/editMemberData', {
+      method: 'POST',
+      body: data,
+    })
+      .then((r) => r.json())
+      .then((o) => {
+        console.log(o)
+        if (o.success) {
+          document.querySelector('#myimg').src = o.path
+        } else {
+          alert(o.msg)
+        }
+      })
+    // .then((res) => {
+    //   fetch('http://localhost:3000/member/memberImg', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       id: localStorageId,
+    //       imgname: imgName,
+    //     }),
+    //   }).then((res) => {
+    //     console.log(res.json())
+    //     //return res.json();
+    //   })
+    // })
+    // .catch((error) => console.log(error))
+  }
+  // function editAvatarBtn(e) {
+  //   // 檔案位置
+  //   console.log(avatar);
+  //   // 新增 formData
+  //   const formData = new FormData();
+  //   formData.append('id',localStorageId)
+  //   formData.append('avatar', avatar);
+  //   // 傳送資料
+  //   fetch('http://localhost:3000/member/editMemberData', {
+  //     method: "POST",
+  //     body: formData
+  //   })
+  //     .then((res) => {
+  //       console.log(res.json())
+  //       //return res.json()
+  //     })
+  // }
 
   return (
     <>
@@ -140,11 +201,44 @@ function AboutMe() {
               <div className="col-6" style={{ padding: '0' }}>
                 <div
                   style={{
-                    backgroundColor: 'antiquewhite',
                     height: '160px',
                     width: '160px',
                   }}
-                ></div>
+                >
+                  {/* <img
+                  className="avatar"
+                    src="http://localhost:3001/images/noneavatar.jpg"
+                    alt=""
+                  /> */}
+
+                  <img
+                    className="avatar"
+                    src={
+                      avatar
+                        // ? 'http://localhost:3000/images/pooh.png'
+                        ? `http://localhost:3000/images/${avatar}`
+                        : 'http://localhost:3001/images/noneavatar.jpg'
+                    }
+                    alt="找不到圖片"
+                  />
+                </div>
+                <form name="avatarform">
+                  <div class="form-group mt-3">
+                    <label for="editAvatar">修改大頭貼</label>
+                    <input
+                      type="file"
+                      class="form-control-file"
+                      id="editAvatar"
+                      accept=".jpg,.jpeg,.png"
+                      // value={avatar}
+                      onChange={editAvatarOnChange}
+                    />
+                    <img id="myimg" src="" alt="" width="600px"></img>
+                    {/* <button type="button" onClick={editAvatarBtn}>
+                    修改
+                  </button> */}
+                  </div>
+                </form>
               </div>
               <div className="col-6">
                 <p>{memberName}</p>
@@ -185,7 +279,9 @@ function AboutMe() {
               }}
             >
               <h6>當年度任務</h6>
-              <p>完成以下任二條件，可升級<span id="level1"></span>會員</p>
+              <p>
+                完成以下任二條件，可升級<span id="level1"></span>會員
+              </p>
               <div style={{ display: 'flex' }}>
                 <img
                   id="levelimg1"

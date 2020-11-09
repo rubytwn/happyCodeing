@@ -23,6 +23,7 @@ function AccountSetting(props) {
   const [memberBirth, setMemberBirth] = useState('')
   const [memberCountry, setMemberCountry] = useState('')
   const [memberPwd, setMemberPwd] = useState('')
+  const [avatar, setAvatar] = useState('')
 
   //載入畫面時從資料庫讀去把資料set進各個項目裡
   useEffect(() => {
@@ -50,6 +51,7 @@ function AccountSetting(props) {
           setMemberGender(res[0].gender)
           setMemberCountry(res[0].country)
           setMemberPwd(res[0].pwd)
+          setAvatar(res[0].avatar)
         })
         .catch((error) => {
           console.log(error)
@@ -234,17 +236,24 @@ function AccountSetting(props) {
           <div className="col-5">
             <h5>更新大頭照</h5>
             <div
-              className="mb-3"
               style={{
-                width: '300px',
-                height: '300px',
-                border: '1px #627a86 solid',
+                height: '160px',
+                width: '160px',
               }}
-            ></div>
+            >
+              <img
+                className="avatar"
+                src={
+                  avatar
+                    ? `http://localhost:3000/images/${avatar}`
+                    : 'http://localhost:3001/images/noneavatar.jpg'
+                }
+                alt="找不到圖片"
+              />
+            </div>
             <h6 href="" className="img-select">
               從電腦中選取檔案
             </h6>
-            <h6>最佳大小為600x600</h6>
             <button href="" className="update-img-btn">
               更新大頭照
             </button>

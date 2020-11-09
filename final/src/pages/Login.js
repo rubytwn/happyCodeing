@@ -59,7 +59,7 @@ function MemberLoginModal(props) {
         }
       })
       .catch((error) => {
-        console.log("aaaaa")
+        console.log("錯誤")
       })
   }
 
@@ -84,6 +84,7 @@ function MemberLoginModal(props) {
       country: registerLocation,
       address: 'address',
       level: '1',
+      avatar: ''
     }
     if (registerGender === 0) {
       registerError.innerHTML = '請選擇性別'
@@ -228,7 +229,7 @@ function MemberLoginModal(props) {
               className="form-con"
               id="registerPwd"
               placeholder="請輸入密碼"
-              value={registerEmail}
+              value={registerPwd}
               onChange={(e) => {
                 const newRegisterPwd = e.target.value
                 setRegisterPwd(newRegisterPwd)

@@ -55,6 +55,11 @@
 .mission p {
   color: #627a86;
 }
+.avatar {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
 
 /* ---------------------------order--------------------------- */
 .right-nav {
@@ -124,7 +129,7 @@
   border: 1px #99cb77 solid;
   background-color: #ffffff;
   border-radius: 5px;
-  padding: 2px 50px;
+  padding: 2px 10px;
   color: #99cb77;
   text-decoration: none;
 }
@@ -180,7 +185,7 @@ img {
 .update-img-btn {
   border: 1px #99cb77 solid;
   border-radius: 5px;
-  padding: 10px 50px;
+  padding: 5px 25px;
   background-color: #ffffff;
   color: #99cb77;
   text-decoration: none;
@@ -257,7 +262,7 @@ img {
 .login-btn {
   border: 1px #99cb77 solid;
   border-radius: 5px;
-  padding: 10px 10px;
+  padding: 5px 10px;
   background-color: #99cb77;
   color: #fff;
   text-decoration: none;
@@ -265,7 +270,6 @@ img {
 .login-btn:hover {
   border: 1px #99cb77 solid;
   border-radius: 5px;
-  padding: 10px 10px;
   background-color: #99cb77;
   color: #559534;
   text-decoration: none;

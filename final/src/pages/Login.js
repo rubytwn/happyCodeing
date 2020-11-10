@@ -51,6 +51,7 @@ function MemberLoginModal(props) {
         localStorage.setItem('memberLogInInfo', memberLoginId)
         console.log('row')
         if (localStorage.getItem('memberLogInInfo') !== '') {
+          alert("登入成功！")
           setisAuth(true)
           setLoginModalShow(false)
           props.history.push('/memberroot/aboutme')
@@ -109,6 +110,7 @@ function MemberLoginModal(props) {
           const a = JSON.stringify({ id: insertId })
           localStorage.setItem('memberLogInInfo', a)
           if (localStorage.getItem('memberLogInInfo') !== '') {
+            alert("註冊成功！")
             setisAuth(true)
             setLoginModalShow(false)
             props.history.push('/memberroot/aboutme')

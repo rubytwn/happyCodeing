@@ -97,6 +97,39 @@ function AccountSetting(props) {
       .catch((error) => {})
   }
 
+
+//圖片上傳的click
+function editAvatarOnChange(e) {
+  let file = e.target.files[0]
+  let imgName = file.name;
+  const data = new FormData()
+  data.append('avatar', file)
+  fetch('http://localhost:3000/member/editMemberAvatar', {
+    method: 'POST',
+    body: data,
+  })
+    .then(res => {
+      console.log(res)
+      fetch("http://localhost:3000/member/memberImg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: localStorageId,
+          avatarName: imgName
+        })
+      })
+        .then(res => {
+          alert("修改成功！")
+          setAvatar(imgName)
+          return res.json();
+        })
+    })
+    .catch(error => console.log(error));
+  }
+
+
   //更改密碼的modal的判斷
   const [modalShow, setModalShow] = useState(false)
 
@@ -257,6 +290,21 @@ function AccountSetting(props) {
             <button href="" className="update-img-btn">
               更新大頭照
             </button>
+            <form name="avatarform" encType="multipart/forn-data">
+                  <div class="form-group mt-3">
+                    <label for="editAvatar">修改大頭貼</label>
+                    <input
+                      name="avatar"
+                      type="file"
+                      class="form-control-file"
+                      id="editAvatar"
+                      accept=".jpg,.jpeg,.png"
+                      // value={avatar}
+                      onChange={editAvatarOnChange}
+                    />
+                    <img id="myimg" src="" alt="" width="600px"></img>
+                  </div>
+                </form>
           </div>
         </div>
       </div>

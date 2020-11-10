@@ -135,55 +135,34 @@ function AboutMe() {
   //圖片上傳的click
   function editAvatarOnChange(e) {
     let file = e.target.files[0]
+    let imgName = file.name;
     const data = new FormData()
     data.append('avatar', file)
     fetch('http://localhost:3000/member/editMemberAvatar', {
       method: 'POST',
       body: data,
     })
-      .then((r) => r.json())
-      .then((o) => {
-        console.log(o)
-        if (o.success) {
-          document.querySelector('#myimg').src = o.path
-        } else {
-          alert(o.msg)
-        }
+      .then(res => {
+        console.log(res)
+        fetch("http://localhost:3000/member/memberImg", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            id: localStorageId,
+            avatarName: imgName
+          })
+        })
+          .then(res => {
+            alert("修改成功！")
+            setAvatar(imgName)
+            return res.json();
+          })
       })
-    // .then((res) => {
-    //   fetch('http://localhost:3000/member/memberImg', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       id: localStorageId,
-    //       imgname: imgName,
-    //     }),
-    //   }).then((res) => {
-    //     console.log(res.json())
-    //     //return res.json();
-    //   })
-    // })
-    .catch((error) => console.log(error))
-  }
-  // function editAvatarBtn(e) {
-  //   // 檔案位置
-  //   console.log(avatar);
-  //   // 新增 formData
-  //   const formData = new FormData();
-  //   formData.append('id',localStorageId)
-  //   formData.append('avatar', avatar);
-  //   // 傳送資料
-  //   fetch('http://localhost:3000/member/editMemberData', {
-  //     method: "POST",
-  //     body: formData
-  //   })
-  //     .then((res) => {
-  //       console.log(res.json())
-  //       //return res.json()
-  //     })
-  // }
+      .catch(error => console.log(error));
+    }
+
 
   return (
     <>
@@ -224,9 +203,6 @@ function AboutMe() {
                       onChange={editAvatarOnChange}
                     />
                     <img id="myimg" src="" alt="" width="600px"></img>
-                    {/* <button type="button" onClick={editAvatarBtn}>
-                    修改
-                  </button> */}
                   </div>
                 </form>
               </div>

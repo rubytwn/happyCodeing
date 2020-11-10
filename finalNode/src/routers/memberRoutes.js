@@ -81,64 +81,36 @@ router.post("/editMemberPwd", async (req, res) => {
 //會員上傳或更新大頭照
 router.post("/editMemberAvatar",upload.single('avatar'),(req,res) => {
   console.log(req.file);
-  // const sql = "UPDATE `members` SET `avatar`=? WHERE id=?";
-  // const [ result ] = await db.query(sql,[req.body.avatar,req.body.id], req.file.buffer);
-  // return res.json({ message: "上傳成功" });
-  //fs.rename(req.file.path, "./public/images/member" + req.file.name)
-        // res.json(req.file);
-        // fs.createReadStream(req.file.path) //讀檔案
-        //   .pipe(
-        //     //串進去
-        //     fs.createWriteStream(
-        //       "./public/images/member" + req.file.name
-        //     ) //寫檔案
-        //   );
-          return res.json({ message: "上傳成功" });
+  if (req.file && req.file.originalname) {
+    switch (req.file.mimetype) {
+      case "image/png":
+      case "image/jpeg":
+      case "image/jpg":
+        res.json(req.file);
+        fs.createReadStream(req.file.path) //讀檔案
+          .pipe(
+            //串進去
+            fs.createWriteStream(
+              "./public/images/member/" + req.file.originalname
+            ) //寫檔案
+          );
+        break;
+      default:
+    }
+  } else {
+    res.send("失敗");
+  }
 });
-// })
 
-// router.post("/editMemberAvatar",upload.single('image'),(req,res) => {
-// console.log(req.file);
-//   if (req.file && req.file.originalname) {
-//     switch (req.file.mimetype) {
-//       case "image/png":
-//       case "image/jpeg":
-//       case "image/jpg":
-//         res.json(req.file);
-//         fs.createReadStream(req.file.path) //讀檔案
-//           .pipe(
-//             //串進去
-//             fs.createWriteStream(
-//               "./public/images/member/member" + req.file.originalname
-//             ) //寫檔案
-//           );
-//         break;
-//       default:
-//     }
-//   } else {
-//     res.send("失敗");
-//   }
-// });
-
-// router.post("/memberImg", upload.single("file"), (req, res) => {
-//   //單張圖片上傳
-//   console.log(req.body);
-//   const sql = "UPDATE `members` SET `avatar`=? WHERE id=?";
-//   //const [ result ] = await db.query(sql,[req.body.file,req.body.id]);
-//   if (req.body.id) {
-//     db.query(sql,[req.body.imgname,req.body.id], (error, rows) => {
-//       res.json({
-//         status: 200,
-//         message: "照片上傳成功"
-//       });
-//     });
-//   } else {
-//     res.json({
-//       status: 404,
-//       message: "照片上傳失敗"
-//     });
-//   }
-// });
+router.post("/memberImg", (req, res) => {
+  //把上傳的圖片更新到資料表
+  console.log(req.body);
+  const sql = "UPDATE `members` SET `avatar`=? WHERE id=?";
+  // if (req.body.id) {
+    const [result] = db.query(sql,[req.body.avatarName,req.body.id])
+    return res.json(result);
+  // }
+});
 
 
 //優惠券頁面

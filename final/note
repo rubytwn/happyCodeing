@@ -13,8 +13,11 @@ app是整組的根主頁--變成memberroot才是會員的根分頁
 ()幫助頁面還沒刻
 --------------------關於我--------------------
 ()白金鑽石的當年度＆下年度的顯示與否
-()[圖片]照片顯示
-()[圖片]照片修改
+(v)[圖片]照片顯示
+(v)[圖片]照片修改
+()美化「選擇檔案」的input
+()「修改成功」的alert
+()alert的「localhose:3001顯示」修改
 --------------------購買訂單--------------------
 (v)展開＆收合btn
 (v)//判斷付款狀態的slice(1,3)一直undefined(Cannot read property 'slice' of undefined)
@@ -39,16 +42,20 @@ vvvvv暫時完成vvvvv
 ()[文字格式]修改的檢查
 (v)更改密碼第一次會是pending＋畫面重跳一次  第二次才會成功fetch
 (v)成功更新密碼後用settimeout把modal自己關起來
-()[圖片]Node 4.4使用multer處理檔案上傳（可以用在大頭貼）app.post('/try-upload')
+(v)[圖片]Node 4.4使用multer處理檔案上傳（可以用在大頭貼）app.post('/try-upload')
 (v)[顏色]btn的actice(?)狀態是藍色的 要改掉
 ()[bug]變更密碼 如果把Button改成button會直接被登出((why!!))
 (v)瀏覽器input的自動填色問題
+()美化「選擇檔案」的input
+(v)「修改成功」的alert
+()alert的「localhose:3001顯示」修改
 --------------------登入狀態-------------------- 
 //暫時設定登入登出的狀態  先用const [isLogin ,setisLogin] = useState(false) 
 (v)!!!!如何在登入的modal按下登入 並且確認fetch有發成功後才把setisAuth變true!!!! 參考老師的productList!!!
 (v)登出的時候要把localStorage帳號部分清掉
 ()追蹤清單如果放在localStorage怎麼跟著不同帳號顯示???
 (v)登出btn
+()登出btn真的登出
 (v)美化登入登出註冊btn
 (v)註冊頁面
 (v)進入會員中心顯示「關於我」
@@ -58,6 +65,9 @@ vvvvv暫時完成vvvvv
 (v)跳到memberroot後資料要呈現
 (v)註冊成功後的login bug
 ()判斷帳號或密碼輸入錯誤
+(V)登入成功的alert
+(V)註冊成功的alert
+()alert的「localhose:3001顯示」修改
 --------------------資料庫-------------------- 
 \\\\\訂單資料Order_Info資料表內容設定\\\\\
 Order_id

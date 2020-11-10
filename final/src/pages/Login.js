@@ -11,13 +11,22 @@ function MemberLoginModal(props) {
   const [memberLoginEmail, setMemberLoginEmail] = useState('')
   const [memberLoginPwd, setMemberLoginPwd] = useState('')
 
-  //切換密碼input的type
+  //登入切換密碼input的type
   function pwdCheck() {
     const loginPwd = document.querySelector('#loginPwd')
     if (loginPwd.type === 'password') {
       loginPwd.type = 'text'
     } else {
       loginPwd.type = 'password'
+    }
+  }
+  //註冊切換密碼input的type
+  function registerPwdCheck() {
+    const registerPwd = document.querySelector('#registerPwd')
+    if (registerPwd.type === 'password') {
+      registerPwd.type = 'text'
+    } else {
+      registerPwd.type = 'password'
     }
   }
 
@@ -218,6 +227,7 @@ function MemberLoginModal(props) {
               id="registerEmail"
               aria-describedby="emailHelp"
               placeholder="請輸入電子郵件"
+              value={registerEmail}
               onChange={(e) => {
                 const newRegisterEmail = e.target.value
                 setRegisterEmail(newRegisterEmail)
@@ -242,9 +252,10 @@ function MemberLoginModal(props) {
             <input
               type="checkbox"
               className="form-check-input"
-              id="registerpwdCheck"
+              id="registerpwdCheckInput"
+              onClick={registerPwdCheck}
             />
-            <label className="form-check-label" htmlFor="registerpwdCheck">
+            <label className="form-check-label" htmlFor="registerpwdCheckInput">
               顯示密碼
             </label>
             <small

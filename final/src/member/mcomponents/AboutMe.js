@@ -225,13 +225,13 @@ function AboutMe() {
                     <img src={Favorite} style={{ height: '23px' }} alt="" />
                   </span>
                 </div>
-                <Link
+                {/* <Link
                   to="#"
                   className="nav-link edit-avatar"
                   style={{ padding: '0' }}
                 >
                   修改大頭貼
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

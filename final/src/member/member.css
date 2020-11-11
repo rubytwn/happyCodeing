@@ -90,6 +90,10 @@
 .under-line {
   border-bottom: 6px #99cb77 solid;
   padding-bottom: 20px;
+  cursor: pointer;
+}
+.under-line:hover {
+  cursor: pointer;
 }
 .order-info-s-part {
   border-top: 3px #627a86 solid;
@@ -162,6 +166,7 @@ td button:hover {
   background-color: #559534;
   color: #ffffff;
   text-decoration: none;
+  cursor: pointer;
 }
 img {
   object-fit: contain;

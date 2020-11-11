@@ -5,8 +5,11 @@ function Rufund() {
   const [refundDetail, setRefundDetail] = useState(false)
   const refundDetailTable = (
     <>
-      <button className="col-2 order-btn" onClick={() => setRefundDetail(false)}>
-      收合
+      <button
+        className="col-2 order-btn"
+        onClick={() => setRefundDetail(false)}
+      >
+        收合
       </button>
     </>
   )
@@ -25,14 +28,14 @@ function Rufund() {
           <h4>退款申請</h4>
         </div>
         <div className="row right-nav">
-          <h5 className="right-nav-item-l nav-link under-line">處理中</h5>
+          <h5 className="right-nav-item nav-link under-line">處理中</h5>
           <h5 className="right-nav-item nav-link">已退款</h5>
           <h5 className="right-nav-item nav-link">不同意退款</h5>
         </div>
         <div>
           <div className="row order-part">
             <span className="order-title">訂單編號</span>
-            <span className="odrder-code">20043UUHWGGI</span>
+            <span className="odrder-code">20043UUHWOLD</span>
           </div>
           <div className="row order-detail">
             <table className="table table-striped mt-4">
@@ -46,18 +49,22 @@ function Rufund() {
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>洗髮精</td>
+                  <th scope="row">
+                    <div className="orderItemImg">
+                      <img src="/images/facial1.jpg" alt="" />
+                    </div>
+                  </th>
+                  <td>順其自然卸妝乳</td>
                   <td>商品有瑕疵</td>
-                  <td>$1000</td>
+                  <td>$350</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div className="row align-items-center">
-            <h5 className="col-8">共3件</h5>
-            <h3 className="col-2">$3000</h3>
-            {refundDetail ? refundDetailTable : nonRefundDetail }
+            <h5 className="col-8">共1件</h5>
+            <h3 className="col-2">$350</h3>
+            {refundDetail ? refundDetailTable : nonRefundDetail}
           </div>
         </div>
       </div>

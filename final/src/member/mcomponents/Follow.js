@@ -4,27 +4,28 @@ import FollowTbody from './FollowTbody'
 
 function Follow() {
 
-  const [memberFollowindItems,setMemberFollowindItems] = useState([])
+
+  const [memberFollowingItems,setMemberFollowingItems] = useState([])
   // 
-  // const localStorageMemberFollowindItems = JSON.parse(localStorageItems)
-  // setMemberFollowindItems(localStorageMemberFollowindItems)
+  // const localStoragememberFollowingItems = JSON.parse(localStorageItems)
+  // setMemberFollowingItems(localStoragememberFollowingItems)
 
    //從localStorage拿追蹤商品
   function getItemFromLocalStorage(){
-    const localStorageItems = localStorage.getItem('memberFollowindItems')
-    setMemberFollowindItems(JSON.parse(localStorageItems))
+    const localStorageItems = localStorage.getItem('memberFollowingItems')
+    setMemberFollowingItems(JSON.parse(localStorageItems))
   }
 
   //要傳到<FollowTbody /> 從追蹤清單移除的方法
   const handleDelete = (id) => {
-    const newMemberFollowindItems = memberFollowindItems.filter((item, index) => item.id !== id)
-    const afterDel =   localStorage.setItem('memberFollowindItems' , JSON.stringify(newMemberFollowindItems))
-      setMemberFollowindItems(afterDel)
+    const newmemberFollowingItems = memberFollowingItems.filter((item, index) => item.id !== id)
+    const afterDel =   localStorage.setItem('memberFollowingItems' , JSON.stringify(newmemberFollowingItems))
+      setMemberFollowingItems(afterDel)
   }
 
   useEffect(()=>{
     getItemFromLocalStorage()
-  },[memberFollowindItems])
+  },[memberFollowingItems])
 
 
   return (
@@ -46,7 +47,7 @@ function Follow() {
             </thead>
             
             <tbody>
-            {memberFollowindItems.map((item, index) => {
+            {memberFollowingItems.map((item, index) => {
               return(
               <FollowTbody
                 key={item.id}

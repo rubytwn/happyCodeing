@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import '../member.css'
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  Modal,
-  NavDropdown,
-} from 'react-bootstrap'
+// import {
+//   Navbar,
+//   Nav,
+//   Form,
+//   FormControl,
+//   Button,
+//   Modal,
+//   NavDropdown,
+// } from 'react-bootstrap'
 import EditPwdModal from './EditPwdModal'
 
 function AccountSetting(props) {

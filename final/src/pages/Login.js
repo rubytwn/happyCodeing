@@ -131,6 +131,21 @@ function MemberLoginModal(props) {
   //登入或註冊的狀態
   const [loginOrRegister, setLoginOrRegister] = useState(true)
 
+  //modal onHide的function
+  function modalOnHide(){
+    setLoginModalShow(false)
+    setLoginOrRegister(true)
+    setRegisterName('')
+    setRegisterEmail('')
+    setRegisterPwd('')
+    setRegisterGender('')
+    setRegisterBirth('')
+    setRegisterLocation('')
+    setMemberLoginEmail('')
+    setMemberLoginPwd('')
+
+  }
+
   //登入
   const loginOrRegisterTrue = (
     <>
@@ -339,7 +354,7 @@ function MemberLoginModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
       show={loginModalShow}
-      onHide={() => setLoginModalShow(false)}
+      onHide={modalOnHide}
     >
       {loginOrRegister ? loginOrRegisterTrue : loginOrRegisterFalse}
     </Modal>

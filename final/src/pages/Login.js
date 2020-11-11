@@ -146,6 +146,16 @@ function MemberLoginModal(props) {
 
   }
 
+  //登入登出btn狀態function
+  function loginBtnCtrl(){
+    if(!isAuth){
+      setLoginModalShow(true)
+    }else{
+      setLoginModalShow(false)
+      setisAuth(false)
+    }
+  }
+
   //登入
   const loginOrRegisterTrue = (
     <>
@@ -361,7 +371,7 @@ function MemberLoginModal(props) {
   )
 
   const loginBtn = (
-    <button className="login-btn" onClick={() => setLoginModalShow(true)}>
+    <button className="login-btn" onClick={loginBtnCtrl}>
       {isAuth ? '登出' : '登入'}
       {/* 登入 */}
     </button>

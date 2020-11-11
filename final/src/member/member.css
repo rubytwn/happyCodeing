@@ -279,6 +279,9 @@ img {
   color: #559534;
   text-decoration: none;
 }
+#registerError {
+  color: red;
+}
 /* ---------------------------硬改--------------------------- */
 .login-btn:active {
   border: 1px #99cb77 solid !important;

@@ -10,6 +10,7 @@ import '../member.css'
 //   NavDropdown,
 // } from 'react-bootstrap'
 import EditPwdModal from './EditPwdModal'
+import TWZipCode from './TWZipCode'
 
 function AccountSetting(props) {
   //用localStoragex裡的id判斷是哪個帳號登入
@@ -24,6 +25,17 @@ function AccountSetting(props) {
   const [memberCountry, setMemberCountry] = useState('')
   const [memberPwd, setMemberPwd] = useState('')
   const [avatar, setAvatar] = useState('')
+
+  //地址
+  const [country, setCountry] = useState(-1)
+  const [township, setTownship] = useState(-1)
+  //備用，如果需要設定郵遞區號時
+  const [postcode, setPostcode] = useState('')
+
+  const [countryDb, setCountryDb] = useState('')
+const [townshipDb, setTownshipDb] = useState('')
+const [addressStrindDb, setAddressStrindDb] = useState('')
+
 
   //載入畫面時從資料庫讀去把資料set進各個項目裡
   useEffect(() => {
@@ -52,6 +64,8 @@ function AccountSetting(props) {
           setMemberCountry(res[0].country)
           setMemberPwd(res[0].pwd)
           setAvatar(res[0].avatar)
+          setPostcode((res[0].addressCode).toString())
+          setAddressStrindDb(res[0].addressString)
         })
         .catch((error) => {
           console.log(error)
@@ -233,6 +247,23 @@ function editAvatarOnChange(e) {
                     JP 日本
                   </option>
                 </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="address1">地址</label>
+              <TWZipCode
+                country={country}
+                setCountry={setCountry}
+                township={township}
+                setTownship={setTownship}
+                postcode={postcode}
+                setPostcode={setPostcode}
+                countryDb={countryDb}
+                setCountryDb={setCountryDb}
+                townshipDb={townshipDb}
+                setTownshipDb={setTownshipDb}
+                addressStrindDb={addressStrindDb}
+                setAddressStrindDb={setAddressStrindDb}
+               />
               </div>
               <h5>變更密碼</h5>
               {/* <Button

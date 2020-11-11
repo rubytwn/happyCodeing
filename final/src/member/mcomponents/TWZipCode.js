@@ -20,10 +20,83 @@ function TWZipCode(props) {
     setCountryDb,
     townshipDb,
     setTownshipDb,
-    addressStrindDb,
-    setAddressStrindDb,
+    addressStringDb,
+    setAddressStringDb,
   } = props
 
+  //縣市判斷
+  switch (countryDb) {
+      case '基隆市':
+        setCountry(0)
+          break;
+          case '台北市':
+        setCountry(1)
+          break;
+          case '新北市':
+        setCountry(2)
+          break;
+          case '宜蘭縣':
+        setCountry(3)
+          break;
+          case '新竹市':
+        setCountry(4)
+          break;
+          case '新竹縣':
+        setCountry(5)
+          break;
+          case '桃園市':
+        setCountry(6)
+          break;
+          case '苗栗縣':
+        setCountry(7)
+          break;
+          case '台中市':
+        setCountry(8)
+          break;
+          case '彰化縣':
+          setCountry(9)
+            break;
+            case '南投縣':
+          setCountry(10)
+            break;
+            case '嘉義市':
+          setCountry(11)
+            break;
+            case '嘉義縣':
+          setCountry(12)
+            break;
+            case '雲林縣':
+          setCountry(13)
+            break;
+            case '台南市':
+          setCountry(14)
+            break;
+            case '高雄市':
+          setCountry(15)
+            break;
+            case '屏東縣':
+          setCountry(16)
+            break;
+            case '台東縣':
+          setCountry(17)
+            break;
+            case '花蓮縣':
+          setCountry(18)
+            break;
+            case '金門縣':
+          setCountry(18)
+            break;
+            case '連江縣':
+          setCountry(20)
+            break;
+            case '澎湖縣':
+          setCountry(21)
+            break;
+
+  
+      default:
+          break;
+  }
   //郵遞區號判斷
   switch (postcode) {
     case '200':
@@ -334,18 +407,18 @@ function TWZipCode(props) {
   return (
     <>
       <div className="row">
-        <div className="col-2">
-          <span
+        <div className="col-3">
+          <input
+          className="form-con"
             value={postcode}
-            onChange={() => setPostcode(postcodes[country][township])}
-          >
+            disabled
+          />
             {/* {country > -1 && township > -1 && postcodes[country][township]} */}
-          </span>
         </div>
-        <div className="col-5">
+        <div className="col-4">
           <select
             className="form-con"
-            value={country}
+            // value={country}
             onChange={(e) => {
               // 將字串轉成數字
               setCountry(+e.target.value)
@@ -353,12 +426,10 @@ function TWZipCode(props) {
               setTownship(-1)
             }}
           >
-            <option value={-1}>
-              {postcode === '' ? '請選擇縣市' : countryDb}
-            </option>
+            <option value={-1}>請選擇縣市</option>
 
             {countries.map((v, i) => (
-              <option key={i} value={i} id="city">
+              <option key={i} value={i} selected={countryDb === v}>
                 {v}
               </option>
             ))}
@@ -367,18 +438,19 @@ function TWZipCode(props) {
         <div className="col-5">
           <select
             className="form-con"
-            value={township}
+            // value={township}
             onChange={(e) => {
               // 將字串轉成數字
               setTownship(+e.target.value)
+            setPostcode(postcodes[country][township])
             }}
           >
             <option value={-1}>
-              {postcode === '' ? '請選擇區域' : townshipDb}
+              請選擇區域
             </option>
             {country > -1 &&
               townships[country].map((v, i) => (
-                <option key={i} value={i}>
+                <option key={i} value={i} selected={townshipDb === v}>
                   {v}
                 </option>
               ))}
@@ -391,7 +463,12 @@ function TWZipCode(props) {
             className="form-con"
             type="text"
             placeholder="請輸入地址"
-            value={addressStrindDb}
+            value={addressStringDb}
+            onChange={(e)=>{
+                const newAddressString = e.target.value
+                setAddressStringDb(newAddressString)
+                setPostcode(postcodes[country][township])
+            }}
           />
         </div>
       </div>

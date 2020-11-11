@@ -34,7 +34,7 @@ function AccountSetting(props) {
 
   const [countryDb, setCountryDb] = useState('')
 const [townshipDb, setTownshipDb] = useState('')
-const [addressStrindDb, setAddressStrindDb] = useState('')
+const [addressStringDb, setAddressStringDb] = useState('')
 
 
   //載入畫面時從資料庫讀去把資料set進各個項目裡
@@ -65,7 +65,7 @@ const [addressStrindDb, setAddressStrindDb] = useState('')
           setMemberPwd(res[0].pwd)
           setAvatar(res[0].avatar)
           setPostcode((res[0].addressCode).toString())
-          setAddressStrindDb(res[0].addressString)
+          setAddressStringDb(res[0].addressString)
         })
         .catch((error) => {
           console.log(error)
@@ -92,6 +92,8 @@ const [addressStrindDb, setAddressStrindDb] = useState('')
       birth: memberEditBirth ? memberEditBirth : memberBirth,
       country: memberEditCountry ? memberEditCountry : memberCountry,
       id: localStorageId,
+      addressCode: postcode ,
+      addressString: addressStringDb
     }
 
     fetch('http://localhost:3000/member/editMemberData', {
@@ -103,6 +105,7 @@ const [addressStrindDb, setAddressStrindDb] = useState('')
     })
       .then((res) => {
         console.log(res.json())
+        alert("修改成功！")
         return res.json()
       })
       .then((row) => {
@@ -261,8 +264,8 @@ function editAvatarOnChange(e) {
                 setCountryDb={setCountryDb}
                 townshipDb={townshipDb}
                 setTownshipDb={setTownshipDb}
-                addressStrindDb={addressStrindDb}
-                setAddressStrindDb={setAddressStrindDb}
+                addressStringDb={addressStringDb}
+                setAddressStringDb={setAddressStringDb}
                />
               </div>
               <h5>變更密碼</h5>

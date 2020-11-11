@@ -53,13 +53,15 @@ router.post("/getMemberData", async (req, res) => {
 //帳號設定頁面修改會員資料
 router.post("/editMemberData", async (req, res) => {
   const sql =
-    "UPDATE `members` SET `name`=? , `email`=?, `gender`=? , `birth`=? ,`country`=? WHERE id=?";
+    "UPDATE `members` SET `name`=? , `email`=?, `gender`=? , `birth`=? ,`country`=? , `addressCode`=? ,`addressString`=? WHERE id=?";
   const [result] = await db.query(sql, [
     req.body.name,
     req.body.email,
     req.body.gender,
     req.body.birth,
     req.body.country,
+    req.body.addressCode,
+    req.body.addressString,
     req.body.id,
   ]);
   console.log(result);

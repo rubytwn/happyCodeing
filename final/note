@@ -50,6 +50,8 @@ vvvvv暫時完成vvvvv
 (v)「修改成功」的alert
 ()alert的「localhose:3001顯示」修改
 ()地區改成地址
+()刪所在地改成地址
+()地址的區域不能改 沒辦法在選地區的地方onChange
 --------------------登入狀態-------------------- 
 //暫時設定登入登出的狀態  先用const [isLogin ,setisLogin] = useState(false) 
 (v)!!!!如何在登入的modal按下登入 並且確認fetch有發成功後才把setisAuth變true!!!! 參考老師的productList!!!
@@ -71,6 +73,7 @@ vvvvv暫時完成vvvvv
 ()alert的「localhose:3001顯示」修改
 ()註冊的地址
 (v)登入註冊的modal若沒登入按x後再打開資料要清掉
+()註冊刪所在地改成地址
 --------------------資料庫-------------------- 
 \\\\\訂單資料Order_Info資料表內容設定\\\\\
 Order_id

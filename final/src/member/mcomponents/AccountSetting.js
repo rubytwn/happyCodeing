@@ -22,7 +22,7 @@ function AccountSetting(props) {
   const [memberEmail, setMemberEmail] = useState('')
   const [memberGender, setMemberGender] = useState('')
   const [memberBirth, setMemberBirth] = useState('')
-  const [memberCountry, setMemberCountry] = useState('')
+  // const [memberCountry, setMemberCountry] = useState('')
   const [memberPwd, setMemberPwd] = useState('')
   const [avatar, setAvatar] = useState('')
 
@@ -33,8 +33,9 @@ function AccountSetting(props) {
   const [postcode, setPostcode] = useState('')
 
   const [countryDb, setCountryDb] = useState('')
-  const [townshipDb, setTownshipDb] = useState('')
-  const [addressStringDb, setAddressStringDb] = useState('')
+const [townshipDb, setTownshipDb] = useState('')
+const [addressStringDb, setAddressStringDb] = useState('')
+
 
   //載入畫面時從資料庫讀去把資料set進各個項目裡
   useEffect(() => {
@@ -60,22 +61,11 @@ function AccountSetting(props) {
             setMemberBirth(res[0].birth.slice(0, 10))
           }
           setMemberGender(res[0].gender)
-          setMemberCountry(res[0].country)
+          // setMemberCountry(res[0].country)
           setMemberPwd(res[0].pwd)
           setAvatar(res[0].avatar)
-          if(res[0].addressCode === 0){
-            setPostcode('')
-          }
-          else{
-            setPostcode(res[0].addressCode.toString())
-          }
-          if(res[0].addressCode === 0){
-            setPostcode('')
-          }
-          else{
-            setAddressStringDb(res[0].addressString)
-          }
-          
+          setPostcode((res[0].addressCode).toString())
+          setAddressStringDb(res[0].addressString)
         })
         .catch((error) => {
           console.log(error)
@@ -88,7 +78,7 @@ function AccountSetting(props) {
   const [memberEditEmail, setmemberEditEmail] = useState('')
   const [memberEditGender, setMemberEditGender] = useState('')
   const [memberEditBirth, setMemberEditBirth] = useState('')
-  const [memberEditCountry, setMemberEditCountry] = useState('')
+  // const [memberEditCountry, setMemberEditCountry] = useState('')
   const [memberEditPwd, setMemberEditPwd] = useState('')
   const [memberEditNew1Pwd, setmemberEditNew1Pwd] = useState('')
   const [memberEditNew2Pwd, setmemberEditNew2Pwd] = useState('')
@@ -100,10 +90,10 @@ function AccountSetting(props) {
       email: memberEditEmail ? memberEditEmail : memberEmail,
       gender: memberEditGender ? memberEditGender : memberGender,
       birth: memberEditBirth ? memberEditBirth : memberBirth,
-      country: memberEditCountry ? memberEditCountry : memberCountry,
+      // country: memberEditCountry ? memberEditCountry : memberCountry,
       id: localStorageId,
-      addressCode: postcode,
-      addressString: addressStringDb,
+      addressCode: postcode ,
+      addressString: addressStringDb
     }
 
     fetch('http://localhost:3000/member/editMemberData', {
@@ -115,7 +105,7 @@ function AccountSetting(props) {
     })
       .then((res) => {
         console.log(res.json())
-        alert('修改成功！')
+        alert("修改成功！")
         return res.json()
       })
       .then((row) => {
@@ -124,35 +114,38 @@ function AccountSetting(props) {
       .catch((error) => {})
   }
 
-  //圖片上傳的click
-  function editAvatarOnChange(e) {
-    let file = e.target.files[0]
-    let imgName = file.name
-    const data = new FormData()
-    data.append('avatar', file)
-    fetch('http://localhost:3000/member/editMemberAvatar', {
-      method: 'POST',
-      body: data,
-    })
-      .then((res) => {
-        console.log(res)
-        fetch('http://localhost:3000/member/memberImg', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            id: localStorageId,
-            avatarName: imgName,
-          }),
-        }).then((res) => {
-          alert('修改成功！')
-          setAvatar(imgName)
-          return res.json()
+
+//圖片上傳的click
+function editAvatarOnChange(e) {
+  let file = e.target.files[0]
+  let imgName = file.name;
+  const data = new FormData()
+  data.append('avatar', file)
+  fetch('http://localhost:3000/member/editMemberAvatar', {
+    method: 'POST',
+    body: data,
+  })
+    .then(res => {
+      console.log(res)
+      fetch("http://localhost:3000/member/memberImg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: localStorageId,
+          avatarName: imgName
         })
       })
-      .catch((error) => console.log(error))
+        .then(res => {
+          alert("修改成功！")
+          setAvatar(imgName)
+          return res.json();
+        })
+    })
+    .catch(error => console.log(error));
   }
+
 
   //更改密碼的modal的判斷
   const [modalShow, setModalShow] = useState(false)
@@ -234,7 +227,7 @@ function AccountSetting(props) {
                   }}
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="location">所在地</label>
                 <select
                   className="form-con"
@@ -257,23 +250,23 @@ function AccountSetting(props) {
                     JP 日本
                   </option>
                 </select>
-              </div>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="address1">地址</label>
-                <TWZipCode
-                  country={country}
-                  setCountry={setCountry}
-                  township={township}
-                  setTownship={setTownship}
-                  postcode={postcode}
-                  setPostcode={setPostcode}
-                  countryDb={countryDb}
-                  setCountryDb={setCountryDb}
-                  townshipDb={townshipDb}
-                  setTownshipDb={setTownshipDb}
-                  addressStringDb={addressStringDb}
-                  setAddressStringDb={setAddressStringDb}
-                />
+              <TWZipCode
+                country={country}
+                setCountry={setCountry}
+                township={township}
+                setTownship={setTownship}
+                postcode={postcode}
+                setPostcode={setPostcode}
+                countryDb={countryDb}
+                setCountryDb={setCountryDb}
+                townshipDb={townshipDb}
+                setTownshipDb={setTownshipDb}
+                addressStringDb={addressStringDb}
+                setAddressStringDb={setAddressStringDb}
+               />
               </div>
               <h5>變更密碼</h5>
               {/* <Button
@@ -332,20 +325,20 @@ function AccountSetting(props) {
               更新大頭照
             </button>
             <form name="avatarform" encType="multipart/forn-data">
-              <div class="form-group mt-3">
-                <label for="editAvatar">修改大頭貼</label>
-                <input
-                  name="avatar"
-                  type="file"
-                  class="form-control-file"
-                  id="editAvatar"
-                  accept=".jpg,.jpeg,.png"
-                  // value={avatar}
-                  onChange={editAvatarOnChange}
-                />
-                <img id="myimg" src="" alt="" width="600px"></img>
-              </div>
-            </form>
+                  <div class="form-group mt-3">
+                    <label for="editAvatar">修改大頭貼</label>
+                    <input
+                      name="avatar"
+                      type="file"
+                      class="form-control-file"
+                      id="editAvatar"
+                      accept=".jpg,.jpeg,.png"
+                      // value={avatar}
+                      onChange={editAvatarOnChange}
+                    />
+                    <img id="myimg" src="" alt="" width="600px"></img>
+                  </div>
+                </form>
           </div>
         </div>
       </div>

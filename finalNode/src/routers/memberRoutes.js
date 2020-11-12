@@ -23,15 +23,13 @@ router.post("/login",async(req,res)=>{
 
 //會員註冊
 router.post("/register",async(req,res)=>{
-  const sql = "INSERT INTO `members`(`name`, `email`, `pwd`, `gender`, `birth`, `country`, `address`, `level`, `avatar`,`addressCode`, `addressString`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+  const sql = "INSERT INTO `members`(`name`, `email`, `pwd`, `gender`, `birth`, `level`, `avatar`,`addressCode`, `addressString`) VALUES (?,?,?,?,?,?,?,?,?)";
   const [result] = await db.query(sql,[
     req.body.name,
     req.body.email,
     req.body.pwd,
     req.body.gender,
     req.body.birth,
-    req.body.country,
-    req.body.address,
     req.body.level,
     req.body.avatar,
     req.body.addressCode,
@@ -55,13 +53,12 @@ router.post("/getMemberData", async (req, res) => {
 //帳號設定頁面修改會員資料
 router.post("/editMemberData", async (req, res) => {
   const sql =
-    "UPDATE `members` SET `name`=? , `email`=?, `gender`=? , `birth`=? ,`country`=? , `addressCode`=? ,`addressString`=? WHERE id=?";
+    "UPDATE `members` SET `name`=? , `email`=?, `gender`=? , `birth`=? , `addressCode`=? ,`addressString`=? WHERE id=?";
   const [result] = await db.query(sql, [
     req.body.name,
     req.body.email,
     req.body.gender,
     req.body.birth,
-    req.body.country,
     req.body.addressCode,
     req.body.addressString,
     req.body.id,

@@ -80,7 +80,7 @@ function MemberLoginModal(props) {
   const [registerPwd, setRegisterPwd] = useState('')
   const [registerGender, setRegisterGender] = useState(0)
   const [registerBirth, setRegisterBirth] = useState('')
-  const [registerLocation, setRegisterLocation] = useState(0)
+  // const [registerLocation, setRegisterLocation] = useState(0)
 
   //地址
   const [country, setCountry] = useState(-1)
@@ -102,8 +102,8 @@ function MemberLoginModal(props) {
       pwd: registerPwd,
       gender: registerGender,
       birth: registerBirth,
-      country: registerLocation,
-      address: 'address',
+      // country: registerLocation,
+      // address: 'address',
       level: '1',
       avatar: '',
       addressCode:postcode,
@@ -111,9 +111,13 @@ function MemberLoginModal(props) {
     }
     if (registerGender === 0) {
       registerError.innerHTML = '請選擇性別'
-    } else if (registerLocation === 0) {
+    } 
+    else if (postcode === 0) {
       registerError.innerHTML = '請選擇地區'
-    } else {
+    }else if( addressStringDb === ''){
+      registerError.innerHTML = '請填寫地址'
+    } 
+    else {
       fetch('http://localhost:3000/member/register', {
         method: 'POST',
         headers: {
@@ -153,7 +157,7 @@ function MemberLoginModal(props) {
     setRegisterPwd('')
     setRegisterGender('')
     setRegisterBirth('')
-    setRegisterLocation('')
+    // setRegisterLocation('')
     setMemberLoginEmail('')
     setMemberLoginPwd('')
 
@@ -334,7 +338,7 @@ function MemberLoginModal(props) {
               }}
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="registerLocation">所在地</label>
             <select
               className="form-con"
@@ -353,7 +357,7 @@ function MemberLoginModal(props) {
               <option value="US">US 美國</option>
               <option value="JP">JP 日本</option>
             </select>
-          </div>
+          </div> */}
           <div className="form-group">
                 <label htmlFor="address1">地址</label>
                 <TWZipCode

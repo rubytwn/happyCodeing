@@ -411,6 +411,7 @@ function TWZipCode(props) {
           <input
           className="form-con"
             value={postcode}
+            // placeholder="郵遞區號"
             disabled
           />
             {/* {country > -1 && township > -1 && postcodes[country][township]} */}
@@ -426,7 +427,7 @@ function TWZipCode(props) {
               setTownship(-1)
             }}
           >
-            <option value={-1}>請選擇縣市</option>
+            <option value={-1}>選擇縣市</option>
 
             {countries.map((v, i) => (
               <option key={i} value={i} selected={countryDb === v}>
@@ -446,7 +447,7 @@ function TWZipCode(props) {
             }}
           >
             <option value={-1}>
-              請選擇區域
+              選擇區域
             </option>
             {country > -1 &&
               townships[country].map((v, i) => (

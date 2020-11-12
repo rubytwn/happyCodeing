@@ -23,7 +23,7 @@ router.post("/login",async(req,res)=>{
 
 //會員註冊
 router.post("/register",async(req,res)=>{
-  const sql = "INSERT INTO `members`(`name`, `email`, `pwd`, `gender`, `birth`, `country`, `address`, `level`, `avatar`) VALUES (?,?,?,?,?,?,?,?,?)";
+  const sql = "INSERT INTO `members`(`name`, `email`, `pwd`, `gender`, `birth`, `country`, `address`, `level`, `avatar`,`addressCode`, `addressString`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
   const [result] = await db.query(sql,[
     req.body.name,
     req.body.email,
@@ -33,7 +33,9 @@ router.post("/register",async(req,res)=>{
     req.body.country,
     req.body.address,
     req.body.level,
-    req.body.avatar
+    req.body.avatar,
+    req.body.addressCode,
+    req.body.addressString
   ]);
   console.log(result);
   const insertId = result.insertId

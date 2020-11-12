@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
 import '../member/member.css'
+import TWZipCode from '../member/mcomponents/TWZipCode'
 
 function MemberLoginModal(props) {
   //modal的顯示
@@ -81,6 +82,16 @@ function MemberLoginModal(props) {
   const [registerBirth, setRegisterBirth] = useState('')
   const [registerLocation, setRegisterLocation] = useState(0)
 
+  //地址
+  const [country, setCountry] = useState(-1)
+  const [township, setTownship] = useState(-1)
+  //備用，如果需要設定郵遞區號時
+  const [postcode, setPostcode] = useState('')
+
+  const [countryDb, setCountryDb] = useState('')
+  const [townshipDb, setTownshipDb] = useState('')
+  const [addressStringDb, setAddressStringDb] = useState('')
+
   //按下modal裡的「註冊」觸發的function
   function RegisterSubmit() {
     const registerError = document.querySelector('#registerError')
@@ -94,7 +105,9 @@ function MemberLoginModal(props) {
       country: registerLocation,
       address: 'address',
       level: '1',
-      avatar: ''
+      avatar: '',
+      addressCode:postcode,
+      addressString:addressStringDb
     }
     if (registerGender === 0) {
       registerError.innerHTML = '請選擇性別'
@@ -341,6 +354,23 @@ function MemberLoginModal(props) {
               <option value="JP">JP 日本</option>
             </select>
           </div>
+          <div className="form-group">
+                <label htmlFor="address1">地址</label>
+                <TWZipCode
+                  country={country}
+                  setCountry={setCountry}
+                  township={township}
+                  setTownship={setTownship}
+                  postcode={postcode}
+                  setPostcode={setPostcode}
+                  countryDb={countryDb}
+                  setCountryDb={setCountryDb}
+                  townshipDb={townshipDb}
+                  setTownshipDb={setTownshipDb}
+                  addressStringDb={addressStringDb}
+                  setAddressStringDb={setAddressStringDb}
+                />
+              </div>
           <p id="registerError"></p>
         </form>
       </Modal.Body>

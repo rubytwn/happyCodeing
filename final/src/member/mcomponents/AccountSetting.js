@@ -13,29 +13,26 @@ import EditPwdModal from './EditPwdModal'
 import TWZipCode from './TWZipCode'
 
 function AccountSetting(props) {
-  //用localStoragex裡的id判斷是哪個帳號登入
+  //用localStorage裡的id判斷是哪個帳號登入
   const localStorageInfo = localStorage.getItem('memberLogInInfo')
   const localStorageId = JSON.parse(localStorageInfo).id
 
-  //那個帳號的初始資料
+  //登入的帳號的初始資料
   const [memberName, setMemberName] = useState('')
   const [memberEmail, setMemberEmail] = useState('')
   const [memberGender, setMemberGender] = useState('')
   const [memberBirth, setMemberBirth] = useState('')
-  // const [memberCountry, setMemberCountry] = useState('')
   const [memberPwd, setMemberPwd] = useState('')
   const [avatar, setAvatar] = useState('')
+  const [postcode, setPostcode] = useState('') //郵遞區號
 
-  //地址
-  const [country, setCountry] = useState(-1)
-  const [township, setTownship] = useState(-1)
-  //備用，如果需要設定郵遞區號時
-  const [postcode, setPostcode] = useState('')
-
+  //TWZipCode要用的地址
+  const [country, setCountry] = useState(-1) //縣市
+  const [township, setTownship] = useState(-1) //區域
+  //在TWZipCode用郵遞區號去轉換成縣市＆區域
   const [countryDb, setCountryDb] = useState('')
-const [townshipDb, setTownshipDb] = useState('')
-const [addressStringDb, setAddressStringDb] = useState('')
-
+  const [townshipDb, setTownshipDb] = useState('')
+  const [addressStringDb, setAddressStringDb] = useState('') //地址的字串
 
   //載入畫面時從資料庫讀去把資料set進各個項目裡
   useEffect(() => {
@@ -61,7 +58,6 @@ const [addressStringDb, setAddressStringDb] = useState('')
             setMemberBirth(res[0].birth.slice(0, 10))
           }
           setMemberGender(res[0].gender)
-          // setMemberCountry(res[0].country)
           setMemberPwd(res[0].pwd)
           setAvatar(res[0].avatar)
           setPostcode((res[0].addressCode).toString())
@@ -73,12 +69,11 @@ const [addressStringDb, setAddressStringDb] = useState('')
     }
   }, [])
 
-  //更新後的資料的hook
+  //更新後的會員資料的hook
   const [memberEditName, setMembeEdirName] = useState('')
   const [memberEditEmail, setmemberEditEmail] = useState('')
   const [memberEditGender, setMemberEditGender] = useState('')
   const [memberEditBirth, setMemberEditBirth] = useState('')
-  // const [memberEditCountry, setMemberEditCountry] = useState('')
   const [memberEditPwd, setMemberEditPwd] = useState('')
   const [memberEditNew1Pwd, setmemberEditNew1Pwd] = useState('')
   const [memberEditNew2Pwd, setmemberEditNew2Pwd] = useState('')
@@ -90,7 +85,6 @@ const [addressStringDb, setAddressStringDb] = useState('')
       email: memberEditEmail ? memberEditEmail : memberEmail,
       gender: memberEditGender ? memberEditGender : memberGender,
       birth: memberEditBirth ? memberEditBirth : memberBirth,
-      // country: memberEditCountry ? memberEditCountry : memberCountry,
       id: localStorageId,
       addressCode: postcode ,
       addressString: addressStringDb
@@ -227,30 +221,6 @@ function editAvatarOnChange(e) {
                   }}
                 />
               </div>
-              {/* <div className="form-group">
-                <label htmlFor="location">所在地</label>
-                <select
-                  className="form-con"
-                  id="location"
-                  onChange={(e) => {
-                    const newmemberCountry = e.target.value
-                    setMemberEditCountry(newmemberCountry)
-                  }}
-                >
-                  <option value="TW" selected={memberCountry === 'TW'}>
-                    TW 台灣
-                  </option>
-                  <option value="HK" selected={memberCountry === 'HK'}>
-                    HK 香港
-                  </option>
-                  <option value="US" selected={memberCountry === 'US'}>
-                    US 美國
-                  </option>
-                  <option value="JP" selected={memberCountry === 'JP'}>
-                    JP 日本
-                  </option>
-                </select>
-              </div> */}
               <div className="form-group">
                 <label htmlFor="address1">地址</label>
               <TWZipCode
@@ -269,13 +239,6 @@ function editAvatarOnChange(e) {
                />
               </div>
               <h5>變更密碼</h5>
-              {/* <Button
-                className="update-img-btn"
-                onClick={() => setModalShow(true)}
-              >
-                變更密碼
-              </Button> */}
-
               <EditPwdModal
                 modalShow={modalShow}
                 setModalShow={setModalShow}

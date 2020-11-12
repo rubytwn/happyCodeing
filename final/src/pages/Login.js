@@ -80,12 +80,11 @@ function MemberLoginModal(props) {
   const [registerPwd, setRegisterPwd] = useState('')
   const [registerGender, setRegisterGender] = useState(0)
   const [registerBirth, setRegisterBirth] = useState('')
-  // const [registerLocation, setRegisterLocation] = useState(0)
 
   //地址
   const [country, setCountry] = useState(-1)
   const [township, setTownship] = useState(-1)
-  //備用，如果需要設定郵遞區號時
+  //郵遞區號
   const [postcode, setPostcode] = useState('')
 
   const [countryDb, setCountryDb] = useState('')
@@ -338,26 +337,6 @@ function MemberLoginModal(props) {
               }}
             />
           </div>
-          {/* <div className="form-group">
-            <label htmlFor="registerLocation">所在地</label>
-            <select
-              className="form-con"
-              id="registerLocation"
-              value={registerLocation}
-              onChange={(e) => {
-                const newRegisterLocation = e.target.value
-                if (newRegisterLocation !== 0) {
-                  setRegisterLocation(newRegisterLocation)
-                }
-              }}
-            >
-              <option value="0">請選擇</option>
-              <option value="TW">TW 台灣</option>
-              <option value="HK">HK 香港</option>
-              <option value="US">US 美國</option>
-              <option value="JP">JP 日本</option>
-            </select>
-          </div> */}
           <div className="form-group">
                 <label htmlFor="address1">地址</label>
                 <TWZipCode
@@ -407,7 +386,6 @@ function MemberLoginModal(props) {
   const loginBtn = (
     <button className="login-btn" onClick={loginBtnCtrl}>
       {isAuth ? '登出' : '登入'}
-      {/* 登入 */}
     </button>
   )
 

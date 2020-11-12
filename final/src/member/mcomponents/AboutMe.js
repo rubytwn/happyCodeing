@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import '../member.css'
-import ReactDOM from 'react-dom'
-import ImageUploading from 'react-images-uploading'
+// import ReactDOM from 'react-dom'
+// import ImageUploading from 'react-images-uploading'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Favorite from '../images/favorite.svg'
-import Svg2 from '../images/2.svg'
 import Svg3 from '../images/3.svg'
 import Svg4 from '../images/4.svg'
 import Svg5 from '../images/5.svg'
@@ -225,13 +224,6 @@ function AboutMe() {
                     <img src={Favorite} style={{ height: '23px' }} alt="" />
                   </span>
                 </div>
-                {/* <Link
-                  to="#"
-                  className="nav-link edit-avatar"
-                  style={{ padding: '0' }}
-                >
-                  修改大頭貼
-                </Link> */}
               </div>
             </div>
           </div>

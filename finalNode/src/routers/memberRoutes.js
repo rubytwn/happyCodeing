@@ -51,6 +51,15 @@ router.post("/getMemberData", async (req, res) => {
   });
 });
 
+router.post("/getMemberDataPostCode", async (req, res) => {
+  const sql = "SELECT * FROM `members` WHERE id=?"
+  await db.query(sql,[req.body.id])
+  .then(([results]) => {
+    console.log(results);
+    return res.json(results);
+  });
+});
+
 //帳號設定頁面修改會員資料
 router.post("/editMemberData", async (req, res) => {
   const sql =

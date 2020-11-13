@@ -29,9 +29,6 @@ function AccountSetting(props) {
   //TWZipCode要用的地址
   const [country, setCountry] = useState() //縣市
   const [township, setTownship] = useState() //區域
-  //在TWZipCode用郵遞區號去轉換成縣市＆區域
-  const [countryDb, setCountryDb] = useState('')
-  const [townshipDb, setTownshipDb] = useState('')
   const [addressStringDb, setAddressStringDb] = useState('') //地址的字串
 
   //載入畫面時從資料庫讀去把資料set進各個項目裡
@@ -235,10 +232,6 @@ function editAvatarOnChange(e) {
                 setTownship={setTownship}
                 postcode={postcode}
                 setPostcode={setPostcode}
-                countryDb={countryDb}
-                setCountryDb={setCountryDb}
-                townshipDb={townshipDb}
-                setTownshipDb={setTownshipDb}
                 addressStringDb={addressStringDb}
                 setAddressStringDb={setAddressStringDb}
                />

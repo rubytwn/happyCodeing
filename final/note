@@ -52,11 +52,11 @@ vvvvv暫時完成vvvvv
 (v)瀏覽器input的自動填色問題
 ()美化「選擇檔案」的input
 (v)「修改成功」的alert
-()alert的「localhose:3001顯示」修改
+(x)alert的「localhose:3001顯示」修改(沒辦法改)
 (v)地區改成地址
 (v)刪所在地改成地址
-()[bug!!]地址的區域不能改 沒辦法在選地區的地方onChange
-()[bug!!]只有資料表裡的那個縣市可以改地區並對應到郵遞區號
+(v)[bug!!]地址的區域不能改 沒辦法在選地區的地方onChange
+(vvvvv暫時完成vvvvv)[bug!!]只有資料表裡的那個縣市可以改地區並對應到郵遞區號
 --------------------登入狀態-------------------- 
 //暫時設定登入登出的狀態  先用const [isLogin ,setisLogin] = useState(false) 
 (v)!!!!如何在登入的modal按下登入 並且確認fetch有發成功後才把setisAuth變true!!!! 參考老師的productList!!!

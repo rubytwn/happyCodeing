@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { countries, townships, postcodes } from './TWdata.js'
 
 function TWZipCode(props) {
@@ -25,157 +25,80 @@ function TWZipCode(props) {
     setAddressStringDb,
   } = props
 
-  switch (countryDb) {
-    case '基隆市':
-      setCountry(0)
-      break
-    case '台北市':
-      setCountry(1)
-      break
-    case '新北市':
-      setCountry(2)
-      break
-    case '宜蘭縣':
-      setCountry(3)
-      break
-    case '新竹市':
-      setCountry(4)
-      break
-    case '新竹縣':
-      setCountry(5)
-      break
-    case '桃園市':
-      setCountry(6)
-      break
-    case '苗栗縣':
-      setCountry(7)
-      break
-    case '台中市':
-      setCountry(8)
-      break
-    case '彰化縣':
-      setCountry(9)
-      break
-    case '南投縣':
-      setCountry(10)
-      break
-    case '嘉義市':
-      setCountry(11)
-      break
-    case '嘉義縣':
-      setCountry(12)
-      break
-    case '雲林縣':
-      setCountry(13)
-      break
-    case '台南市':
-      setCountry(14)
-      break
-    case '高雄市':
-      setCountry(15)
-      break
-    case '屏東縣':
-      setCountry(16)
-      break
-    case '台東縣':
-      setCountry(17)
-      break
-    case '花蓮縣':
-      setCountry(18)
-      break
-    case '金門縣':
-      setCountry(18)
-      break
-    case '連江縣':
-      setCountry(20)
-      break
-    case '澎湖縣':
-      setCountry(21)
-      break
-    default:
-      break
-  }
-
-  // function aaa(e) {
-  //   // 將字串轉成數字
-  //   setCountry(+e.target.value)
-  //   // 重置township的值
-  //   setTownship(-1)
-  //   console.log('aaa')
-  //   //縣市判斷
-  //   switch (+e.target.value) {
-  //     case 0:
-  //       console.log('bbb ')
-  //       setCountry('基隆市')
-  //       console.log('ccc')
+  // useEffect(() => {
+  //   switch (countryDb) {
+  //     case '基隆市':
+  //       setCountry(0)
   //       break
-  //     case 1:
-  //       setCountry('台北市')
+  //     case '台北市':
+  //       setCountry(1)
   //       break
-  //     case 2:
-  //       setCountry('新北市')
+  //     case '新北市':
+  //       setCountry(2)
   //       break
-  //     case 3:
-  //       setCountry('宜蘭縣')
+  //     case '宜蘭縣':
+  //       setCountry(3)
   //       break
-  //     case 4:
-  //       setCountry('新竹市')
+  //     case '新竹市':
+  //       setCountry(4)
   //       break
-  //     case 5:
-  //       setCountry('新竹縣')
+  //     case '新竹縣':
+  //       setCountry(5)
   //       break
-  //     case 6:
-  //       setCountry('桃園市')
+  //     case '桃園市':
+  //       setCountry(6)
   //       break
-  //     case 7:
-  //       setCountry('苗栗縣')
+  //     case '苗栗縣':
+  //       setCountry(7)
   //       break
-  //     case 8:
-  //       setCountry('台中市')
+  //     case '台中市':
+  //       setCountry(8)
   //       break
-  //     case 9:
-  //       setCountry('彰化縣')
+  //     case '彰化縣':
+  //       setCountry(9)
   //       break
-  //     case 10:
-  //       setCountry('南投縣')
+  //     case '南投縣':
+  //       setCountry(10)
   //       break
-  //     case 11:
-  //       setCountry('嘉義市')
+  //     case '嘉義市':
+  //       setCountry(11)
   //       break
-  //     case 12:
-  //       setCountry('嘉義縣')
+  //     case '嘉義縣':
+  //       setCountry(12)
   //       break
-  //     case 13:
-  //       setCountry('雲林縣')
+  //     case '雲林縣':
+  //       setCountry(13)
   //       break
-  //     case 14:
-  //       setCountry('台南市')
+  //     case '台南市':
+  //       setCountry(14)
   //       break
-  //     case 15:
-  //       setCountry('高雄市')
+  //     case '高雄市':
+  //       setCountry(15)
   //       break
-  //     case 16:
-  //       setCountry('屏東縣')
+  //     case '屏東縣':
+  //       setCountry(16)
   //       break
-  //     case 17:
-  //       setCountry('台東縣')
+  //     case '台東縣':
+  //       setCountry(17)
   //       break
-  //     case 18:
-  //       setCountry('花蓮縣')
+  //     case '花蓮縣':
+  //       setCountry(18)
   //       break
-  //     case 19:
-  //       setCountry('金門縣')
+  //     case '金門縣':
+  //       setCountry(18)
   //       break
-  //     case 20:
-  //       setCountry('連江縣')
+  //     case '連江縣':
+  //       setCountry(20)
   //       break
-  //     case 21:
-  //       setCountry('澎湖縣')
+  //     case '澎湖縣':
+  //       setCountry(21)
   //       break
   //     default:
   //       break
   //   }
-  // }
+  // }, [countryDb])
+
+  
 
   //郵遞區號判斷
   switch (postcode) {
@@ -498,6 +421,7 @@ function TWZipCode(props) {
             onChange={(e) => {
               // 將字串轉成數字
               setCountry(+e.target.value)
+              setCountryDb(e.target.innerText)
               // 重置township的值
               setTownship(-1)
             }}
@@ -506,7 +430,7 @@ function TWZipCode(props) {
             <option value={-1}>選擇縣市</option>
 
             {countries.map((v, i) => (
-              <option key={i} value={i} >
+              <option key={i} value={i}>
                 {v}
               </option>
             ))}
@@ -519,7 +443,7 @@ function TWZipCode(props) {
             onChange={(e) => {
               // 將字串轉成數字
               setTownship(+e.target.value)
-              setPostcode(postcodes[country][township])
+              setPostcode(postcodes[country][+e.target.value])
             }}
           >
             <option value={-1}>選擇區域</option>

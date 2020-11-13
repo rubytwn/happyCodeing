@@ -31,6 +31,9 @@ function MemberLoginModal(props) {
     }
   }
 
+  //email的判斷
+  const email_pattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
   //按下modal裡的「登入」觸發的function
   function loginInfoSubmit() {
     let loginInfo = document.querySelector('#loginInfo')
@@ -101,8 +104,6 @@ function MemberLoginModal(props) {
       pwd: registerPwd,
       gender: registerGender,
       birth: registerBirth,
-      // country: registerLocation,
-      // address: 'address',
       level: '1',
       avatar: '',
       addressCode:postcode,
@@ -115,7 +116,9 @@ function MemberLoginModal(props) {
       registerError.innerHTML = '請選擇地區'
     }else if( addressStringDb === ''){
       registerError.innerHTML = '請填寫地址'
-    } 
+    }else if(!email_pattern.test(registerEmail)){
+      registerError.innerHTML = '請填寫正確格式的電子郵件'
+    }
     else {
       fetch('http://localhost:3000/member/register', {
         method: 'POST',
@@ -156,10 +159,10 @@ function MemberLoginModal(props) {
     setRegisterPwd('')
     setRegisterGender('')
     setRegisterBirth('')
-    // setRegisterLocation('')
     setMemberLoginEmail('')
     setMemberLoginPwd('')
-
+    setCountry(-1)
+    setTownship(-1)
   }
 
   //登入登出btn狀態function

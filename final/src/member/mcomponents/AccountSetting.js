@@ -27,8 +27,8 @@ function AccountSetting(props) {
   const [postcode, setPostcode] = useState('') //郵遞區號
 
   //TWZipCode要用的地址
-  const [country, setCountry] = useState(-1) //縣市
-  const [township, setTownship] = useState(-1) //區域
+  const [country, setCountry] = useState() //縣市
+  const [township, setTownship] = useState() //區域
   //在TWZipCode用郵遞區號去轉換成縣市＆區域
   const [countryDb, setCountryDb] = useState('')
   const [townshipDb, setTownshipDb] = useState('')
@@ -60,7 +60,12 @@ function AccountSetting(props) {
           setMemberGender(res[0].gender)
           setMemberPwd(res[0].pwd)
           setAvatar(res[0].avatar)
-          setPostcode((res[0].addressCode).toString())
+          if(res[0].addressCode === 0 ){
+            setCountry(-1)
+            setTownship(-1)
+          }else{
+            setPostcode((res[0].addressCode).toString())
+          }
           setAddressStringDb(res[0].addressString)
         })
         .catch((error) => {

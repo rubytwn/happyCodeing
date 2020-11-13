@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import { countries, townships, postcodes } from './TWdata.js'
 
@@ -10,6 +9,7 @@ function TWZipCode(props) {
 
   //   const [countryDb, setCountryDb] = useState('')
   // const [townshipDb, setTownshipDb] = useState('')
+  // const [townshipDetermine, setTownshipDetermine] = useState('')
   const {
     country,
     setCountry,
@@ -25,79 +25,158 @@ function TWZipCode(props) {
     setAddressStringDb,
   } = props
 
-  //縣市判斷
   switch (countryDb) {
-      case '基隆市':
-        setCountry(0)
-          break;
-          case '台北市':
-        setCountry(1)
-          break;
-          case '新北市':
-        setCountry(2)
-          break;
-          case '宜蘭縣':
-        setCountry(3)
-          break;
-          case '新竹市':
-        setCountry(4)
-          break;
-          case '新竹縣':
-        setCountry(5)
-          break;
-          case '桃園市':
-        setCountry(6)
-          break;
-          case '苗栗縣':
-        setCountry(7)
-          break;
-          case '台中市':
-        setCountry(8)
-          break;
-          case '彰化縣':
-          setCountry(9)
-            break;
-            case '南投縣':
-          setCountry(10)
-            break;
-            case '嘉義市':
-          setCountry(11)
-            break;
-            case '嘉義縣':
-          setCountry(12)
-            break;
-            case '雲林縣':
-          setCountry(13)
-            break;
-            case '台南市':
-          setCountry(14)
-            break;
-            case '高雄市':
-          setCountry(15)
-            break;
-            case '屏東縣':
-          setCountry(16)
-            break;
-            case '台東縣':
-          setCountry(17)
-            break;
-            case '花蓮縣':
-          setCountry(18)
-            break;
-            case '金門縣':
-          setCountry(18)
-            break;
-            case '連江縣':
-          setCountry(20)
-            break;
-            case '澎湖縣':
-          setCountry(21)
-            break;
-
-  
-      default:
-          break;
+    case '基隆市':
+      setCountry(0)
+      break
+    case '台北市':
+      setCountry(1)
+      break
+    case '新北市':
+      setCountry(2)
+      break
+    case '宜蘭縣':
+      setCountry(3)
+      break
+    case '新竹市':
+      setCountry(4)
+      break
+    case '新竹縣':
+      setCountry(5)
+      break
+    case '桃園市':
+      setCountry(6)
+      break
+    case '苗栗縣':
+      setCountry(7)
+      break
+    case '台中市':
+      setCountry(8)
+      break
+    case '彰化縣':
+      setCountry(9)
+      break
+    case '南投縣':
+      setCountry(10)
+      break
+    case '嘉義市':
+      setCountry(11)
+      break
+    case '嘉義縣':
+      setCountry(12)
+      break
+    case '雲林縣':
+      setCountry(13)
+      break
+    case '台南市':
+      setCountry(14)
+      break
+    case '高雄市':
+      setCountry(15)
+      break
+    case '屏東縣':
+      setCountry(16)
+      break
+    case '台東縣':
+      setCountry(17)
+      break
+    case '花蓮縣':
+      setCountry(18)
+      break
+    case '金門縣':
+      setCountry(18)
+      break
+    case '連江縣':
+      setCountry(20)
+      break
+    case '澎湖縣':
+      setCountry(21)
+      break
+    default:
+      break
   }
+
+  // function aaa(e) {
+  //   // 將字串轉成數字
+  //   setCountry(+e.target.value)
+  //   // 重置township的值
+  //   setTownship(-1)
+  //   console.log('aaa')
+  //   //縣市判斷
+  //   switch (+e.target.value) {
+  //     case 0:
+  //       console.log('bbb ')
+  //       setCountry('基隆市')
+  //       console.log('ccc')
+  //       break
+  //     case 1:
+  //       setCountry('台北市')
+  //       break
+  //     case 2:
+  //       setCountry('新北市')
+  //       break
+  //     case 3:
+  //       setCountry('宜蘭縣')
+  //       break
+  //     case 4:
+  //       setCountry('新竹市')
+  //       break
+  //     case 5:
+  //       setCountry('新竹縣')
+  //       break
+  //     case 6:
+  //       setCountry('桃園市')
+  //       break
+  //     case 7:
+  //       setCountry('苗栗縣')
+  //       break
+  //     case 8:
+  //       setCountry('台中市')
+  //       break
+  //     case 9:
+  //       setCountry('彰化縣')
+  //       break
+  //     case 10:
+  //       setCountry('南投縣')
+  //       break
+  //     case 11:
+  //       setCountry('嘉義市')
+  //       break
+  //     case 12:
+  //       setCountry('嘉義縣')
+  //       break
+  //     case 13:
+  //       setCountry('雲林縣')
+  //       break
+  //     case 14:
+  //       setCountry('台南市')
+  //       break
+  //     case 15:
+  //       setCountry('高雄市')
+  //       break
+  //     case 16:
+  //       setCountry('屏東縣')
+  //       break
+  //     case 17:
+  //       setCountry('台東縣')
+  //       break
+  //     case 18:
+  //       setCountry('花蓮縣')
+  //       break
+  //     case 19:
+  //       setCountry('金門縣')
+  //       break
+  //     case 20:
+  //       setCountry('連江縣')
+  //       break
+  //     case 21:
+  //       setCountry('澎湖縣')
+  //       break
+  //     default:
+  //       break
+  //   }
+  // }
+
   //郵遞區號判斷
   switch (postcode) {
     case '200':
@@ -409,28 +488,25 @@ function TWZipCode(props) {
     <>
       <div className="row">
         <div className="col-3">
-          <input
-          className="form-con"
-            value={postcode}
-            disabled
-          />
-            {/* {country > -1 && township > -1 && postcodes[country][township]} */}
+          <input className="form-con" value={postcode} disabled />
+          {/* {country > -1 && township > -1 && postcodes[country][township]} */}
         </div>
         <div className="col-4">
           <select
             className="form-con"
-            // value={country}
+            value={country}
             onChange={(e) => {
               // 將字串轉成數字
               setCountry(+e.target.value)
               // 重置township的值
               setTownship(-1)
             }}
+            // onChange={aaa}
           >
-            <option value={-1}>請選擇縣市</option>
+            <option value={-1}>選擇縣市</option>
 
             {countries.map((v, i) => (
-              <option key={i} value={i} selected={countryDb === v}>
+              <option key={i} value={i} >
                 {v}
               </option>
             ))}
@@ -439,16 +515,14 @@ function TWZipCode(props) {
         <div className="col-5">
           <select
             className="form-con"
-            // value={township}
+            value={township}
             onChange={(e) => {
               // 將字串轉成數字
               setTownship(+e.target.value)
-            setPostcode(postcodes[country][township])
+              setPostcode(postcodes[country][township])
             }}
           >
-            <option value={-1}>
-              請選擇區域
-            </option>
+            <option value={-1}>選擇區域</option>
             {country > -1 &&
               townships[country].map((v, i) => (
                 <option key={i} value={i} selected={townshipDb === v}>
@@ -465,10 +539,10 @@ function TWZipCode(props) {
             type="text"
             placeholder="請輸入地址"
             value={addressStringDb}
-            onChange={(e)=>{
-                const newAddressString = e.target.value
-                setAddressStringDb(newAddressString)
-                setPostcode(postcodes[country][township])
+            onChange={(e) => {
+              const newAddressString = e.target.value
+              setAddressStringDb(newAddressString)
+              setPostcode(postcodes[country][township])
             }}
           />
         </div>

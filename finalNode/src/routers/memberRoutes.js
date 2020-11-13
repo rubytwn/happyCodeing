@@ -18,6 +18,7 @@ router.post("/", (req, res) => {
 router.post("/login",async(req,res)=>{
   const sql = "SELECT * FROM `members` WHERE email = ? AND pwd = ?"
   const [results] = await db.query(sql,[req.body.email,req.body.pwd])
+  // console.log(results)
   return res.json({id:results[0].id,name:results[0].name,level:results[0].level});
 })
 

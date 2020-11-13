@@ -23,6 +23,24 @@ function Follow() {
       setMemberFollowingItems(afterDel)
   }
 
+  const handleAddToCart = (e) =>{
+    const cartItem =  localStorage.getItem('cart')
+    const data = {
+      sid:e.id,
+      name:e.name,
+      price:e.price,
+      picture:e.picture,
+      amount:1
+    }
+    if(cartItem === null){
+      localStorage.setItem('cart',JSON.stringify([data]))
+    }else{
+      const newCart = JSON.parse(cartItem)
+      const addNewItem = [data,...newCart]
+      localStorage.setItem('cart',JSON.stringify(addNewItem))
+    }
+  }
+
   useEffect(()=>{
     getItemFromLocalStorage()
   },[memberFollowingItems])
@@ -54,6 +72,7 @@ function Follow() {
                 picture={item.picture}
                 name={item.name}
                 price={item.price}
+                addToCartMethod={()=> handleAddToCart(item)}
                 deleteMethod={() => handleDelete(item.id)}
                />
             )})}

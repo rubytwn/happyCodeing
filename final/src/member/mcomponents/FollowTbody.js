@@ -2,7 +2,7 @@ import React from 'react'
 import '../member.css'
 
 function FollowTbody(props) {
-  const { picture, name, price, deleteMethod } = props
+  const { picture, name, price, addToCartMethod , deleteMethod } = props
 
   return (
     <>
@@ -15,7 +15,7 @@ function FollowTbody(props) {
         <td>{name}</td>
         <td>{price}</td>
         <td>
-          <button className="order-btn" href="">
+          <button className="order-btn" href="" onClick={addToCartMethod}>
             加入購物車
           </button>
         </td>

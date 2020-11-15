@@ -32,16 +32,16 @@ function MemberLoginModal(props) {
   }
 
   //email的判斷
-  const email_pattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  const email_pattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
 
   //按下modal裡的「登入」觸發的function
   function loginInfoSubmit() {
     let loginInfo = document.querySelector('#loginInfo')
-    if( memberLoginEmail === ''){
-      loginInfo.innerHTML='請輸入電子郵件'
+    if (memberLoginEmail === '') {
+      loginInfo.innerHTML = '請輸入電子郵件'
     }
-    if( memberLoginPwd === ''){
-      loginInfo.innerHTML='請輸入密碼'
+    if (memberLoginPwd === '') {
+      loginInfo.innerHTML = '請輸入密碼'
     }
     const data = {
       email: memberLoginEmail,
@@ -64,7 +64,7 @@ function MemberLoginModal(props) {
         localStorage.setItem('memberLogInInfo', memberLoginId)
         console.log('row')
         if (localStorage.getItem('memberLogInInfo') !== '') {
-          alert("登入成功！")
+          alert('登入成功！')
           setisAuth(true)
           setLoginModalShow(false)
           props.history.push('/memberroot/aboutme')
@@ -73,7 +73,7 @@ function MemberLoginModal(props) {
         }
       })
       .catch((error) => {
-        console.log("錯誤")
+        console.log('錯誤')
       })
   }
 
@@ -106,20 +106,18 @@ function MemberLoginModal(props) {
       birth: registerBirth,
       level: '1',
       avatar: '',
-      addressCode:postcode,
-      addressString:addressStringDb
+      addressCode: postcode,
+      addressString: addressStringDb,
     }
     if (registerGender === 0) {
       registerError.innerHTML = '請選擇性別'
-    } 
-    else if (postcode === 0) {
+    } else if (postcode === 0) {
       registerError.innerHTML = '請選擇地區'
-    }else if( addressStringDb === ''){
+    } else if (addressStringDb === '') {
       registerError.innerHTML = '請填寫地址'
-    }else if(!email_pattern.test(registerEmail)){
+    } else if (!email_pattern.test(registerEmail)) {
       registerError.innerHTML = '請填寫正確格式的電子郵件'
-    }
-    else {
+    } else {
       fetch('http://localhost:3000/member/register', {
         method: 'POST',
         headers: {
@@ -138,7 +136,7 @@ function MemberLoginModal(props) {
           const a = JSON.stringify({ id: insertId })
           localStorage.setItem('memberLogInInfo', a)
           if (localStorage.getItem('memberLogInInfo') !== '') {
-            alert("註冊成功！")
+            alert('註冊成功！')
             setisAuth(true)
             setLoginModalShow(false)
             props.history.push('/memberroot/aboutme')
@@ -151,7 +149,7 @@ function MemberLoginModal(props) {
   const [loginOrRegister, setLoginOrRegister] = useState(true)
 
   //modal onHide的function
-  function modalOnHide(){
+  function modalOnHide() {
     setLoginModalShow(false)
     setLoginOrRegister(true)
     setRegisterName('')
@@ -166,13 +164,32 @@ function MemberLoginModal(props) {
   }
 
   //登入登出btn狀態function
-  function loginBtnCtrl(){
-    if(!isAuth){
+  function loginBtnCtrl() {
+    if (!isAuth) {
       setLoginModalShow(true)
-    }else{
+    } else {
       setLoginModalShow(false)
       setisAuth(false)
     }
+  }
+
+  //快速輸入-LOGIN
+  function fastLoginFunction(){
+    setMemberLoginEmail('bunny@yahoo.com.tw')
+    setMemberLoginPwd('123')
+  }
+
+  //快速輸入-REGISTER
+  function fastRegisterFunction(){
+    setRegisterName('Adrian')
+    setRegisterEmail('adrian@gmail.com')
+    setRegisterPwd('123')
+    setRegisterGender('1')
+    setRegisterBirth('1998-02-14')
+    setCountry(1)
+    setTownship(4)
+    setAddressStringDb('復興南路一段390號2樓')
+    setPostcode(106)
   }
 
   //登入
@@ -183,6 +200,12 @@ function MemberLoginModal(props) {
       </Modal.Header>
       <Modal.Body>
         <form>
+        <div className="form-group">
+        <input type="checkbox" id="fastinput" onClick={fastLoginFunction}/>
+        <label className="form-check-label" htmlFor="fastinput">
+          快速輸入
+        </label>
+        </div>
           <div className="form-group">
             <label htmlFor="loginEmail">電子郵件</label>
             <input
@@ -236,7 +259,9 @@ function MemberLoginModal(props) {
         >
           還沒有帳號嗎？點我註冊
         </p>
-        <button className="login-btn" onClick={loginInfoSubmit}>{isAuth ? '登出' : '登入'}</button>
+        <button className="login-btn" onClick={loginInfoSubmit}>
+          {isAuth ? '登出' : '登入'}
+        </button>
       </Modal.Footer>
     </>
   )
@@ -249,6 +274,12 @@ function MemberLoginModal(props) {
       </Modal.Header>
       <Modal.Body>
         <form>
+        <div className="form-group">
+        <input type="checkbox" id="fastregister" onClick={fastRegisterFunction}/>
+        <label className="form-check-label" htmlFor="fastregister">
+          快速輸入
+        </label>
+        </div>
           <div className="form-group">
             <label htmlFor="registerName">顯示暱稱</label>
             <input
@@ -341,22 +372,22 @@ function MemberLoginModal(props) {
             />
           </div>
           <div className="form-group">
-                <label htmlFor="address1">地址</label>
-                <TWZipCode
-                  country={country}
-                  setCountry={setCountry}
-                  township={township}
-                  setTownship={setTownship}
-                  postcode={postcode}
-                  setPostcode={setPostcode}
-                  countryDb={countryDb}
-                  setCountryDb={setCountryDb}
-                  townshipDb={townshipDb}
-                  setTownshipDb={setTownshipDb}
-                  addressStringDb={addressStringDb}
-                  setAddressStringDb={setAddressStringDb}
-                />
-              </div>
+            <label htmlFor="address1">地址</label>
+            <TWZipCode
+              country={country}
+              setCountry={setCountry}
+              township={township}
+              setTownship={setTownship}
+              postcode={postcode}
+              setPostcode={setPostcode}
+              countryDb={countryDb}
+              setCountryDb={setCountryDb}
+              townshipDb={townshipDb}
+              setTownshipDb={setTownshipDb}
+              addressStringDb={addressStringDb}
+              setAddressStringDb={setAddressStringDb}
+            />
+          </div>
           <p id="registerError"></p>
         </form>
       </Modal.Body>
@@ -369,7 +400,9 @@ function MemberLoginModal(props) {
         >
           已經有帳號嗎？點我登入
         </p>
-        <button onClick={RegisterSubmit} className="login-btn">註冊</button>
+        <button onClick={RegisterSubmit} className="login-btn">
+          註冊
+        </button>
       </Modal.Footer>
     </>
   )

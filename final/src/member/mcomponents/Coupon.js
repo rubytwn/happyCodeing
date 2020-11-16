@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { useAccordionToggle } from 'react-bootstrap'
 import CouponDetail from './CouponDetail'
 
 function Coupon() {
     const localStorageLevel = localStorage.getItem('memberLogInInfo')
     const memberLevel = JSON.parse(localStorageLevel).level
     const [memberCoupon , setMemberCoupon ] = useState([])
+
     useEffect(() => {
           fetch('http://localhost:3000/member/coupon', {
           method: 'POST',
@@ -26,6 +28,19 @@ function Coupon() {
               //console.log(error)
             })
         }, [])
+
+        function coupons(){
+          
+          for(let i = 0; i<=memberCoupon.length; i++){
+            const name = memberCoupon[i].coupon_name
+            console.log(name)
+            // return [memberCoupon[i].coupon_name]
+          }
+        }
+        function getAllCoupons(){
+          // alert(`已領取 ${coupons}`)
+          alert('已全部領取')
+        }
         
   return (
     <>
@@ -33,6 +48,7 @@ function Coupon() {
         <div className="row">
           <h4>優惠券</h4>
         </div>
+        <button className="order-btn mb-3" onClick={getAllCoupons}>一鍵領取</button>
         {memberCoupon.map((item,index)=>{
             return(
                 <CouponDetail

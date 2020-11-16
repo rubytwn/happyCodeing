@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Gift from '../images/coupon.svg'
 
 function Coupon(props) {
-  const { id, coupon_name, coupon_rule, coupon_date, coupon_code } = props
+  const { id, coupon_name, coupon_rule, coupon_date, coupon_code} = props
 
-  // function copy(){
-  //   const copybtn = document.getElementById(id).coupon_code;
-  //   copybtn.select(); // 選擇物件
-  //   document.execCommand("Copy"); // 執行瀏覽器複製命令
-  //   alert("已複製好，可貼粘。");
-  // }
+  //優惠券領取狀態
+  const [couponGet, setCouponGet ] = useState(false)
+
+  const couponGetTrue = "coupon-get"
+  const couponGetFalse = "order-btn"
+
+  function getCoupon(){
+    alert(`已領取 [${coupon_name}] ${coupon_code}`)
+    setCouponGet(true)
+  }
+
   return (
     <>
       <div className="card mb-3">
@@ -29,7 +34,9 @@ function Coupon(props) {
               <span className="card-text" id={id}>
                 優惠代碼 ：{coupon_code}
               </span>
-              <button className="order-btn"  style={{float: "right"}} onClick={()=>{}}>複製</button>
+              <button className={ couponGet ? couponGetTrue : couponGetFalse}  style={{float: "right"}} onClick={getCoupon}>
+                { couponGet ? '已領取' : '未領取'}
+              </button>
             </div>
           </div>
         </div>

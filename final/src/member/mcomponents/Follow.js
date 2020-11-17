@@ -17,8 +17,8 @@ function Follow() {
   }
 
   //要傳到<FollowTbody /> 從追蹤清單移除的方法
-  const handleDelete = (id) => {
-    const newmemberFollowingItems = memberFollowingItems.filter((item, index) => item.id !== id)
+  const handleDelete = (sid) => {
+    const newmemberFollowingItems = memberFollowingItems.filter((item, index) => item.sid !== sid)
     const afterDel =   localStorage.setItem('memberFollowingItems' , JSON.stringify(newmemberFollowingItems))
       setMemberFollowingItems(afterDel)
   }
@@ -26,7 +26,7 @@ function Follow() {
   const handleAddToCart = (e) =>{
     const cartItem =  localStorage.getItem('cart')
     const data = {
-      sid:e.id,
+      sid:e.sid,
       name:e.name,
       price:e.price,
       picture:e.picture,
@@ -68,12 +68,12 @@ function Follow() {
             {memberFollowingItems.map((item, index) => {
               return(
               <FollowTbody
-                key={item.id}
+                key={item.sid}
                 picture={item.picture}
                 name={item.name}
                 price={item.price}
                 addToCartMethod={()=> handleAddToCart(item)}
-                deleteMethod={() => handleDelete(item.id)}
+                deleteMethod={() => handleDelete(item.sid)}
                />
             )})}
               

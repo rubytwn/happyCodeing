@@ -48,18 +48,18 @@ function Level() {
           <h6 className="col-3" style={{ textAlign: 'center' }}>
             白銀會員
           </h6>
-          <h6 className="col-3" style={{ extAlign: 'center' }}>
+          <h6 className="col-3" style={{ textAlign: 'center' }}>
             黃金會員
           </h6>
-          <h6 className="col-3" style={{ extAlign: 'center' }}>
+          <h6 className="col-3" style={{ textAlign: 'center' }}>
             白金會員
           </h6>
-          <h6 className="col-3" style={{ extAlign: 'center' }}>
+          <h6 className="col-3" style={{ textAlign: 'center' }}>
             鑽石會員
           </h6>
         </div>
         <div className="row">
-          <div className={ memberLevel === 1 ? "col-3 level-border" : "col-3" }>
+          <div className={ memberLevel === 1 ? "col-3 level-border" : "col-3" } style={memberLevel === 1 ? {}: {opacity:'40%'}}>
             <div className="level-svg-div-t">
               <img className="level-svg-t" src={Svg2} alt="" />
             </div>
@@ -80,7 +80,7 @@ function Level() {
               <p style={{ color: '#627a86' }} className="level-word">
                 優惠券
               </p>
-              <h6 className="level-word">3張$50的優惠券不限金額皆可使用</h6>
+              <h6 className="level-word">3張$20的優惠券不限金額皆可使用</h6>
             </div>
             <div className="mb-5">
               <div className="level-svg-div">
@@ -92,7 +92,7 @@ function Level() {
               <h6 className="level-word">可折抵結帳金額2%</h6>
             </div>
           </div>
-          <div className={ memberLevel === 2 ? "col-3 level-border" : "col-3" }>
+          <div className={ memberLevel === 2 ? "col-3 level-border" : "col-3" } style={memberLevel === 2 ? {}: {opacity:'40%'}}>
             <div className="level-svg-div-t">
               <img className="level-svg-t" src={Svg3} alt="" />
             </div>
@@ -113,7 +113,7 @@ function Level() {
               <p style={{ color: '#627a86' }} className="level-word">
                 優惠券
               </p>
-              <h6 className="level-word">3張$50的優惠券不限金額皆可使用</h6>
+              <h6 className="level-word">3張$30的優惠券不限金額皆可使用</h6>
             </div>
             <div className="mb-5">
               <div className="level-svg-div">
@@ -122,10 +122,10 @@ function Level() {
               <p style={{ color: '#627a86' }} className="level-word">
                 艸幣消費折抵
               </p>
-              <h6 className="level-word">可折抵結帳金額2%</h6>
+              <h6 className="level-word">可折抵結帳金額3%</h6>
             </div>
           </div>
-          <div className={ memberLevel === 3 ? "col-3 level-border" : "col-3" }>
+          <div className={ memberLevel === 3 ? "col-3 level-border" : "col-3" } style={memberLevel === 3 ? {}: {opacity:'40%'}}>
             <div className="level-svg-div-t">
               <img className="level-svg-t" src={Svg4} alt="" />
             </div>
@@ -146,7 +146,7 @@ function Level() {
               <p style={{ color: '#627a86' }} className="level-word">
                 優惠券
               </p>
-              <h6 className="level-word">3張$50的優惠券不限金額皆可使用</h6>
+              <h6 className="level-word">3張$40的優惠券不限金額皆可使用</h6>
             </div>
             <div className="mb-5">
               <div className="level-svg-div">
@@ -155,10 +155,10 @@ function Level() {
               <p style={{ color: '#627a86' }} className="level-word">
                 艸幣消費折抵
               </p>
-              <h6 className="level-word">可折抵結帳金額2%</h6>
+              <h6 className="level-word">可折抵結帳金額4%</h6>
             </div>
           </div>
-          <div className={ memberLevel === 4 ? "col-3 level-border" : "col-3" }>
+          <div className={ memberLevel === 4 ? "col-3 level-border" : "col-3" } style={memberLevel === 4 ? {}: {opacity:'40%'}}>
             <div className="level-svg-div-t">
               <img className="level-svg-t" src={Svg5} alt="" />
             </div>
@@ -188,7 +188,7 @@ function Level() {
               <p style={{ color: '#627a86' }} className="level-word">
                 艸幣消費折抵
               </p>
-              <h6 className="level-word">可折抵結帳金額2%</h6>
+              <h6 className="level-word">可折抵結帳金額5%</h6>
             </div>
           </div>
         </div>

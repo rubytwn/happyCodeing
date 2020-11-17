@@ -248,15 +248,15 @@ function AboutMe() {
                 />
                 <div style={{ marginLeft: '15px' }}>
                   <div>
-                    <img src={Box} style={{ height: '16px' }} alt="" />
+                    <img src={Box} style={{ height: '16px' }} alt="" className="mr-2"/>
                     <span>消費滿3000</span>
                   </div>
                   <div>
-                    <img src={Box} style={{ height: '16px' }} alt="" />
+                    <img src={Box} style={{ height: '16px' }} alt="" className="mr-2"/>
                     <span>消費(含)三次以上</span>
                   </div>
                   <div>
-                    <img src={Box} style={{ height: '16px' }} alt="" />
+                    <img src={Box} style={{ height: '16px' }} alt="" className="mr-2"/>
                     <span>完成艸小遊戲</span>
                   </div>
                 </div>
@@ -282,15 +282,15 @@ function AboutMe() {
                 />
                 <div style={{ marginLeft: '15px' }}>
                   <div>
-                    <img src={Box} style={{ height: '16px' }} alt="" />
+                    <img src={Box} style={{ height: '16px' }} alt="" className="mr-2"/>
                     <span>消費滿5000</span>
                   </div>
                   <div>
-                    <img src={Box} style={{ height: '16px' }} alt="" />
+                    <img src={Box} style={{ height: '16px' }} alt="" className="mr-2"/>
                     <span>消費(含)五次以上</span>
                   </div>
                   <div>
-                    <img src={Box} style={{ height: '16px' }} alt="" />
+                    <img src={Box} style={{ height: '16px' }} alt="" className="mr-2"/>
                     <span>完成艸小遊戲</span>
                   </div>
                 </div>

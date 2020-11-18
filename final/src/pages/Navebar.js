@@ -2,15 +2,24 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import Login from './Login'
+// import { Badge, Button } from 'react-bootstrap'
+import { Badge, Button } from 'react-bootstrap'
+import { useEffect } from 'react'
 
 function Navebar(props) {
   const [click, setClick] = useState(false)
-  const { setisAuth, isAuth } = props
+  const { setisAuth, isAuth, cartItems, setCartItems } = props
   const [loginModalShow, setLoginModalShow] = useState(false)
+  
 
   const handleClick = () => setClick(!click)
 
   const closeMobileMenu = () => setClick(false)
+  useEffect(() => {
+    const a = cartItems
+  console.log(a)
+  }, [cartItems])
+  
   return (
     <>
       <nav className="navbar">
@@ -54,10 +63,17 @@ function Navebar(props) {
               <img src="../../images/購物車.svg" alt="圖片遺失" />
             </Link>
           </li>
-          <li className="nav-icon cart1">
-            <Link to="/cart" onClick={closeMobileMenu}>
-              <img src="../../images/購物車1.svg" alt="圖片遺失" />
-            </Link>
+          <li className="nav-icon">
+            {/* <Link to="/cart" onClick={closeMobileMenu}>
+            <div>
+            <img src="../../images/購物車1.svg" alt="圖片遺失" /><Badge variant="light">9</Badge>
+            </div>
+              
+            </Link> */}
+            <Button variant="primary">
+              Profile <Badge variant="light">{cartItems}</Badge>
+              <span className="sr-only">unread messages</span>
+            </Button>
           </li>
           <Login
             loginModalShow={loginModalShow}

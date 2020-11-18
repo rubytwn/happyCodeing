@@ -39,6 +39,9 @@ function Follow() {
       const addNewItem = [data,...newCart]
       localStorage.setItem('cart',JSON.stringify(addNewItem))
     }
+    const newmemberFollowingItems = memberFollowingItems.filter((item, index) => item.sid !== e)
+    const afterDel =   localStorage.setItem('memberFollowingItems' , JSON.stringify(newmemberFollowingItems))
+      setMemberFollowingItems(afterDel)
   }
 
   useEffect(()=>{

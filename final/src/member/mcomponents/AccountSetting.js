@@ -279,15 +279,15 @@ function editAvatarOnChange(e) {
                 alt="找不到圖片"
               />
             </div>
-            <h6 href="" className="img-select">
+            {/* <h6 href="" className="img-select">
               從電腦中選取檔案
             </h6>
             <button href="" className="update-img-btn">
               更新大頭照
-            </button>
+            </button> */}
             <form name="avatarform" encType="multipart/forn-data">
                   <div class="form-group mt-3">
-                    <label for="editAvatar">修改大頭貼</label>
+                    {/* <label for="editAvatar">修改大頭貼</label> */}
                     <input
                       name="avatar"
                       type="file"

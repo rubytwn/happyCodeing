@@ -170,6 +170,7 @@ function MemberLoginModal(props) {
     } else {
       setLoginModalShow(false)
       setisAuth(false)
+      localStorage.removeItem('memberLogInInfo')
     }
   }
 

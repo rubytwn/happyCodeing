@@ -10,6 +10,22 @@ function Follow() {
   // const localStoragememberFollowingItems = JSON.parse(localStorageItems)
   // setMemberFollowingItems(localStoragememberFollowingItems)
 
+  useEffect(() => {
+    const a = [
+      {
+        "sid": "1",
+        "name": "順其自然卸妝乳",
+        "price": 350,
+        "picture": "/images/facial1.jpg"
+      },
+      {
+        "sid": "2",
+        "name": "保濕面膜",
+        "price": 300,
+        "picture": "/images/facial2.jpg"
+      }]
+    localStorage.setItem('memberFollowingItems',JSON.stringify(a))
+  }, [])
    //從localStorage拿追蹤商品
   function getItemFromLocalStorage(){
     const localStorageItems = localStorage.getItem('memberFollowingItems')
